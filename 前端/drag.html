@@ -1,0 +1,136 @@
+<!--创建Cube组成的立方体，并可选中某个cube进行拖动。-->
+<html>
+<head>
+    <title>Drag Object</title>
+</head>
+<body>
+<script src="threejs/three.js"></script>
+<script src="threejs/three.min.js"></script>
+<script src="https://threejsfundamentals.org/threejs/resources/threejs/r105/js/controls/OrbitControls.js"></script>
+<script src="threejs/DragControls.js"></script>
+<script src="threejs/TransformControls.js"></script>
+<script src="threejs/TrackballControls.js"></script>
+<script>
+    var renderer;
+    function initThree(){
+        height = window.innerHeight;
+        width = window.innerWidth;
+        renderer=new THREE.WebGLRenderer();
+        renderer.setSize(width, height);
+        document.body.appendChild( renderer.domElement );
+    }
+    var camera;
+    function initCamera() {
+        camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 50 );
+        camera.position.x = 10 ;
+        camera.position.y = 10;
+        camera.position.z = 20;
+        camera.up.x = 0; //相机以哪个方向为上方,默认y为上。
+        camera.up.y = 1;
+        camera.up.z = 0;
+        camera.lookAt(new THREE.Vector3(0,0,0));
+    }
+    function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+    }
+    var scene;
+    function initScene() {
+        scene = new THREE.Scene();
+    }
+
+    var light;
+    function initLight() {
+        const color = 0xFFFFFF;
+        const intensity = 1;
+        light = new THREE.DirectionalLight(color, intensity);
+        scene.add(light);
+    }
+    var cube;
+    function initObject() {
+        let geometry = new THREE.BoxGeometry(1,1,1);
+        let textureCube = new THREE.TextureLoader().load( "pic/flag.GIF" ); //加载贴图图片
+        textureCube.wrapS = THREE.RepeatWrapping;
+        textureCube.wrapT = THREE.RepeatWrapping;
+        textureCube.repeat.set( 1, 1 ); //原函数是将长宽分之一，所以数字越大 纹理越细。
+
+        let material = new THREE.MeshBasicMaterial( { map: textureCube, transparent:true, opacity:1 } );
+        let num = 4;
+        for (let i = 0; i < num; i++){
+            for (let j = 0; j < num; j++){
+                for (let k = 0; k< num; k++){
+                    let cube = new THREE.Mesh(geometry, material); //构造cube矩阵。
+                    cube.name = 'cube'+ i + j + k;
+                    cube.position.set(i*2,j*2,k*2);
+                    scene.add(cube);
+                }
+
+            }
+
+        }
+
+    }
+    function orbitControls(){
+        controls = new THREE.OrbitControls(camera, renderer.domElement );
+        controls.target.set(0, 0, 0);
+        controls.enableZoom = true;
+        controls.enablePan = true;
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.5;  // 缓冲效果下的加速度
+        controls.rotateSpeed = -1;
+        controls.update();
+    }
+    function threeStart() {
+        initThree();
+        initCamera();
+        initScene();
+        initLight();
+        orbitControls();
+        initObject();
+        animation();
+        initDragControls();
+        //onmouseDown();
+        //window.addEventListener('mousedown', initDragControls, false);
+    }
+
+    let mouse = new THREE.Vector2();
+    let raycaster = new THREE.Raycaster();
+    function initDragControls(){
+       let transformControls = new THREE.TransformControls(camera, renderer.domElement);
+       scene.add(transformControls);
+       let obj = [];
+       for (let i = 0;i < scene.children.length; i++){
+           if (scene.children[i].isMesh){
+               obj.push(scene.children[i]);
+           }
+       }
+       let dragControls = new THREE.DragControls(obj, camera, renderer.domElement);
+
+       dragControls.addEventListener('hoveron', function(event){
+           transformControls.attach(event.object);
+       });
+       dragControls.addEventListener('dragstart', function(){
+           console.log('start')
+           controls.enabled = false;
+       });
+        // dragControls.addEventListener('drag', function(delta){
+        //     console.log(delta)
+        //     controls.enabled = false;
+        // });
+       dragControls.addEventListener('dragend', function(){
+           console.log('end')
+           controls.enable = true;
+       })
+    }
+    function animation()
+    {
+        renderer.render(scene, camera);
+        requestAnimationFrame(animation);
+    }
+
+    threeStart();
+
+</script>
+</body>
+</html>
