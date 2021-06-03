@@ -63,3 +63,7 @@ ssh name
 Tips:修改ssh登陆欢迎信息：
 
 进入目录 /etc/update-motd.d，里面几个文件，分别设置不同的登陆信息，可根据需要修改。
+
+
+### 启动问题：
+   - service sshd restart 可能报错，查看报错信息可能提示 /var/run/ssh不存在，只要mkdir个该文件，即可启动ssh。
