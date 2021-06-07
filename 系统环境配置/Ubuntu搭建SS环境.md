@@ -115,3 +115,7 @@ nohup ss-server -c config.json &
 
 > shadowsocks-libev的git仓库：https://github.com/shadowsocks/shadowsocks-libev
 
+- 查看端口是否开启:
+-  ```
+-  netstat -lnp | grep ss-server
+-  ```
