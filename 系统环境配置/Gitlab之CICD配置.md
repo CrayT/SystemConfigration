@@ -40,10 +40,13 @@ GitLab-CICD
         install:
           stage: install
           script:
-        #    - npm config set registry https://registry.npm.taobao.org
+            #- npm config set registry https://registry.npm.taobao.org
             - npm install --force
           only:
             - master
+          rules: #rules与only不能共存，rule下的if可设置条件，&&或||，正则匹配等
+              - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^master/ || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^release/'
+                when: manual #when可设置何时触发，on_success自动触发，manual是手动触发，需要在gitlab页面手动点击执行，点击之前不可执行merge 
         build:
           stage: build
           script:
@@ -54,7 +57,6 @@ GitLab-CICD
             - ./build.sh
           only:
             - master
-        
         after_script:
           - echo "Stage：${CI_JOB_STAGE}, Job：${CI_JOB_NAME}, Branch:${CI_COMMIT_BRANCH},CommitMessage:${CI_COMMIT_MESSAGE}, complete！,"
         ```
