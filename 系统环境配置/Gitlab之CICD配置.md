@@ -1,26 +1,46 @@
 ## GitLab-CICD
 
+#### Docker安装
+- daocloud一键安装命令：
+```
+curl -sSL https://get.daocloud.io/docker | sh
+```
+- 官方：
+```
+curl -fsSL https://get.docker.com | bash -s docker --mirror aliyun
+```
+#### 安装gitlab-runner：
+- 参考官方：`https://docs.gitlab.com/runner/install/linux-manually.html`
+
+
 ### 前提：必须是仓库管理员才可以配置！
 
 - 首先配置一个`Runner`：进入仓库，从Settings`中进入`CI/CD`, 找到`Runners`打开，选择`runner`方式，比如手动自己设置的话就选`specific runner`。按照教程，在一台联网的机器上安装：
 
   - 例如选择一台VPS，以`ubuntu`系统为例，以`Docker`方式运行
 
-  - `pull gitlabrunner`：
+  - pull基镜像： `pull gitlabrunner`：
 
     - ``` docker pull gitlab/gitlab-runner:latest ```
 
-  - 起一个`docker`实例：
+  - 创建Runner：
+    - 方式一：起一个`docker`实例：
 
-    - ```  docker run -d --name gitlab-runner-lineDrawer --restart always gitlab/gitlab-runner``` register
-    - 至于volume挂载，根据需要要不要挂载到vps或其他地方。
+      - ```  docker run --rm -it -v /srv/gitlab-runner/config:/etc/gitlab-runner gitlab/gitlab-runner register```
+      > 这种纯容器方式不知为何无法探测到job，还是采用方式二吧。
+      - 至于volume挂载，根据需要要不要挂载到vps或其他地方。
 
-  - 注册`gitlabrunner`：
+    - 方式二：(推荐)命令行：`gitlabrunner`：
 
-    - 两种方式，直接通过gitlab-runner命令：
-      - ``` gitlab-runner register ```
-    - 第二种是在run一个实例的时候直接创建，应该是简化等效为上面一条命令；
-    - 根据接下来的提示输入在CI/CD页提示的`URL`和`token`，再输入其他相关信息即可，一个runner即成功创建
+      - 直接通过gitlab-runner命令：
+        - ``` gitlab-runner register ```
+        > 后续选择docker执行，则在执行job时实际是在容器中执行。
+      - 根据接下来的提示输入在CI/CD页提示的`URL`和`token`，再输入其他相关信息即可，一个runner即成功创建
+
+  - 到Setting -> Runner中，对Runner进行设置，勾选 `Indicates whether this runner can pick jobs without tags`
+
+- 查看Runner是否在运行：
+  - `gitlab-runner verify`
 
   - 配置文件：
 
@@ -107,6 +127,10 @@
     gitlab-runner list
     ```
 
+- 如果遇到Runner net connetct yet，可以尝试debug：
+```
+  gitlab-runner --debug run
+```
 - 
 
 ## 自动执行npm install时进程被kill：
