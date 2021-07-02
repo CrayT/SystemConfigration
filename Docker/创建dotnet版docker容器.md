@@ -7,21 +7,13 @@ COPY ./netcoreapp3.1 /dotnet
 
 WORKDIR /dotnet
 
-RUN apt-get update \
-    && apt install apt-utils -y \
-    && apt-get install apt-transport-https -y \
-    && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF \
-    && apt install ca-certificates -y \
-    && echo "deb https://download.mono-project.com/repo/ubuntu stable-xenial main" | tee /etc/apt/sources.list.d/mono-official-stable.list \
-    && apt update \
-    && apt install libjpeg8 -y \
-    && apt install libpng12-0 -y \
-    && apt-get install libgdiplus -y
+RUN apt-get update -y && apt-get install -y libgdiplus && apt-get clean && ln -s /usr/lib/libgdiplus.so /usr/lib/gdiplus.dll
 
 EXPOSE 5010
 
 CMD ["dotnet", "**.dll"]
 ```
+> linux版的docker调用System.Drawing.Common时可能会报错，参考博文[https://www.cnblogs.com/insipid/p/14617582.html]
 
 - CentOs版：
 ```
@@ -39,3 +31,7 @@ EXPOSE 5010
 
 CMD ["dotnet", "*.dll"]   
 ```
+
+- docker build -t demo:1.0 .
+
+- docker run -d -p port1:port4 image 
