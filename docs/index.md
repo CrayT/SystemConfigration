@@ -1,16 +1,10 @@
-# Welcome to MkDocs
+# 文档中心
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
-
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
+## 添加编辑：
+    - 在`docs`文件夹下进行编辑，如有新增，需要在根目录的`mkdocs.yml`的`nav`字段下中进行配置，指明展示名称及文档路径(相对`docs`文件夹)
+## 文档结构
+- mkdocs.yml
+- docs/
+    - index.md
+    - about.md
+    - 其余文档
