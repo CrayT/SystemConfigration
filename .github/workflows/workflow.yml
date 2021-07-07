@@ -1,0 +1,20 @@
+name: build
+on: 
+  push:
+    branches:
+      - master
+
+jobs:
+  buildJob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      
+      - name: Build
+        run:
+          pip3 install mkdocs -y 
+          pip3 install mkdocs-material
+      - name: Deploy:
+        run:
+          mkdocs gh-deploy --clean
