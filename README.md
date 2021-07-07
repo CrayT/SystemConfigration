@@ -5,4 +5,3 @@
     ./updateDocs.sh
 ```
 - 访问url：https://crayt.github.io/SystemConfigration/
-- 
