@@ -1,0 +1,183 @@
+<html>
+<head>
+<title>sprite</title>
+    <meta charset="utf-8">
+</head>
+<script src="threejs/three.js"></script>
+<script src="threejs/OrbitControls.js"></script>
+<script src="threejs/DragControls.js"></script>
+<script src="threejs/TransformControls.js"></script>
+</body>
+<script>
+
+    var renderer;
+    function initThree(){
+        height = window.innerHeight;
+        width = window.innerWidth;
+        renderer=new THREE.WebGLRenderer();
+        renderer.setSize(width, height);
+        document.body.appendChild( renderer.domElement );
+    }
+    var camera;
+    function initCamera() {
+        camera = new THREE.OrthographicCamera( -window.innerWidth / 500, window.innerWidth / 500, window.innerHeight / 500, -window.innerHeight / 500, 1, 5);
+        camera.position.x = 0 ;
+        camera.position.y = 1;
+        camera.position.z = 1;
+        camera.up.x = 0; //相机以哪个方向为上方,默认y为上。
+        camera.up.y = 1;
+        camera.up.z = 0;
+        camera.lookAt(new THREE.Vector3(0,0,0));
+
+
+        var left = 0, top = 0, width = window.innerWidth, height =  window.innerHeight;
+
+        // camera.left = -width / 2;
+        // camera.right = width / 2;
+        // camera.top = height / 2;
+        // camera.bottom = -height / 2;
+
+        // camera.viewPort = {
+        //     left: left,
+        //     top: top,
+        //     width: width,
+        //     height: height
+        // };
+        // camera.updateProjectionMatrix();
+
+
+    }
+    function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+    }
+    var scene;
+    function initScene() {
+        scene = new THREE.Scene();
+        // scene.viewPort={
+        //     left: 0,
+        //     top: 0,
+        //     width:window.innerWidth,
+        //     height: window.innerHeight
+        // }
+    }
+
+    var light;
+    function initLight() {
+        const color = 0xFFFFFF;
+        const intensity = 1;
+        light = new THREE.DirectionalLight(color, intensity);
+        scene.add(light);
+    }
+
+
+    var raycaster = new THREE.Raycaster();
+    var mouse = new THREE.Vector2();
+    function onMouseMove( event ) {
+
+        // 将鼠标位置归一化为设备坐标。x 和 y 方向的取值范围是 (-1 to +1)
+
+        mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+        mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+    }
+
+
+    var cube;
+    function initObject() {
+        var spriteMap = new THREE.TextureLoader().load( "pic/zhumo.jpg" );
+        var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
+        var sprite = new THREE.Sprite( spriteMaterial );
+        sprite.scale.set(2, 1, 1); //图片比例本身是2：1，这里设置x y为2 1.
+
+        let group = new THREE.Group();
+        group.add(sprite);
+
+        group.position.setY(5).setX(5)
+
+        scene.add( group );
+        scene.updateMatrixWorld(true); //获取世界坐标前需要更新scene的世界矩阵,不然获取的是本地坐标。
+
+        let SpriteWorldPosition = new THREE.Vector3()
+        sprite.getWorldPosition(SpriteWorldPosition) //获取sprite的世界坐标。
+
+        console.log(sprite.position, SpriteWorldPosition)
+        // 通过摄像机和鼠标位置更新射线
+        // raycaster.setFromCamera( mouse, camera );
+        // // 计算物体和射线的焦点
+        // var intersects = raycaster.intersectObjects( scene.children );
+        //
+        // for ( var i = 0; i < intersects.length; i++ ) {
+        //     console.log('i:',intersects[i])
+        //     if (intersects[i].isSprite){
+        //     }
+        // }
+
+    }
+
+    var controls;
+    function orbitControls(){
+        controls = new THREE.OrbitControls(camera, renderer.domElement );
+        // controls.target.set(0, 0, 0);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.85;
+        controls.enablePan = true;
+        controls.enableInertia = true;
+        controls.enableRotate = false;
+        controls.update();
+    }
+    function threeStart() {
+        initThree();
+        initCamera();
+        initScene();
+        orbitControls();
+        initObject();
+        animation();
+        initDragControls();
+    }
+
+
+    function initDragControls(){
+        let transformControls = new THREE.TransformControls(camera, renderer.domElement);
+        transformControls.setMode("scale");
+        scene.add(transformControls);
+
+        let obj = [];
+        for (let i = 0;i < scene.children.length; i++){
+            if (scene.children[i].isSprite){
+                obj.push(scene.children[i]);
+            }
+        }
+        let dragControls = new THREE.DragControls(obj, camera, renderer.domElement);
+
+        dragControls.addEventListener('hoveron', function(event){
+            transformControls.attach(event.object);
+        });
+        dragControls.addEventListener('dragstart', function(event){
+            controls.enabled = true; //设true，否则拖动之后，无法通过鼠标放大缩小
+        });
+        dragControls.addEventListener('dragend', function(){
+            console.log('end')
+            controls.enable = true;
+        })
+    }
+    function animation()
+    {
+
+        renderer.render(scene, camera);
+        requestAnimationFrame(animation);
+
+
+
+
+
+    }
+
+    threeStart();
+
+
+</script>
+
+
+</html>

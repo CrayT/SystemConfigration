@@ -1,0 +1,1357 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="XT">
+      
+      
+        <link rel="canonical" href="https://crazyxt.top/SystemConfiguration/Mac%2BVSCode_compileC%2B%2B/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
+    
+    
+      
+        <title>Mac+VSCode编译C++ - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#macvs-codec" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Mac+VSCode编译C++
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/CrayT/SystemConfigration/" title="前往 GitHub 仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/CrayT/SystemConfigration/" title="前往 GitHub 仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Docker
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Docker" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Docker
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/jupyter/" class="md-nav__link">
+        Jupyter
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/Swarm_install/" class="md-nav__link">
+        Swarm集群
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/Ubuntu_Minio_install/" class="md-nav__link">
+        搭建Minio
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/exec_docker_container/" class="md-nav__link">
+        进入容器方式
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/docker_rexray_minio_s3fs/" class="md-nav__link">
+        基于docker搭建基于Minio的S3FS
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/modify_pip_source/" class="md-nav__link">
+        修改Pip源
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/kubernetes_issues/" class="md-nav__link">
+        Kubernetes搭建问题点
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/dotnet_docker_container/" class="md-nav__link">
+        创建Dotnet版Docker服务
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/docker_api_python/" class="md-nav__link">
+        DockerAPI
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/php_Composer_Dockerfile/" class="md-nav__link">
+        PHP-Compose
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        系统配置
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="系统配置" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          系统配置
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Npm_Publish/" class="md-nav__link">
+        Npm发布
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ubuntu_SS_deploy/" class="md-nav__link">
+        Ubuntu搭建SS环境
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CDN%26domain/" class="md-nav__link">
+        CDN&域名备案
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Config_php7.0/" class="md-nav__link">
+        配置php7.0
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Install_SSL_To_Site/" class="md-nav__link">
+        网站安装SSL证书开启https访问
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Auto_backup_wordpress%26resumeData/" class="md-nav__link">
+        自动备份wordpress网站数据&恢复数据
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Auto_delete_overNum_oldBackup_files/" class="md-nav__link">
+        自动删除超出数量的旧备份文件
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Git_useful_tips/" class="md-nav__link">
+        Git使用方法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Gitlab_CICD/" class="md-nav__link">
+        Gitlab之CICD配置
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_service/" class="md-nav__link">
+        linux服务
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Mac+VSCode编译C++
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Mac+VSCode编译C++
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#202016202016crazyxt" class="md-nav__link">
+    于2020年1月6日2020年1月6日由crazyxt发布
+  </a>
+  
+    <nav class="md-nav" aria-label="于2020年1月6日2020年1月6日由crazyxt发布">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maccxcode" class="md-nav__link">
+    写在文章开头：在Mac上编译C++真难(如果不用Xcode的话)，之前尝试过几次均以放弃告终。
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1vscodeccccc-clang-command-adapter" class="md-nav__link">
+    1，先在VScode上安装C++插件，包括C/C++、C/C++ Clang Command Adapter.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2shiftcommandpccuicc-mac-usrbinclangintellisenseclang-x64" class="md-nav__link">
+    2，按shift+command+P键打开输入，输入C/C++，选择编辑UI，进而打开C/C++ 配置页，配置名称填Mac，编译器路径填 /usr/bin/clang（这个好像无所谓?设置好后，后来又变了)，IntelliSense选择clang-x64，其他不动。
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3taskjson" class="md-nav__link">
+    3，创建task.json，内容如下：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4launchjson" class="md-nav__link">
+    4，创建launch.json,内容如下：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5cvscodejsonc" class="md-nav__link">
+    5，至此，C++目录应该有一个.vscode文件夹，里面三个json文件，这三个文件就是配置文件，如果新建其他C++文件夹，直接将他们拷贝过去就行了(据官网说是这样，没试过)。
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6democppshiftcommandbdemooutdemoout" class="md-nav__link">
+    6，在目录下，创建demo.cpp文件，按shift+command+B键编译，生成demo.out,然后输入./demo.out即可成功运行：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vscodevscodec" class="md-nav__link">
+    写在后面：看了这么多博客，今天又看了vscode的官方，终于可以在vscode里编译c++了！
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MAC_install_brew/" class="md-nav__link">
+        Mac安装brew
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mac_alias_command/" class="md-nav__link">
+        MAC终端shell命令简化
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploy_rabbitmq/" class="md-nav__link">
+        RabbitMQ部署
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SSH_config_noPassword_login/" class="md-nav__link">
+        SSH配置及免密码登录
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ubuntu_locale_issues/" class="md-nav__link">
+        ubuntu环境语言问题
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webstorm_git-bash/" class="md-nav__link">
+        webstorm配置git-bash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Windows_ssh/" class="md-nav__link">
+        Windows配置ssh
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wordpress_site_data_resume_history/" class="md-nav__link">
+        wordpress网站恢复记录
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        Python
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Python" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/PCA/" class="md-nav__link">
+        PCA原理
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/Init_django_project/" class="md-nav__link">
+        创建Django项目
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/Change_python_version/" class="md-nav__link">
+        更改Python版本
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/IgraphOnMac/" class="md-nav__link">
+        Mac安装Igraph
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/MNIST%2Btensorflow_CNN_Tensorboard/" class="md-nav__link">
+        TensorBoard使用
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/Python_Pyinstaller/" class="md-nav__link">
+        Pyinstaller打包app
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/python_django_minio_mysql/" class="md-nav__link">
+        基于Django搭建Minio+Mysql服务
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/python3_sqlite3/" class="md-nav__link">
+        Python安装Sqlite3
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/ServiceOnWindows/" class="md-nav__link">
+        Python创建Windows服务
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/python_read_all_flies/" class="md-nav__link">
+        Python读取各种格式文件
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/python_output_DT_Graph/" class="md-nav__link">
+        python输出决策树图形
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        Nginx
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Nginx" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Nginx
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nginx/Load_balance/" class="md-nav__link">
+        负载均衡
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nginx/NginxOnWindows/" class="md-nav__link">
+        Windows安装Nginx
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nginx/Nginx_reverse_proxy/" class="md-nav__link">
+        Nginx反向代理
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        前端
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="前端" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          前端
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Frontend/Init_React_Project/" class="md-nav__link">
+        创建React
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Frontend/vue/Upgrade_Vue2_To_Vue3/" class="md-nav__link">
+        Vue2升级Vue3
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        常用命令
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="常用命令" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          常用命令
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UserfulCommand/windows_checkPort%26killPID/" class="md-nav__link">
+        查询端口&关闭进程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UserfulCommand/Watch_disk_IO/" class="md-nav__link">
+        磁盘IO监控
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UserfulCommand/Git_command/" class="md-nav__link">
+        Git命令
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UserfulCommand/Search_PID/" class="md-nav__link">
+        搜索进程
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#202016202016crazyxt" class="md-nav__link">
+    于2020年1月6日2020年1月6日由crazyxt发布
+  </a>
+  
+    <nav class="md-nav" aria-label="于2020年1月6日2020年1月6日由crazyxt发布">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maccxcode" class="md-nav__link">
+    写在文章开头：在Mac上编译C++真难(如果不用Xcode的话)，之前尝试过几次均以放弃告终。
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1vscodeccccc-clang-command-adapter" class="md-nav__link">
+    1，先在VScode上安装C++插件，包括C/C++、C/C++ Clang Command Adapter.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2shiftcommandpccuicc-mac-usrbinclangintellisenseclang-x64" class="md-nav__link">
+    2，按shift+command+P键打开输入，输入C/C++，选择编辑UI，进而打开C/C++ 配置页，配置名称填Mac，编译器路径填 /usr/bin/clang（这个好像无所谓?设置好后，后来又变了)，IntelliSense选择clang-x64，其他不动。
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3taskjson" class="md-nav__link">
+    3，创建task.json，内容如下：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4launchjson" class="md-nav__link">
+    4，创建launch.json,内容如下：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5cvscodejsonc" class="md-nav__link">
+    5，至此，C++目录应该有一个.vscode文件夹，里面三个json文件，这三个文件就是配置文件，如果新建其他C++文件夹，直接将他们拷贝过去就行了(据官网说是这样，没试过)。
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6democppshiftcommandbdemooutdemoout" class="md-nav__link">
+    6，在目录下，创建demo.cpp文件，按shift+command+B键编译，生成demo.out,然后输入./demo.out即可成功运行：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vscodevscodec" class="md-nav__link">
+    写在后面：看了这么多博客，今天又看了vscode的官方，终于可以在vscode里编译c++了！
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/CrayT/SystemConfigration/edit/master/docs/SystemConfiguration/Mac+VSCode_compileC++.md" title="编辑此页" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="macvs-codec">Mac+VS Code编译C++</h1>
+<h4 id="202016202016crazyxt">于2020年1月6日2020年1月6日由<a href="https://crazyxt.com/?author=1"><strong>crazyxt</strong></a>发布</h4>
+<h5 id="maccxcode">写在文章开头：在Mac上编译C++真难(如果不用Xcode的话)，之前尝试过几次均以放弃告终。</h5>
+<blockquote>
+<p>在mac上编译C++用的是clang++，而不是gcc…具体啥关系，我也不是很懂。</p>
+</blockquote>
+<h5 id="1vscodeccccc-clang-command-adapter">1，先在VScode上安装C++插件，包括<code>C/C++</code>、<code>C/C++ Clang Command Adapter</code>.</h5>
+<h5 id="2shiftcommandpccuicc-mac-usrbinclangintellisenseclang-x64">2，按<code>shift+command+P</code>键打开输入，输入<code>C/C++</code>，选择<code>编辑UI</code>，进而打开C/C++ 配置页，配置名称填<code>Mac</code>，编译器路径填 <code>/usr/bin/clang</code>（这个好像无所谓?设置好后，后来又变了)，<code>IntelliSense</code>选择<code>clang-x64</code>，其他不动。</h5>
+<h5 id="3taskjson">3，创建<code>task.json</code>，内容如下：</h5>
+<pre><code>{
+    &quot;version&quot;: &quot;2.0.0&quot;,
+    &quot;tasks&quot;: [
+      {
+        &quot;label&quot;: &quot;Build with Clang&quot;,
+        &quot;type&quot;: &quot;shell&quot;,
+        &quot;command&quot;: &quot;clang++&quot;,
+        &quot;args&quot;: [
+          &quot;-std=c++17&quot;,
+          &quot;-stdlib=libc++&quot;,
+          &quot;demo.cpp&quot;, #c++文件名称，只能是这个名称，否则报错
+          &quot;-o&quot;,
+          &quot;demo.out&quot;, #还有这里
+          &quot;--debug&quot;
+        ],
+        &quot;group&quot;: {
+          &quot;kind&quot;: &quot;build&quot;,
+          &quot;isDefault&quot;: true
+        }
+      }
+    ]
+  }
+</code></pre>
+<h5 id="4launchjson">4，创建<code>launch.json</code>,内容如下：</h5>
+<pre><code>{
+    &quot;version&quot;: &quot;0.2.0&quot;,
+    &quot;configurations&quot;: [
+      {
+        &quot;name&quot;: &quot;(lldb) Launch&quot;,
+        &quot;type&quot;: &quot;cppdbg&quot;,
+        &quot;request&quot;: &quot;launch&quot;,
+        &quot;program&quot;: &quot;${workspaceFolder}/demo.out&quot;, #文件名称
+        &quot;args&quot;: [],
+        &quot;stopAtEntry&quot;: true,
+        &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,
+        &quot;environment&quot;: [],
+        &quot;externalConsole&quot;: true,
+        &quot;MIMode&quot;: &quot;lldb&quot;,
+        &quot;logging&quot;: {
+          &quot;trace&quot;: true,
+          &quot;traceResponse&quot;: true,
+          &quot;engineLogging&quot;: true
+        }
+      }
+    ]
+  }
+</code></pre>
+<h5 id="5cvscodejsonc">5，至此，C++目录应该有一个<code>.vscode</code>文件夹，里面三个<code>json</code>文件，这三个文件就是配置文件，如果新建其他C++文件夹，直接将他们拷贝过去就行了(据官网说是这样，没试过)。</h5>
+<h5 id="6democppshiftcommandbdemooutdemoout">6，在目录下，创建<code>demo.cpp</code>文件，按<code>shift+command+B</code>键编译，生成<code>demo.out</code>,然后输入<code>./demo.out</code>即可成功运行：</h5>
+<pre><code>#编译如果没有错，显示如下：
+&gt; Executing task: clang++ -std=c++17 -stdlib=libc++ demo.cpp -o demo.out --debug &lt;
+终端将被任务重用，按任意键关闭。
+#运行结果：
+➜  C++ ./demo.out
+101 78.5
+101 80.5
+</code></pre>
+<h5 id="vscodevscodec">写在后面：看了这么多博客，今天又看了vscode的官方，终于可以在vscode里编译c++了！</h5>
+<p>PS：官方教程：https://code.visualstudio.com/docs/cpp/config-clang-mac</p>
+<blockquote>
+<p>按下<code>shift+command+P</code>，输入<code>shell</code>，选择<code>Shell Command: Install 'code' command in PATH.</code>,即将<code>code</code>命令添加进系统环境，在终端时，在某个文件夹下输入<code>code</code>即可以<code>vscode</code>打开该文件夹。</p>
+</blockquote>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../linux_service/" class="md-footer__link md-footer__link--prev" aria-label="上一页: linux服务" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              linux服务
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../MAC_install_brew/" class="md-footer__link md-footer__link--next" aria-label="下一页: Mac安装brew" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              Mac安装brew
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.82b56eb2.min.js"></script>
+      
+    
+  </body>
+</html>

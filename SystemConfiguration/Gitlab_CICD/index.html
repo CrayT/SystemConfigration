@@ -1,0 +1,1441 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="XT">
+      
+      
+        <link rel="canonical" href="https://crazyxt.top/SystemConfiguration/Gitlab_CICD/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
+    
+    
+      
+        <title>Gitlab之CICD配置 - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gitlab-cicd" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Gitlab之CICD配置
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/CrayT/SystemConfigration/" title="前往 GitHub 仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/CrayT/SystemConfigration/" title="前往 GitHub 仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Docker
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Docker" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Docker
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/jupyter/" class="md-nav__link">
+        Jupyter
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/Swarm_install/" class="md-nav__link">
+        Swarm集群
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/Ubuntu_Minio_install/" class="md-nav__link">
+        搭建Minio
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/exec_docker_container/" class="md-nav__link">
+        进入容器方式
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/docker_rexray_minio_s3fs/" class="md-nav__link">
+        基于docker搭建基于Minio的S3FS
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/modify_pip_source/" class="md-nav__link">
+        修改Pip源
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/kubernetes_issues/" class="md-nav__link">
+        Kubernetes搭建问题点
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/dotnet_docker_container/" class="md-nav__link">
+        创建Dotnet版Docker服务
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/docker_api_python/" class="md-nav__link">
+        DockerAPI
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/php_Composer_Dockerfile/" class="md-nav__link">
+        PHP-Compose
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        系统配置
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="系统配置" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          系统配置
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Npm_Publish/" class="md-nav__link">
+        Npm发布
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ubuntu_SS_deploy/" class="md-nav__link">
+        Ubuntu搭建SS环境
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CDN%26domain/" class="md-nav__link">
+        CDN&域名备案
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Config_php7.0/" class="md-nav__link">
+        配置php7.0
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Install_SSL_To_Site/" class="md-nav__link">
+        网站安装SSL证书开启https访问
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Auto_backup_wordpress%26resumeData/" class="md-nav__link">
+        自动备份wordpress网站数据&恢复数据
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Auto_delete_overNum_oldBackup_files/" class="md-nav__link">
+        自动删除超出数量的旧备份文件
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Git_useful_tips/" class="md-nav__link">
+        Git使用方法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Gitlab之CICD配置
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Gitlab之CICD配置
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gitlab-cicd" class="md-nav__link">
+    GitLab-CICD
+  </a>
+  
+    <nav class="md-nav" aria-label="GitLab-CICD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    Docker安装
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitlab-runner" class="md-nav__link">
+    安装gitlab-runner：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    前提：必须是仓库管理员才可以配置！
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#npm-installkill" class="md-nav__link">
+    自动执行npm install时进程被kill：
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_service/" class="md-nav__link">
+        linux服务
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mac%2BVSCode_compileC%2B%2B/" class="md-nav__link">
+        Mac+VSCode编译C++
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MAC_install_brew/" class="md-nav__link">
+        Mac安装brew
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mac_alias_command/" class="md-nav__link">
+        MAC终端shell命令简化
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploy_rabbitmq/" class="md-nav__link">
+        RabbitMQ部署
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SSH_config_noPassword_login/" class="md-nav__link">
+        SSH配置及免密码登录
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ubuntu_locale_issues/" class="md-nav__link">
+        ubuntu环境语言问题
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webstorm_git-bash/" class="md-nav__link">
+        webstorm配置git-bash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Windows_ssh/" class="md-nav__link">
+        Windows配置ssh
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wordpress_site_data_resume_history/" class="md-nav__link">
+        wordpress网站恢复记录
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        Python
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Python" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/PCA/" class="md-nav__link">
+        PCA原理
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/Init_django_project/" class="md-nav__link">
+        创建Django项目
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/Change_python_version/" class="md-nav__link">
+        更改Python版本
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/IgraphOnMac/" class="md-nav__link">
+        Mac安装Igraph
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/MNIST%2Btensorflow_CNN_Tensorboard/" class="md-nav__link">
+        TensorBoard使用
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/Python_Pyinstaller/" class="md-nav__link">
+        Pyinstaller打包app
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/python_django_minio_mysql/" class="md-nav__link">
+        基于Django搭建Minio+Mysql服务
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/python3_sqlite3/" class="md-nav__link">
+        Python安装Sqlite3
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/ServiceOnWindows/" class="md-nav__link">
+        Python创建Windows服务
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/python_read_all_flies/" class="md-nav__link">
+        Python读取各种格式文件
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/python_output_DT_Graph/" class="md-nav__link">
+        python输出决策树图形
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        Nginx
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Nginx" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Nginx
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nginx/Load_balance/" class="md-nav__link">
+        负载均衡
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nginx/NginxOnWindows/" class="md-nav__link">
+        Windows安装Nginx
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nginx/Nginx_reverse_proxy/" class="md-nav__link">
+        Nginx反向代理
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        前端
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="前端" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          前端
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Frontend/Init_React_Project/" class="md-nav__link">
+        创建React
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Frontend/vue/Upgrade_Vue2_To_Vue3/" class="md-nav__link">
+        Vue2升级Vue3
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        常用命令
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="常用命令" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          常用命令
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UserfulCommand/windows_checkPort%26killPID/" class="md-nav__link">
+        查询端口&关闭进程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UserfulCommand/Watch_disk_IO/" class="md-nav__link">
+        磁盘IO监控
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UserfulCommand/Git_command/" class="md-nav__link">
+        Git命令
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UserfulCommand/Search_PID/" class="md-nav__link">
+        搜索进程
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gitlab-cicd" class="md-nav__link">
+    GitLab-CICD
+  </a>
+  
+    <nav class="md-nav" aria-label="GitLab-CICD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    Docker安装
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitlab-runner" class="md-nav__link">
+    安装gitlab-runner：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    前提：必须是仓库管理员才可以配置！
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#npm-installkill" class="md-nav__link">
+    自动执行npm install时进程被kill：
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/CrayT/SystemConfigration/edit/master/docs/SystemConfiguration/Gitlab_CICD.md" title="编辑此页" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Gitlab之CICD配置</h1>
+                
+                <h2 id="gitlab-cicd">GitLab-CICD</h2>
+<h4 id="docker">Docker安装</h4>
+<ul>
+<li>daocloud一键安装命令：</li>
+</ul>
+<pre><code>curl -sSL https://get.daocloud.io/docker | sh
+</code></pre>
+<ul>
+<li>官方：</li>
+</ul>
+<pre><code>curl -fsSL https://get.docker.com | bash -s docker --mirror aliyun
+</code></pre>
+<h4 id="gitlab-runner">安装gitlab-runner：</h4>
+<ul>
+<li>参考官方：<code>https://docs.gitlab.com/runner/install/linux-manually.html</code></li>
+</ul>
+<h3 id="_1">前提：必须是仓库管理员才可以配置！</h3>
+<ul>
+<li>
+<p>首先配置一个<code>Runner</code>：进入仓库，从Settings<code>中进入</code>CI/CD<code>, 找到</code>Runners<code>打开，选择</code>runner<code>方式，比如手动自己设置的话就选</code>specific runner`。按照教程，在一台联网的机器上安装：</p>
+</li>
+<li>
+<p>例如选择一台VPS，以<code>ubuntu</code>系统为例，以<code>Docker</code>方式运行</p>
+</li>
+<li>
+<p>pull基镜像： <code>pull gitlabrunner</code>：</p>
+<ul>
+<li><code>docker pull gitlab/gitlab-runner:latest</code></li>
+</ul>
+</li>
+<li>
+<p>创建Runner：</p>
+<ul>
+<li>
+<p>方式一：起一个<code>docker</code>实例：</p>
+</li>
+<li>
+<p><code>docker run --rm -it -v /srv/gitlab-runner/config:/etc/gitlab-runner gitlab/gitlab-runner register</code></p>
+<blockquote>
+<p>这种纯容器方式不知为何无法探测到job，还是采用方式二吧。</p>
+</blockquote>
+</li>
+<li>
+<p>至于volume挂载，根据需要要不要挂载到vps或其他地方。</p>
+</li>
+<li>
+<p>方式二：(推荐)命令行：<code>gitlabrunner</code>：</p>
+</li>
+<li>
+<p>直接通过gitlab-runner命令：</p>
+<ul>
+<li><code>gitlab-runner register</code><blockquote>
+<p>后续选择docker执行，则在执行job时实际是在容器中执行。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>根据接下来的提示输入在CI/CD页提示的<code>URL</code>和<code>token</code>，再输入其他相关信息即可，一个runner即成功创建</li>
+</ul>
+</li>
+<li>
+<p>到Setting -&gt; Runner中，对Runner进行设置，勾选 <code>Indicates whether this runner can pick jobs without tags</code></p>
+</li>
+<li>
+<p>查看Runner是否在运行：</p>
+</li>
+<li>
+<p><code>gitlab-runner verify</code></p>
+</li>
+<li>
+<p>配置文件：</p>
+<ul>
+<li>
+<p>在仓库根目录创建 <code>.gitlab-ci.yml</code> 文件，格式要求较高，可通过<code>CI-lint</code>检测，主要是指定<code>stage</code>以及各<code>stage</code>的<code>job</code>，例如：</p>
+</li>
+<li>
+<p>```yml
+    image: "node:latest"</p>
+<p>stages:
+  - install
+  - build</p>
+<p>cache:
+  paths:
+    - node_modules</p>
+<p>install:
+  stage: install
+  script:
+    #- npm config set registry https://registry.npm.taobao.org
+    - npm install --force
+  only:
+    - master
+  rules: #rules与only不能共存，rule下的if可设置条件，&amp;&amp;或||，正则匹配等
+      - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^master/ || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^release/'
+        when: manual #when可设置何时触发，on_success自动触发，manual是手动触发，需要在gitlab页面手动点击执行，点击之前不可执行merge 
+build:
+  stage: build
+  script:
+    - - echo "开始打包"
+    - npm run build
+    - echo "开始执行build.sh"
+    - chmod a+x ./build.sh
+    - ./build.sh
+  only:
+    - master
+after_script:
+  - echo "Stage：${CI_JOB_STAGE}, Job：${CI_JOB_NAME}, Branch:${CI_COMMIT_BRANCH},CommitMessage:${CI_COMMIT_MESSAGE}, complete！,"
+```</p>
+<ul>
+<li>
+<p>在不同的stage执行job时也可调用外部脚本，比如本例中的<code>shell</code>脚本：</p>
+</li>
+<li>
+<p><code>shell
+    #!/bin/sh
+    wget http://gosspublic.alicdn.com/ossutil/1.6.18/ossutil64
+    chmod 755 ossutil64
+    echo "endPoint:"${endPoint}
+    ./ossutil64 config -e ${endPoint} -i ${accessKeyID} -k ${accessKeySecret} -L CH --loglevel debug -c ~/.ossutilconfig
+    ./ossutil64 -c ~/.ossutilconfig cp -r ./dist/ oss://vrhouse-web/31test-403/drawLines/v2/ --meta x-oss-object-acl:public-read-write -f</code></p>
+</li>
+<li>
+<p><code>shell</code>中的变量可以在CI/CD页面的<code>variable</code>中指定，这样在运行脚本的时候是可以获取到设置的变量的。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>把配置文件和脚本推送的仓库，如果有符合规则的<code>commit</code>或<code>merge</code>推送到仓库，则会自动运行CI/CD</p>
+</li>
+</ul>
+</li>
+<li>
+<p>通过设定规则，可满足达到规则的提交才触发CICD,比如merge到master的提交才有效：</p>
+</li>
+<li>
+<p>```yaml
+  install_job:
+    stage: install
+    script:</p>
+<ul>
+<li>npm install --force
+rules:</li>
+<li>if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master"'   //通过设定rules
+    when: always
+    allow_failure: true //即使该job失败，也不影响其他job
+  ```</li>
+</ul>
+</li>
+<li>
+<p>如果通过<code>gitlab-runner stop</code>停止了服务，需要重启：</p>
+</li>
+<li>
+<p><code>gitlab-runner install --user=gitlab-runner
+    gitlab-runner start</code></p>
+</li>
+<li>
+<p>然后<code>gitlab-runner status</code>即可以看到服务已经起来了。</p>
+</li>
+<li>
+<p><code>gitlab-runner</code>的配置文件为<code>config.toml</code>，地址为：<code>/etc/gitlab-runner/config.toml</code></p>
+</li>
+<li>
+<p>里面定义了注册的所有<code>runner</code>信息</p>
+</li>
+<li>
+<p>查看所有runner：</p>
+</li>
+<li>
+<p><code>gitlab-runner list</code></p>
+</li>
+<li>
+<p>如果遇到Runner net connetct yet，可以尝试debug：</p>
+</li>
+</ul>
+<pre><code>  gitlab-runner --debug run
+</code></pre>
+<ul>
+<li></li>
+</ul>
+<h2 id="npm-installkill">自动执行npm install时进程被kill：</h2>
+<ul>
+<li>
+<p>如果配置没问题，进程却被kill，有可能是服务器内存不足导致，可通过top命令和iostat -5查看执行pipeline时的状态，cpu和内存达到100%即可确定是资源不足被kill了</p>
+</li>
+<li>
+<p>通过创建swap分区来解决：</p>
+</li>
+<li>
+<p>swapon --show和free -h命令可查看当前swap交换</p>
+</li>
+<li>
+<p>```
+    //创建1GB的交换区：
+    sudo dd if=/dev/zero of=/swapfile bs=1024 count=1048576</p>
+<p>//设置root用户读写权限
+chmod 600 /swapfile</p>
+<p>//设置linux交换区
+mkswap /swapfile</p>
+<p>//启用交换
+swapon /swapfile</p>
+<p>//追加/etc/fstab
+/swapfile swap swap defaults 0 0 </p>
+<p>//验证状态
+free -h
+ swapon --show
+```</p>
+</li>
+<li>
+<p>删除交换文件</p>
+<p>```
+swapoff -v /swapfile</p>
+<p>删除/etc/fstab中加的条目</p>
+<p>rm /swapfile
+```</p>
+</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../Git_useful_tips/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Git使用方法" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              Git使用方法
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../linux_service/" class="md-footer__link md-footer__link--next" aria-label="下一页: linux服务" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              linux服务
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.82b56eb2.min.js"></script>
+      
+    
+  </body>
+</html>

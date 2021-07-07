@@ -1,0 +1,171 @@
+<html>
+<meta charset="utf-8">
+<head>
+    <title>拼接动画</title>
+    <style>
+        body { margin: 0; }
+        canvas { width: 100%; height: 100% }
+    </style>
+</head>
+<script src="./threejs/three.min.js"></script>
+<script src="threejs/DragControls.js"></script>
+<script src="threejs/TransformControls.js"></script>
+<script src="threejs/TrackballControls.js"></script>
+<script src="https://threejsfundamentals.org/threejs/resources/threejs/r105/js/controls/OrbitControls.js"></script>
+<script>
+    var renderer;
+    function initThree(){
+        height=window.innerHeight;
+        width=window.innerWidth;
+        renderer=new THREE.WebGLRenderer({
+            antialias:true
+        });
+        renderer.setSize(width, height);
+        document.body.appendChild( renderer.domElement );
+    }
+
+    var camera;
+    function initCamera(){
+        camera=new THREE.OrthographicCamera( -50, 50, 50, -50, 5, 50 );
+        camera.position.set(25, 20, 25); //相机位置。
+        camera.up.x = 0; //相机以哪个方向为上方,默认y为上。
+        camera.up.y = 1;
+        camera.up.z = 0;
+        camera.lookAt({ //相机看向哪个坐标。
+            x: 25,
+            y: 0,
+            z: 25
+        });
+        scene.add(camera);
+    }
+    var scene;
+    function initScene(){
+        scene = new THREE.Scene();
+    }
+    var light;
+    function initLight(){
+        light = new THREE.DirectionalLight(0xFF0000, 1.0, 0);
+        light.position.set(0, 0, 0);
+        scene.add(light);
+    }
+    function orbitControls(){
+        controls = new THREE.OrbitControls(camera, renderer.domElement );
+        controls.target.set(25, 0, 25);
+        // controls.setMode('translate');
+        controls.enableZoom = true;
+        controls.enablePan = true;
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.5;  // 缓冲效果下的加速度
+        controls.rotateSpeed = -1;
+        controls.update();
+    }
+    let cube1, cube2, p1, p2, p1Ref, p2Ref,center;
+    function initObject(){
+        var geometry = new THREE.BoxGeometry( 5, 5, 5 );
+        //设置纹理：
+        var textureCube = new THREE.TextureLoader().load( "pic/stone.jpeg" ); //加载贴图图片
+        textureCube.wrapS = THREE.RepeatWrapping;
+        textureCube.wrapT = THREE.RepeatWrapping;
+        textureCube.repeat.set( 1, 1 ); //原函数是将长宽分之一，所以数字越大 纹理越细。
+        var material = new THREE.MeshBasicMaterial( { color: "#E14169", map: textureCube } );
+        cube1 = new THREE.Mesh( geometry, material);
+        cube1.position.set(0, 0, 0);
+
+        var geometry2 = new THREE.BoxGeometry( 5, 5, 5 );
+        var material2 = new THREE.MeshBasicMaterial( { color: "#B9E141", map: textureCube } );
+        cube2 = new THREE.Mesh( geometry2, material2);
+        cube2.position.set(50, 0, 50);
+
+        p1 = cube1.position.clone();
+        p2 = cube2.position.clone();
+        center = p1.clone().add(p2).multiplyScalar(.5);
+        p1Ref = center.clone().sub(p1).normalize();
+        p2Ref = center.clone().sub(p2).normalize();
+
+        scene.add(cube1);
+        scene.add(cube2);
+    }
+    var points, mixer, roas=[];
+    function drawLineCurve(){ //绘制移动曲线
+        // 通过类CatmullRomCurve3创建一个3D样条曲线
+        var curve = new THREE.CatmullRomCurve3([
+            new THREE.Vector3(0, 0, 0),
+            new THREE.Vector3(10, 0, 5),
+            new THREE.Vector3(30, 0, 40),
+            new THREE.Vector3(45, 0, 50)
+        ]);
+        // 样条曲线均匀分割100分，返回51个顶点坐标
+        points = curve.getPoints(100);
+        for (let i = 0; i < 101; i++){
+            roas.push(i*1.8*Math.PI/180)
+        }
+
+        var geometry = new THREE.Geometry();
+
+        // 把从曲线轨迹上获得的顶点坐标赋值给几何体
+        geometry.vertices = points;
+        var material = new THREE.LineBasicMaterial({
+            color: 0x4488ff
+        });
+        var line = new THREE.Line(geometry, material);
+        scene.add(line);
+
+        let arr = [];
+        for (let i = 0; i < 101; i++) {
+            arr.push(i)
+        }
+        // 生成一个时间序列
+        var times = new Float32Array(arr);
+
+        var posArr = [];
+        points.forEach(elem => {
+            posArr.push(elem.x, elem.y, elem.z)
+        });
+
+        var roaArr = [];
+        roas.forEach(item => {
+            roaArr.push(item)
+        });
+
+
+        // 创建一个和时间序列相对应的位置坐标系列
+        var values = new Float32Array(posArr);
+        var values2 = new Float32Array(roaArr);
+
+        // 创建一个帧动画的关键帧数据，曲线上的位置序列对应一个时间序列
+        var posTrack = new THREE.KeyframeTrack('.position', times, values);
+        var roaTrack = new THREE.KeyframeTrack('.rotation[y]', times, values2); //绕Y轴旋转动画
+
+
+        let duration = 101;
+        let clip = new THREE.AnimationClip("default", duration, [posTrack, roaTrack]);
+        mixer = new THREE.AnimationMixer(cube1);
+        let AnimationAction = mixer.clipAction(clip);
+        AnimationAction.timeScale = 20; // 可以调节播放速度，默认是1。为0时动画暂停。值为负数时动画会反向执行。
+        AnimationAction.play();
+
+    }
+    var clock = new THREE.Clock();//声明一个时钟对象
+    function animation()
+    {
+        renderer.render(scene, camera);
+        requestAnimationFrame(animation);
+
+        mixer.update(clock.getDelta());
+    }
+    function threeStart(){
+        initThree();
+        initScene();
+        initCamera();
+        initLight();
+        initObject();
+        orbitControls();
+        drawLineCurve();
+        animation();
+        // renderer.render(scene, camera);
+    }
+</script>
+<body onload = 'threeStart();'>
+    <div id = 'canvas-frame'></div>
+</body>
+</html>
