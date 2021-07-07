@@ -1,6 +1,4 @@
-- Ubuntu版：
-    - DockerFile:
-```
+- dotnet sdk版：
 FROM  mcr.microsoft.com/dotnet/sdk:3.1
 
 COPY ./netcoreapp3.1 /dotnet
@@ -14,6 +12,9 @@ EXPOSE 5010
 CMD ["dotnet", "**.dll"]
 ```
 > linux版的docker调用System.Drawing.Common时可能会报错，参考博文[https://www.cnblogs.com/insipid/p/14617582.html]
+
+
+-----------
 
 - CentOs版：
 ```
