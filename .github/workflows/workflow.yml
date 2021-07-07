@@ -13,7 +13,7 @@ jobs:
       
       - name: Build
         run:
-          pip3 install mkdocs -y 
+          pip3 install mkdocs 
           pip3 install mkdocs-material
       - name: Deploy
         run:
