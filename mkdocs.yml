@@ -1,0 +1,80 @@
+site_name: My Docs Center
+site_url: https://crazyxt.top/
+site_author: XT
+repo_url: https://github.com/CrayT/SystemConfigration
+
+nav:
+  - Home: index.md
+  - About: about.md
+  - Docker: 
+    - Jupyter: Docker/jupyter.md
+    - Swarm集群: Docker/Swarm_install.md
+    - 搭建Minio: Docker/Ubuntu_Minio_install.md
+    - 进入容器方式: Docker/exec_docker_container.md
+    - 基于docker搭建基于Minio的S3FS: Docker/docker_rexray_minio_s3fs.md
+    - 修改Pip源: Docker/modify_pip_source.md
+    - Kubernetes搭建问题点: Docker/kubernetes_issues.md
+    - 创建Dotnet版Docker服务: Docker/dotnet_docker_container.md
+    - DockerAPI: Docker/docker_api_python.md
+    - PHP-Compose: Docker/php_Composer_Dockerfile.md
+  - 系统配置:
+    - Npm发布: SystemConfiguration/Npm_Publish.md
+    - Ubuntu搭建SS环境: SystemConfiguration/Ubuntu_SS_deploy.md
+    - CDN&域名备案: SystemConfiguration/CDN&domain.md
+    - 配置php7.0: SystemConfiguration/Config_php7.0.md
+    - 网站安装SSL证书开启https访问: SystemConfiguration/Install_SSL_To_Site.md
+    - 自动备份wordpress网站数据&恢复数据: SystemConfiguration/Auto_backup_wordpress&resumeData.md
+    - 自动删除超出数量的旧备份文件: SystemConfiguration/Auto_delete_overNum_oldBackup_files.md
+    - Git使用方法: SystemConfiguration/Git_useful_tips.md
+    - Gitlab之CICD配置: SystemConfiguration/Gitlab_CICD.md
+    - linux服务: SystemConfiguration/linux_service.md
+    - Mac+VSCode编译C++: SystemConfiguration/Mac+VSCode_compileC++.md
+    - Mac安装brew: SystemConfiguration/MAC_install_brew.md
+    - MAC终端shell命令简化: SystemConfiguration/Mac_alias_command.md
+    - RabbitMQ部署: SystemConfiguration/deploy_rabbitmq.md
+    - SSH配置及免密码登录: SystemConfiguration/SSH_config_noPassword_login.md
+    - ubuntu环境语言问题: SystemConfiguration/ubuntu_locale_issues.md
+    - webstorm配置git-bash: SystemConfiguration/webstorm_git-bash.md
+    - Windows配置ssh: SystemConfiguration/Windows_ssh.md
+    - wordpress网站恢复记录: SystemConfiguration/wordpress_site_data_resume_history.md
+  - Python:
+    - PCA原理: Python/PCA.md
+    - 创建Django项目: Python/Init_django_project.md
+    - 更改Python版本: Python/Change_python_version.md
+    - Mac安装Igraph: Python/IgraphOnMac.md
+    - TensorBoard使用: Python/MNIST+tensorflow_CNN_Tensorboard.md
+    - Pyinstaller打包app: Python/Python_Pyinstaller.md
+    - 基于Django搭建Minio+Mysql服务: Python/python_django_minio_mysql.md
+    - Python安装Sqlite3: Python/python3_sqlite3.md
+    - Python创建Windows服务: Python/ServiceOnWindows.md
+    - Python读取各种格式文件: Python/python_read_all_flies.md
+    - python输出决策树图形: Python/python_output_DT_Graph.md
+  - Nginx:
+    - 负载均衡: Nginx/Load_balance.md
+    - Windows安装Nginx: Nginx/NginxOnWindows.md
+    - Nginx反向代理: Nginx/Nginx_reverse_proxy.md
+  - 前端:
+    - 创建React: Frontend/Init_React_Project.md
+    - Vue2升级Vue3: Frontend/vue/Upgrade_Vue2_To_Vue3.md
+  - 常用命令:
+    - 查询端口&关闭进程: UserfulCommand/windows_checkPort&killPID.md
+    - 磁盘IO监控: UserfulCommand/Watch_disk_IO.md
+    - Git命令: UserfulCommand/Git_command.md
+    - 搜索进程: UserfulCommand/Search_PID.md
+theme: 
+  name: 'material'
+  language: 'zh' 
+  nav_style: light
+  highlightjs: true
+markdown_extentions:
+  - admonition
+  - footnotes  # 脚注
+  - meta  # 定义元数据，通过文章上下文控制，如disqus
+  - pymdownx.caret  # 下划线上标
+  - pymdownx.tilde  # 删除线下标
+  - pymdownx.critic  # 增加删除修改高亮注释，可修饰行内或段落
+  - pymdownx.details  # 提示块可折叠
+  - pymdownx.inlinehilite  # 行内代码高亮
+  - pymdownx.mark  # 文本高亮
+  - pymdownx.smartsymbols  # 符号转换
+  - pymdownx.superfences  # 代码嵌套在列表里

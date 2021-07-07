@@ -1,0 +1,89 @@
+.barBox{
+    height: 64px;
+    width: 430px;
+    background:rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    border-radius: 49px;
+    cursor:ew-resize;
+}
+.barColor{
+    background: #5ac3ff;
+    height: 40px;
+    float: left;
+}
+.barBlock{
+    position:absolute;
+    top:14.5px;
+    z-index:2
+}
+.barBlockk2{
+     width: 27px;
+     height:27px;
+     background:rgba(129,228,173,1);
+     position: absolute;
+     border-radius:50%;
+     margin-left: 4px;
+     margin-top: 4px;
+     top: 0px;
+     pointer-events: none; /*不接受鼠标事件 */
+     box-shadow:0px 2px 4px 0px rgba(0,0,0,0.5);
+ }
+.barBlockk1{
+    width: 35px;
+    height:35px;
+    background:rgba(129,228,173,1);
+    position: absolute;
+    border-radius:50%;
+    opacity: 0.33;
+    pointer-events: none; /*不接受鼠标事件 */
+    bbox-shadow:0px 2px 4px 0px rgba(0,0,0,0.5);
+}
+.barLine{
+    width:370px;
+    height:6px;
+    background:rgba(245,245,245,1);
+    box-shadow:0px 2px 4px 0px rgba(0,0,0,0.5);
+    border-radius:5px;
+    position:absolute;
+    top:29px;
+    margin-left: 30px;
+    opacity:0.5;
+}
+.barBox:hover .barBlock{
+    background-color: #72E19D;
+    box-shadow:0 0 2px 2px rgba(114,225,157,1);
+}
+.barBox2{
+    height: 64px;
+    width: 430px;
+    background: rgba(0, 0, 0, 0.5);;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, 99px);
+    border-radius: 49px;
+}
+.barColor2{
+    background: #5ac3ff;
+    height: 20px;
+    float: left;
+}
+.barBlock2{
+    width: 20px;
+    height: 20px;
+    background: #32D475;
+    position: absolute;
+    left:50%;
+    border-radius:50%;
+    margin-left: -10px;
+    top: 5px;
+    opacity: 1;
+    pointer-events: none;/*不接受鼠标事件 */
+    box-shadow:0 0 2px 2px rgba(50,212,117,1);
+}
+.barBox2:hover .barBlock2{
+    background-color: #72E19D;
+}
