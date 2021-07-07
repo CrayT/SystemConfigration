@@ -10,11 +10,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      
       - name: Build
         run:
           pip install mkdocs 
           pip install mkdocs-material
+  deployJob:
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy
         run:
           mkdocs gh-deploy --clean
