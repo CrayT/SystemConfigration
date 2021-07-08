@@ -52,6 +52,7 @@ jobs:
           password: ${{secrets.VPSPW }}
           port: ${{ secrets.VPSPORT }}
           script: |
+            echo "VPSPATH:"${{ secrets.VPSPATH }}
             cd ${{ secrets.VPSPATH }}
             wget https://github.com/CrayT/SystemConfigration/releases/latest/download/release.tar -O release.tar
             tar zxvf release.tar
