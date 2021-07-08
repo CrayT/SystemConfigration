@@ -22,6 +22,7 @@ jobs:
         uses: AEnterprise/rsync-deploy@v1.0 
         env:
           DEPLOY_KEY: ${{ secrets.VPSSSHKEY }}
+          ARGS: -avz --delete --exclude='*.pyc'
           SERVER_PORT: ${{ secrets.VPSPORT }} # SSH端口
           FOLDER: ./site/* # 要推送的文件夹，路径相对于代码仓库的根目录
           SERVER_IP: ${{ secrets.VPSHOST }} # 引用配置，服务器的host名（IP或者域名domain.com）
