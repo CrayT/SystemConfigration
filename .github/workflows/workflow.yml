@@ -20,6 +20,8 @@ jobs:
 
       - name: Deploy to Server 
         uses: AEnterprise/rsync-deploy@v1.0 
+        run:
+          echo ${{secrets.VPSHOST}}
         env:
           DEPLOY_KEY: ${{ secrets.VPSSSHKEY }}
           ARGS: -avz --delete --exclude='*.pyc'
