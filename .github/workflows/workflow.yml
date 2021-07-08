@@ -57,3 +57,7 @@ jobs:
             tar zxvf release.tar
             rm release.tar
             nginx -s load
+      - name: Clean
+        run:
+          git tag -d ${{ github.ref }}
+          git push origin :refs/tags/${{ github.ref }}
