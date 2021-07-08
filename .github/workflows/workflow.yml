@@ -1,8 +1,5 @@
 name: build
-on: 
-  push:
-    branches:
-      - master
+on: push
 
 jobs:
   buildJob:
@@ -10,7 +7,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      -name: Install
+      - name: Install
         run:
           pip install mkdocs 
           pip install mkdocs-material
