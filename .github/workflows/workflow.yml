@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@feature/CI
+        uses: actions/checkout@v1
         with:
           persist-credentials: false
 
@@ -24,7 +24,7 @@ jobs:
 
       - name: Create Release # 创建Release
         id: create_release
-        uses: actions/create-release@feature/CI
+        uses: actions/create-release@master
         env:
           GITHUB_TOKEN: ${{ secrets.TokenForDoc }}
         with:
@@ -35,7 +35,7 @@ jobs:
 
       - name: Upload Release Asset
         id: upload-release-asset
-        uses: actions/upload-release-asset@feature/CI
+        uses: actions/upload-release-asset@master
         env:
           GITHUB_TOKEN: ${{ secrets.TokenForDoc }}
         with:
@@ -45,7 +45,7 @@ jobs:
           asset_content_type: application/x-tar
 
       - name: Deploy
-        uses: appleboy/ssh-action@feature/CI
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.VPSHOST }}
           username: ${{ secrets.USERNAME}}
