@@ -6,16 +6,48 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout
         with:
           persist-credentials: false
+
       - name: Install
         run:
-          pip install mkdocs 
-          pip install mkdocs-material
+          pip install -r requirement.txt
+
       - name: Build
-        run:
-          mkdocs build
+        run: mkdocs build
+        run: tar -zcvf release.tar ./site 
+
+      - name: Create Release # 创建Release
+        id: create_release
+        uses: actions/create-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.TokenForDoc }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.TokenForDoc }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release.tar
+          asset_name: release.tar 
+          asset_content_type: application/x-tar
+
       - name: Deploy
-        run:
-          mkdocs gh-deploy --clean
+        uses: appleboy/ssh-action
+        with:
+          host: ${{ secrets.VPSHOST }}
+          username: ${{ secrets.USERNAME}}
+          password: ${{secrets.VPSPW }}
+          port: ${{ secrets.VPSPORT }}
+          script: |
+            cd /var/www/html
+            wget https://github.com/CrayT/SystemConfigration/releases/latest/download/release.tar -O release.tar
+            tar zxvf release.tar
