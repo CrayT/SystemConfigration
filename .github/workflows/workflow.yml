@@ -22,7 +22,7 @@ jobs:
         run:
           tar -zcvf release.tar ./site 
 
-      - name: Create Release # 创建Release
+      - name: Create Release
         id: create_release
         uses: actions/create-release@master
         env:
@@ -55,3 +55,5 @@ jobs:
             cd /var/www/html
             wget https://github.com/CrayT/SystemConfigration/releases/latest/download/release.tar -O release.tar
             tar zxvf release.tar
+            rm release.tar
+            nginx -s load
