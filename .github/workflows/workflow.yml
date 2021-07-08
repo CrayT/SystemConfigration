@@ -10,12 +10,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        run:
+          pip install mkdocs 
+          pip install mkdocs-material
   deployJob:
     needs: buildJob
     runs-on: ubuntu-latest
     steps:
       - name: Deploy
         run:
-          pip install mkdocs 
-          pip install mkdocs-material
-          mkdocs gh-deploy --clean
+          mkdocs build
