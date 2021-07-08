@@ -25,7 +25,7 @@ jobs:
           local_path: ./site/*
           server: ${{ secrets.VPSHOST }} # 引用配置，服务器的host名（IP或者域名domain.com）
           username: ${{ secrets.USERNAME }}
-          remote_path: ${{ secrets.VPSPATH }} # 部署到目标文件夹
+          remote_path: ${{ secrets.VPSPATH }}
 
       - name: Reload
         uses: appleboy/ssh-action@master
