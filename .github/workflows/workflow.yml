@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      -name: Install
+        runs-on: ubuntu-latest
         run:
           pip install mkdocs 
           pip install mkdocs-material
