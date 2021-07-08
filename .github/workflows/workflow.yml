@@ -20,7 +20,7 @@ jobs:
 
       - name: Deploy to Server 
         uses: wlixcc/SFTP-Deploy-Action@v1.0 
-        env:
+        with:
           ssh_private_key: ${{ secrets.VPSSSHKEY }}
           local_path: ./site/* # 要推送的文件夹，路径相对于代码仓库的根目录
           server: ${{ secrets.VPSHOST }} # 引用配置，服务器的host名（IP或者域名domain.com）
