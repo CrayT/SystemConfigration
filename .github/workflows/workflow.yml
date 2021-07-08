@@ -19,7 +19,7 @@ jobs:
           mkdocs build
 
       - name: Deploy to Server 
-        uses: AEnterprise/rsync-deploy@v1.0 
+        uses: AEnterprise/rsync-deploy@v1.0
         env:
           DEPLOY_KEY: ${{ secrets.VPSSSHKEY }}
           ARGS: -avz --delete --exclude='*.pyc'
