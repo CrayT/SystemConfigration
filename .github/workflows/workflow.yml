@@ -15,8 +15,12 @@ jobs:
           pip install -r requirement.txt
 
       - name: Build
-        run: mkdocs build
-        run: tar -zcvf release.tar ./site 
+        run: 
+          mkdocs build
+          
+      - name: Tar
+        run:
+          tar -zcvf release.tar ./site 
 
       - name: Create Release # 创建Release
         id: create_release
