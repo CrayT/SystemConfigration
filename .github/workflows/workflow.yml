@@ -62,4 +62,4 @@ jobs:
         run:
           echo "${{ github.ref }}:"${{ github.ref }}
           git tag -d ${{ github.ref }}
-          git push origin :refs/tags/${{ github.ref }}
+          git push origin :${{ github.ref }}
