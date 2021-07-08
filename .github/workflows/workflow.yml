@@ -56,7 +56,7 @@ jobs:
             wget https://github.com/CrayT/SystemConfigration/releases/latest/download/release.tar -O release.tar
             tar zxvf release.tar
             rm release.tar
-            nginx -s load
+            nginx -s reload
       - name: Clean
         run:
           echo "${{ github.ref }}:"${{ github.ref }}
