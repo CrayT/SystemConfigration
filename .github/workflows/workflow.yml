@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
           persist-credentials: false
 
@@ -18,31 +18,15 @@ jobs:
         run: 
           mkdocs build
 
-      - name: Tar
-        run:
-          tar -zcvf release.tar ./site 
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@master
+      - name: Deploy to Server 
+        uses: AEnterprise/rsync-deploy@v1.0 
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-
-      - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release.tar
-          asset_name: release.tar 
-          asset_content_type: application/x-tar
+          DEPLOY_KEY: ${{ secrets.VPSSSHKEY }}
+          SERVER_PORT: ${{ secrets.VPSPORT }} # SSH端口
+          FOLDER: ./site/* # 要推送的文件夹，路径相对于代码仓库的根目录
+          SERVER_IP: ${{ secrets.VPSHOST }} # 引用配置，服务器的host名（IP或者域名domain.com）
+          USERNAME: ${{ secrets.USERNAME }} # 引用配置，服务器登录名
+          SERVER_DESTINATION: ${{ secrets.VPSPATH }} # 部署到目标文件夹
 
       - name: Deploy
         uses: appleboy/ssh-action@master
@@ -52,9 +36,4 @@ jobs:
           password: ${{secrets.VPSPW }}
           port: ${{ secrets.VPSPORT }}
           script: |
-            echo "VPSPATH:"${{ secrets.VPSPATH }}
-            cd ${{ secrets.VPSPATH }}
-            wget https://github.com/CrayT/SystemConfigration/releases/latest/download/release.tar -O release.tar
-            tar zxvf release.tar
-            rm release.tar
             nginx -s reload
