@@ -67,6 +67,8 @@ theme:
   language: 'zh' 
   nav_style: light
   highlightjs: true
+extra_css:
+  - css/extra.css
 markdown_extentions:
   - admonition
   - footnotes  # 脚注
