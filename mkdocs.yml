@@ -18,6 +18,7 @@ nav:
     - DockerAPI: Docker/docker_api_python.md
     - PHP-Compose: Docker/php_Composer_Dockerfile.md
   - 系统配置:
+    - 搭建MD文档中心: SystemConfiguration/MarkdownCenter_site.md
     - Npm发布: SystemConfiguration/Npm_Publish.md
     - Ubuntu搭建SS环境: SystemConfiguration/Ubuntu_SS_deploy.md
     - CDN&域名备案: SystemConfiguration/CDN&domain.md
