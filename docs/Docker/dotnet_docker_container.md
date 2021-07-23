@@ -1,4 +1,5 @@
 ### dotnet sdk版：
+```
 FROM  mcr.microsoft.com/dotnet/sdk:3.1
 
 COPY ./netcoreapp3.1 /dotnet
@@ -11,10 +12,8 @@ EXPOSE 5010
 
 CMD ["dotnet", "**.dll"]
 ```
-> linux版的docker调用System.Drawing.Common时可能会报错，】[参考博文](https://www.cnblogs.com/insipid/p/14617582.html)
+> linux版的docker调用System.Drawing.Common时可能会报错，】，参考博文：[传送门](https://www.cnblogs.com/insipid/p/14617582.html)
 
-
------------
 
 ### CentOs版：
 ```
@@ -32,7 +31,7 @@ EXPOSE 5010
 
 CMD ["dotnet", "*.dll"]   
 ```
-
+### 启动：
 - docker build -t demo:1.0 .
 
 - docker run -d -p port1:port4 image 
