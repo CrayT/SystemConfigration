@@ -55,7 +55,8 @@ nav:
     - Windows安装Nginx: Nginx/NginxOnWindows.md
     - Nginx反向代理: Nginx/Nginx_reverse_proxy.md
   - 前端:
-    - 创建React: Frontend/Init_React_Project.md
+    - 创建React: Frontend/react/Init_React_Project.md
+    - React状态管理Redux: Frontend/react/redux.md
     - Vue2升级Vue3: Frontend/vue/Upgrade_Vue2_To_Vue3.md
   - 常用命令:
     - 查询端口&关闭进程: UserfulCommand/windows_checkPort&killPID.md
