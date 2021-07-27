@@ -5,7 +5,7 @@
     ```
 - 配置 `store` :
   - 创建 `store.js` , 创建store (这里直接使用 `combineReducers` 创建，以便分模块开发)
-    ```javascript
+    ```
         import {createStore, combineReducers} from "redux";
         import {reducerA} from "../reducer/ReducerA";
         import {reducerB} from "../reducer/ReducerB";
@@ -18,7 +18,7 @@
         export default store;
     ```
   - `ReducerA.js`:
-    ```javascript
+    ```
         const reducerA = function(state = { aa: 1 }, action){
         switch (action.type){
             case "Add":
@@ -31,7 +31,7 @@
         export { reducerA }
     ```
   - `ReducerB.js`:
-    ```javascript
+    ```
         const reducerB = function(state = {bb: true}, action){
             switch (action.type){
                 case "Sub":
@@ -44,7 +44,7 @@
         export { reducerB }
     ```
 - 组件内部订阅：
-    ```javascript
+    ```
         import store from "../../redux/store";
         componentDidMount() {
             store.subscribe( () => {
@@ -53,7 +53,7 @@
         }
     ```
 - 组件内部触发 `action` ：
-    ```javascript
+    ```
         add(){
             store.dispatch({
                 type: "Add",
@@ -63,7 +63,7 @@
         }
     ```
 - 组件内部获取 `state` ：
-    ```javascript
+    ```
         store.getState()
     ``` 
 - `reducer` 是什么：
