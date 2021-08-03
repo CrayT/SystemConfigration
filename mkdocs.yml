@@ -38,6 +38,7 @@ nav:
     - webstorm配置git-bash: SystemConfiguration/webstorm_git-bash.md
     - Windows配置ssh: SystemConfiguration/Windows_ssh.md
     - wordpress网站恢复记录: SystemConfiguration/wordpress_site_data_resume_history.md
+    - windows切换语言为中文: SystemConfiguration/window-language-set.md
   - Python:
     - PCA原理: Python/PCA.md
     - 创建Django项目: Python/Init_django_project.md
