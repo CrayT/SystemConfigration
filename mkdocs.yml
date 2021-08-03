@@ -60,6 +60,7 @@ nav:
     - Vue2升级Vue3: Frontend/vue/Upgrade_Vue2_To_Vue3.md
     - 手写实现Promise: Frontend/Promise.md
     - 正则匹配url参数: Frontend/get_url_para.md
+    - loader、plugin区别: Frontend/webpack-loader-plugin.md
   - 常用命令:
     - 查询端口&关闭进程: UserfulCommand/windows_checkPort&killPID.md
     - 磁盘IO监控: UserfulCommand/Watch_disk_IO.md
