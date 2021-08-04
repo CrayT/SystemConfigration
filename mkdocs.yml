@@ -64,6 +64,7 @@ nav:
     - loader、plugin区别: Frontend/webpack-loader-plugin.md
     - Proxy与Object.defineProperty: Frontend/defineProperty与Proxy区别.md
     - reduce示例: Frontend/reduce_function_iteration.md
+    - Diff算法: Frontend/diff.md
   - 常用命令:
     - 查询端口&关闭进程: UserfulCommand/windows_checkPort&killPID.md
     - 磁盘IO监控: UserfulCommand/Watch_disk_IO.md
