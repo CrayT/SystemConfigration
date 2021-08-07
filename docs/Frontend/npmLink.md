@@ -27,3 +27,7 @@ export const a = {
 ```javascript
 import a from "../node_modules/demo"
 ```
+- 解除连接
+```
+npm unlink demo
+```
