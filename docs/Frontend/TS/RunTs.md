@@ -1,0 +1,3 @@
+- npm install typescript -g
+- tsc *.ts //编译ts文件
+- node *.js
