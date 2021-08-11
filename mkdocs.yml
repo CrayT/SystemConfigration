@@ -70,6 +70,7 @@ nav:
     - 浏览器资源加载流程: Frontend/webBrowser-load-resource.md
     - 前端实现复制: Frontend/clip.md
     - npm link: Frontend/npmLink.md
+    - TS的type和interface区别与联系: /Frontend/TS-type&interface.md
   - 常用命令:
     - 查询端口&关闭进程: UserfulCommand/windows_checkPort&killPID.md
     - 磁盘IO监控: UserfulCommand/Watch_disk_IO.md
