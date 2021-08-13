@@ -78,6 +78,8 @@ nav:
     - 磁盘IO监控: UserfulCommand/Watch_disk_IO.md
     - Git命令: UserfulCommand/Git_command.md
     - 搜索进程: UserfulCommand/Search_PID.md
+  - 其他:
+    - 旋转圆环SVG: /Marks/rotate_arc_svg.md
 theme: 
   name: 'material'
   language: 'zh' 
