@@ -2,7 +2,7 @@
 
 - 2，打开终端，打开`.npmrc`文件，添加一行, ` _authToken`后面就是刚才生成的`token`：
 
-  ```shell
+  ```
   //registry.npmjs.org/:_authToken=d06e5402-da77-46e1-aa0b-8492476fa450
   ```
 
