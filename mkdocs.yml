@@ -73,7 +73,7 @@ nav:
     - 运行TS: Frontend/TS/RunTs.md
     - TS的type和interface区别与联系: Frontend/TS/TS-type&interface.md
     - prototype原型链: Frontend/prototype.md
-    - js中的变量提升和函数提升: /Frontend/variable&function-prompt.md
+    - js中的变量提升和函数提升: Frontend/variable&function-prompt.md
   - 常用命令:
     - 查询端口&关闭进程: UserfulCommand/windows_checkPort&killPID.md
     - 磁盘IO监控: UserfulCommand/Watch_disk_IO.md
