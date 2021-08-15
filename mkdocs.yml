@@ -70,16 +70,17 @@ nav:
     - 浏览器资源加载流程: Frontend/webBrowser-load-resource.md
     - 前端实现复制: Frontend/clip.md
     - npm link: Frontend/npmLink.md
-    - 运行TS: /Frontend/TS/RunTs.md
-    - TS的type和interface区别与联系: /Frontend/TS/TS-type&interface.md
-    - prototype原型链: /Frontend/prototype.md
+    - 运行TS: Frontend/TS/RunTs.md
+    - TS的type和interface区别与联系: Frontend/TS/TS-type&interface.md
+    - prototype原型链: Frontend/prototype.md
+    - js中的变量提升和函数提升: /Frontend/variable&function-prompt.md
   - 常用命令:
     - 查询端口&关闭进程: UserfulCommand/windows_checkPort&killPID.md
     - 磁盘IO监控: UserfulCommand/Watch_disk_IO.md
     - Git命令: UserfulCommand/Git_command.md
     - 搜索进程: UserfulCommand/Search_PID.md
   - 其他:
-    - 旋转圆环SVG: /Marks/rotate_arc_svg.md
+    - 旋转圆环SVG: Marks/rotate_arc_svg.md
 theme: 
   name: 'material'
   language: 'zh' 
