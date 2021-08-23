@@ -40,6 +40,7 @@ nav:
     - Windows配置ssh: SystemConfiguration/Windows_ssh.md
     - wordpress网站恢复记录: SystemConfiguration/wordpress_site_data_resume_history.md
     - windows切换语言为中文: SystemConfiguration/window-language-set.md
+    - nohup忽略输出: SystemConfiguration/nohup.md
   - Python:
     - PCA原理: Python/PCA.md
     - 创建Django项目: Python/Init_django_project.md
@@ -57,6 +58,7 @@ nav:
     - Windows安装Nginx: Nginx/NginxOnWindows.md
     - Nginx反向代理: Nginx/Nginx_reverse_proxy.md
   - 前端:
+    - 事件循环: Frontend/EventLoop.md
     - 创建React: Frontend/react/Init_React_Project.md
     - React状态管理Redux: Frontend/react/redux.md
     - Vue2升级Vue3: Frontend/vue/Upgrade_Vue2_To_Vue3.md
@@ -74,13 +76,16 @@ nav:
     - TS的type和interface区别与联系: Frontend/TS/TS-type&interface.md
     - prototype原型链: Frontend/prototype.md
     - js中的变量提升和函数提升: Frontend/variable&function-prompt.md
+    - 浅拷贝、深拷贝: Frontend/shallow&deep-Copy.md
   - 常用命令:
     - 查询端口&关闭进程: UserfulCommand/windows_checkPort&killPID.md
     - 磁盘IO监控: UserfulCommand/Watch_disk_IO.md
     - Git命令: UserfulCommand/Git_command.md
     - 搜索进程: UserfulCommand/Search_PID.md
   - 其他:
+    - 快速排序时间复杂度分析: Marks/quick_sort_Time.md
     - 旋转圆环SVG: Marks/rotate_arc_svg.md
+    
 theme: 
   name: 'material'
   language: 'zh' 
