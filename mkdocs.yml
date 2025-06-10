@@ -58,6 +58,7 @@ nav:
     - Windows安装Nginx: Nginx/NginxOnWindows.md
     - Nginx反向代理: Nginx/Nginx_reverse_proxy.md
   - 前端:
+    - electron: Frontend/Electron.md
     - 事件循环: Frontend/EventLoop.md
     - 创建React: Frontend/react/Init_React_Project.md
     - React状态管理Redux: Frontend/react/redux.md
