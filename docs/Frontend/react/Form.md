@@ -26,7 +26,7 @@ const fs = window.require("fs");
 
 const fileLists: string[] = [];
 
-export const　Parameter = observer(() => {
+const　Parameter = observer(() => {
   const [form] = Form.useForm();
 
   const [collapse, setCollapse] = React.useState(true);
@@ -99,22 +99,9 @@ export const　Parameter = observer(() => {
             </Upload>
           </Form.Item>
         );
-      case "mode":
+      case "ttttt":
         return (
-          <Form.Item key={type} name="mode" label="mode">
-            <Select
-              {/* options={modes.map((level) => {
-                return {
-                  label: level,
-                  value: level,
-                }; */}
-              {/* })} */}
-            />
-          </Form.Item>
-        );
-      case "topic":
-        return (
-          <Form.Item key={type} name="topic" label="topic">
+          <Form.Item key={type} name="ttttt" label="ttttt">
             <Flex gap="4px 0" wrap>
               {/* {lists.map((item, index) => {
                 return item ? (
@@ -151,64 +138,45 @@ export const　Parameter = observer(() => {
     },
   };
 
-
-  const onClose = () => {
-
-};
-
-  return (
-    <div className={styles["wrapper"]}>
-      <div className={styles["header"]}>
-        <Button
-          className={styles["header-close"]}
-          type="primary"
-          onClick={onClose}
-        >
-          关闭
-        </Button>
-      </div>
-      <div className={styles["content"]}>
-        <Form
-          {...formItemLayout}
-          style={{ maxWidth: 900 }}
-          className={styles["form-wrapper"]}
-          form={form}
-          onFinish={onSubmit}
-          layout="horizontal"
-        >
-          {formData.show.map((key) => {
-            return typeComponent(key);
-          })}
-          {!collapse &&
-            formData.collapse.map((key) => {
-              return typeComponent(key);
-            })}
-          {formData.collapse.length !== 0 && (
-            <div
-              className={styles["open-setting"]}
-              onClick={() => {
-                console.log("click");
-                setCollapse(!collapse);
-              }}
-            >
-              <span>{collapse ? "展开" : "隐藏"}默认配置</span>
-              <div>{collapse ? rightOutline : topOutline}</div>
-            </div>
-          )}
-          <Form.Item className={styles["footer"]}>
-            <Space>
-              <Button type="primary" htmlType="submit">
-                开始
-              </Button>
-              <Button htmlType="button" onClick={onReset}>
-                重置
-              </Button>
-            </Space>
-          </Form.Item>
-        </Form>
-      </div>
-    </div>
-  );
+  // return (
+  //     <div className={styles["content"]}>
+  //       <Form
+  //         {...formItemLayout}
+  //         style={{ maxWidth: 900 }}
+  //         className={styles["form-wrapper"]}
+  //         form={form}
+  //         onFinish={onSubmit}
+  //         layout="horizontal"
+  //       >
+  //         {formData.show.map((key) => {
+  //           return typeComponent(key);
+  //         })}
+  //         {!collapse &&
+  //           formData.collapse.map((key) => {
+  //             return typeComponent(key);
+  //           })}
+  //         {formData.collapse.length !== 0 && (
+  //           <div
+  //             className={styles["open-setting"]}
+  //             onClick={() => {
+  //               console.log("click");
+  //               setCollapse(!collapse);
+  //             }}
+  //           >
+  //             <span>{collapse ? "展开" : "隐藏"}默认配置</span>
+  //             <div>{collapse ? rightOutline : topOutline}</div>
+  //           </div>
+  //         )}
+  //         <Form.Item className={styles["footer"]}>
+  //           <Space>
+  //             <Button type="primary" htmlType="submit">
+  //               开始
+  //             </Button>
+  //           </Space>
+  //         </Form.Item>
+  //       </Form>
+  //     </div>
+  // );
 });
 
 ```
