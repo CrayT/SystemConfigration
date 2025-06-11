@@ -1,26 +1,26 @@
 ### antd的Form表格使用示例
 
 ```javascript
-import React, { MutableRefObject } from "react";
-import {
-  Button,
-  Form,
-  Select,
-  Space,
-  InputNumber,
-  Tag,
-  Flex,
-  Upload,
-  Input,
-  InputRef,
-  message,
-} from "antd";
-import styles from "./index.module.less";
-import { IFormData } from "./interface";
-import { observer } from "mobx-react-lite";
-import { UploadOutlined } from "@ant-design/icons";
-import { RcFile } from "antd/lib/upload";
-import _ from "lodash";
+// import React, { MutableRefObject } from "react";
+// import {
+//   Button,
+//   Form,
+//   Select,
+//   Space,
+//   InputNumber,
+//   Tag,
+//   Flex,
+//   Upload,
+//   Input,
+//   InputRef,
+//   message,
+// } from "antd";
+// import styles from "./index.module.less";
+// import { IFormData } from "./interface";
+// import { observer } from "mobx-react-lite";
+// import { UploadOutlined } from "@ant-design/icons";
+// import { RcFile } from "antd/lib/upload";
+// import _ from "lodash";
 
 const fs = window.require("fs");
 
