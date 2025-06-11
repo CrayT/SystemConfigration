@@ -1,6 +1,6 @@
 ### antd的Form表格使用示例
 
-```javascript
+
 // import React, { MutableRefObject } from "react";
 // import {
 //   Button,
@@ -22,121 +22,121 @@
 // import { RcFile } from "antd/lib/upload";
 // import _ from "lodash";
 
-const fs = window.require("fs");
+// const fs = window.require("fs");
 
-const fileLists: string[] = [];
+// const fileLists: string[] = [];
 
-const　Parameter = observer(() => {
-  const [form] = Form.useForm();
+// const　Parameter = observer(() => {
+//   const [form] = Form.useForm();
 
-  const [collapse, setCollapse] = React.useState(true);
+//   const [collapse, setCollapse] = React.useState(true);
 
-  const Ref１ = React.useRef<InputRef>() as MutableRefObject<InputRef>;
+//   const Ref１ = React.useRef<InputRef>() as MutableRefObject<InputRef>;
 
-  const Ref２ = React.useRef<InputRef>() as MutableRefObject<InputRef>;
+//   const Ref２ = React.useRef<InputRef>() as MutableRefObject<InputRef>;
 
-  React.useEffect(() => {
-    const defaultFormData = store.formData;　
-
-
-    form.setFieldsValue(defaultFormData.data);
-
-    setCollapse(true);
+//   React.useEffect(() => {
+//     const defaultFormData = store.formData;　
 
 
-  }, [store.formData]);
+//     form.setFieldsValue(defaultFormData.data);
 
-  React.useEffect(() => {
-
-    fs.readFile(path + "json.json", (_err: any, data: any) => {
-      JSON.parse(data.toString());
-    });
-  }, [store.path]);
-
-  const onSubmit = (values: Partial<IFormData>) => {
-
-  };
-
-  const onReset = () => {
-    form.resetFields();
-  };
+//     setCollapse(true);
 
 
-  const throttleSetDirPath = _.throttle((file: File) => {
-    const absolutePath = (file as any).path;
-    const splits = absolutePath.split("/");
-    splits.pop();
-    const dir = splits.join("/") + "/";
-  }, 100);
+//   }, [store.formData]);
 
-  const onStartSelectFiles = () => {
+  // React.useEffect(() => {
+
+  //   fs.readFile(path + "json.json", (_err: any, data: any) => {
+  //     JSON.parse(data.toString());
+  //   });
+  // }, [store.path]);
+
+  // const onSubmit = (values: Partial<IFormData>) => {
+
+  // };
+
+  // const onReset = () => {
+  //   form.resetFields();
+  // };
+
+
+  // const throttleSetDirPath = _.throttle((file: File) => {
+  //   const absolutePath = (file as any).path;
+  //   const splits = absolutePath.split("/");
+  //   splits.pop();
+  //   const dir = splits.join("/") + "/";
+  // }, 100);
+
+  // const onStartSelectFiles = () => {
     
-  };
+  // };
 
-  const typeComponent = (type: keyof IFormData) => {
-    switch (type) {
-      case "input1":
-        return (
-          <Form.Item key={type} name="input1" label="input1" colon={true}>
-            <Input.TextArea
-              autoSize={true}
-              ref={Ref1}
-              placeholder="输入:"
-            ></Input.TextArea>
-          </Form.Item>
-        )
-      case "Upload":
-        return (
-          <Form.Item key={type} name="Upload" label="Upload" colon={true}>
-            <Upload
-              multiple={true}
-              showUploadList={false}
-              accept={`.${fileFormat}`}
-            >
-              <Button onClick={onStartSelectFiles} icon={<UploadOutlined />}>
-                (按住ctrl键多选)
-              </Button>
-            </Upload>
-          </Form.Item>
-        );
-      case "ttttt":
-        return (
-          <Form.Item key={type} name="ttttt" label="ttttt">
-            <Flex gap="4px 0" wrap>
-              {/* {lists.map((item, index) => {
-                return item ? (
-                  <Tag key={index} className={styles["tag"]}>
-                    <span>{item}</span>
-                    <div
-                      className={styles["close"]}
-                      onClick={() => closeTag(item)}
-                    >
-                      {closeOutline}
-                    </div>
-                  </Tag>
-                ) : null;
-              })} */}
-            </Flex>
-            {/* <Button type="default" onClick={() => setShowTopic(!show)}>
-              添加
-            </Button> */}
-          </Form.Item>
-        );
-      default:
-        break;
-    }
-  };
+  // const typeComponent = (type: keyof IFormData) => {
+  //   switch (type) {
+  //     case "input1":
+  //       return (
+  //         <Form.Item key={type} name="input1" label="input1" colon={true}>
+  //           <Input.TextArea
+  //             autoSize={true}
+  //             ref={Ref1}
+  //             placeholder="输入:"
+  //           ></Input.TextArea>
+  //         </Form.Item>
+  //       )
+  //     case "Upload":
+  //       return (
+  //         <Form.Item key={type} name="Upload" label="Upload" colon={true}>
+  //           <Upload
+  //             multiple={true}
+  //             showUploadList={false}
+  //             accept={`.${fileFormat}`}
+  //           >
+  //             <Button onClick={onStartSelectFiles} icon={<UploadOutlined />}>
+  //               (按住ctrl键多选)
+  //             </Button>
+  //           </Upload>
+  //         </Form.Item>
+  //       );
+  //     case "ttttt":
+  //       return (
+  //         <Form.Item key={type} name="ttttt" label="ttttt">
+  //           <Flex gap="4px 0" wrap>
+  //             {lists.map((item, index) => {
+  //               return item ? (
+  //                 <Tag key={index} className={styles["tag"]}>
+  //                   <span>{item}</span>
+  //                   <div
+  //                     className={styles["close"]}
+  //                     onClick={() => closeTag(item)}
+  //                   >
+  //                     {closeOutline}
+  //                   </div>
+  //                 </Tag>
+  //               ) : null;
+  //             })}
+  //           </Flex>
+  //           <Button type="default" onClick={() => setShowTopic(!show)}>
+  //             添加
+  //           </Button>
+  //         </Form.Item>
+  //       );
+  //     default:
+  //       break;
+  //   }
+  // };
 
-  const formItemLayout = {
-    labelCol: {
-      xs: { span: 24 },
-      sm: { span: 3 },
-    },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 20 },
-    },
-  };
+  // const formItemLayout = {
+  //   labelCol: {
+  //     xs: { span: 24 },
+  //     sm: { span: 3 },
+  //   },
+  //   wrapperCol: {
+  //     xs: { span: 24 },
+  //     sm: { span: 20 },
+  //   },
+  // };
 
   // return (
   //     <div className={styles["content"]}>
@@ -177,6 +177,4 @@ const　Parameter = observer(() => {
   //       </Form>
   //     </div>
   // );
-});
-
-```
+// });
