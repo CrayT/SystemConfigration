@@ -92,3 +92,7 @@ try {
     console.log("err", er);
 }
 ```
+
+4, 开发模式请求本地文件
+
+本地文件需要放在public文件夹下，fetch的url为｀http://localhost:3000/fileName｀;
