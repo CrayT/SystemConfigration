@@ -61,6 +61,7 @@ nav:
     - electron: Frontend/Electron.md
     - antd-form: Frontend/react/Form.md
     - fetch: Frontend/fetch.md
+    - websocket: Frontend/websocket.md
     - canvas-马赛克: Frontend/html/mosaic.html
     - three-物体曲线运动: Frontend/html/move-animate-curve.html
     - Shader-Line: Frontend/shader/line.md
