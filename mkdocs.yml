@@ -1,4 +1,4 @@
-site_name: My Docs Center
+site_name: Docs
 site_url: https://github.com/CrayT/SystemConfigration
 site_author: XT
 repo_url: https://github.com/CrayT/SystemConfigration
@@ -59,6 +59,11 @@ nav:
     - Nginx反向代理: Nginx/Nginx_reverse_proxy.md
   - 前端:
     - electron: Frontend/Electron.md
+    - Form: Frontend/Form表格.md
+    - fetch: Frontend/fetch.md
+    - canvas-马赛克: Frontend/html/mosaic.html
+    - three-物体曲线运动: Frontend/html/move-animate-curve.html
+    - Shader-Line: Frontend/shader/line.md
     - 事件循环: Frontend/EventLoop.md
     - 创建React: Frontend/react/Init_React_Project.md
     - React状态管理Redux: Frontend/react/redux.md
