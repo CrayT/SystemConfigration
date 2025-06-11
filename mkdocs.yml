@@ -78,6 +78,7 @@ nav:
     - prototype原型链: Frontend/prototype.md
     - js中的变量提升和函数提升: Frontend/variable&function-prompt.md
     - 浅拷贝、深拷贝: Frontend/shallow&deep-Copy.md
+    - Worker: Frontend/Worker.md
   - 常用命令:
     - 查询端口&关闭进程: UserfulCommand/windows_checkPort&killPID.md
     - 磁盘IO监控: UserfulCommand/Watch_disk_IO.md

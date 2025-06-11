@@ -118,5 +118,37 @@ reducer 描述一个状态模型。在 Redux 下，应用的状态存储在一�
 reducer 处理 Action，一个 Action 触发，根据这个 Action 的类型进行相应的操作, 对 旧State 进行修改，并返回一个新的State。
 每个 diapatch 的 Action 会调用 combineReducers(REDUCERS) 中所有的 REDUCERS 进行处理，一个 Action 会被每个 REDUCER 都处理一遍.
 ```
-### 2, `react-redux` 使用 
-- TODO...
+### 2, `mobx` 使用 
+
+```javascript
+import { makeObservable, observable, action } from "mobx";
+
+class Store {
+
+    param1: boolean = '';
+    constructor() {
+        makeObservable(this, {
+        param1: observable
+        setValue: action,
+        });
+    }
+
+    setValue() {}
+}
+export const store = new Store();
+
+// 组件示例
+import { observer } from "mobx-react-lite";
+const Component1: React.FC = observer(() => {
+  if (!store.param1) {
+    return null;
+  }
+
+  return (
+    <div className={styles["aaa"]}>
+      <Component2 />
+    </div>
+  );
+});
+
+```

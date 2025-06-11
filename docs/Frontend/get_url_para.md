@@ -16,3 +16,10 @@ function getUrlPara(name) {
 `window.location.search` : 取`？`后面的字符串，包括`？`
 - 示例：
   - `www.baidu.com?name=test&id=123456`, `getUrlPara("name')`应为返回`test`.
+
+### 使用原生的URLSearchParams
+
+```javascript
+const  search = new URLSearchParams(window.location.search);
+const value = search.get('key');
+```
