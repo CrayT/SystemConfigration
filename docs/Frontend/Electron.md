@@ -195,3 +195,9 @@ electron-minidump为npm安装的解析命令，可通过npm安装
 用其解析dmp崩溃日志文件:
 electron-minidump -f ./dmp.dmp -v 21.4.4
 21.4.4为electron的版本，因为要下载对应版本的解析文件
+
+
+8, 静态资源的加载
+由于electron是file协议加载页面，可能会出现静态资源如某些json、gltf资源请求不到的情况，解决：
+将app的BrowerRoute用HashRouter即可。
+差异对比见`react/route.md`
