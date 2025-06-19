@@ -58,7 +58,8 @@ nav:
     - Windows安装Nginx: Nginx/NginxOnWindows.md
     - Nginx反向代理: Nginx/Nginx_reverse_proxy.md
   - 前端:
-    - Shader书: Frontend/TheBookOfShader.md
+    - Shader教程:
+      - 1: Frontend/TheBookOfShader.md
     - electron: Frontend/Electron.md
     - antd-form: Frontend/react/Form.md
     - fetch: Frontend/fetch.md
