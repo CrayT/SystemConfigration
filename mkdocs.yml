@@ -62,6 +62,7 @@ nav:
     - antd-form: Frontend/react/Form.md
     - fetch: Frontend/fetch.md
     - websocket: Frontend/websocket.md
+    - 性能优化: Frontend/performance.md
     - 路由: Frontend/react/route.md
     - 网格布局切分: Frontend/grid-layout.md
     - canvas-马赛克: Frontend/html/mosaic.html
