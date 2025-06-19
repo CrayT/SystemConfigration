@@ -18,6 +18,100 @@ git branch -a
 git checkout branchName
 ```
 
+
+- 修改本地commit信息
+
+```shell
+git commit --amend
+```
+
+- 合并commit，本地未push
+
+```shell
+git rebase -i HEAD~${合并数量} # 将后面的commit全部合并到第一个上，否则会报错，也就是从第二个开始将pick改为s
+```
+
+- 撤回commit 
+
+```shell
+# 撤回上一个提交到本地，--soft表示回退到某个版本
+git reset --soft HEAD^ 
+# 或者:
+git reset --soft HEAD~1
+```
+
+- 撤销工作区中所有未提交的修改内容，将暂存区与工作区都回到上一次版本，并删除之前的所有信息提交
+
+```shell
+# 撤销当前工作区所有修改
+git reset --hard HEAD
+
+# 撤销到上一个版本
+git reset --hard HEAD^
+#或者 
+git reset --hard HEAD~1
+```
+
+- cherry-pick其他的merge
+- 直接pick会报错
+```shell
+git cherry-pick -m 1 ${commitId}
+# -m表示采用哪个分支的变动，1表示原始merge到目标分支的变动
+```
+
+- 合并远程分支的某个文件
+
+```shell
+git checkout origin/branch filePath
+```
+
+- 检出某个commit的某个文件
+
+```shell
+git checkout commitId -- filePath
+```
+
+- 查看远程文件
+
+```shell
+git show origin/branchName:filePath
+
+# 将远端文件导出到本地:
+git show origin/branchName:filePath -> demo.ts
+```
+
+- rebase 步骤
+
+```shell
+# 1 切到目标分支
+git checkout branch
+git reset --hard origin/branch # 如果不是分支的话不必reset
+git pull
+# 2 切到目标提交
+git checkout commit
+
+git rebase branch
+
+# 3 有冲突解决完冲突后：
+git rebase --continue
+
+# 4 push
+git push origin HEAD:refs/for/branch
+```
+
+- 设定commit规范
+
+```shell
+# 设定规范
+cat <<EOF > some_template.txt
+[key1]:
+[key2]:
+EOF
+
+git config commit.template ~/.some_template.txt
+
+```
+
 - 查看git仓库地址：
 
 ```shell
