@@ -15,6 +15,9 @@ Fragment shaders（片段着色器）可以让你控制像素在屏幕上的快�
 
 在接下来的章节你会发现这项技术是多么难以置信地快速和强大，还有如何将它应用到专业的和个人的作品中。
 
+## 这本书的git地址：
+
+[点击跳转到git](https://github.com/patriciogonzalezvivo/thebookofshaders)
 
 ## 这本书是为谁而写的？
 
