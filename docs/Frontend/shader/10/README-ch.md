@@ -40,6 +40,33 @@
 
 <div class="codeAndCanvas" data="2d-random.frag"></div>
 
+```glsl
+// Author @patriciogv - 2015
+// http://patriciogonzalezvivo.com
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+float random (vec2 st) {
+    return fract(sin(dot(st.xy,
+                         vec2(12.9898,78.233)))*
+        43758.5453123);
+}
+
+void main() {
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+
+    float rnd = random( st );
+
+    gl_FragColor = vec4(vec3(rnd),1.0);
+}
+```
+
 看下第13行和15行，注意我们如何将 ```vec2 st``` 和另一个二维向量 （ ```vec2(12.9898,78.233)```）。
 
 * 试着改变14和15行的值。看看随机图案的变化，想想从中我们能学到什么。
@@ -54,6 +81,41 @@
 
 <div class="codeAndCanvas" data="2d-random-mosaic.frag"></div>
 
+```glsl
+// Author @patriciogv - 2015
+// Title: Mosaic
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+float random (vec2 st) {
+    return fract(sin(dot(st.xy,
+                         vec2(12.9898,78.233)))*
+        43758.5453123);
+}
+
+void main() {
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+
+    st *= 10.0; // Scale the coordinate system by 10
+    vec2 ipos = floor(st);  // get the integer coords
+    vec2 fpos = fract(st);  // get the fractional coords
+
+    // Assign a random value based on the integer coord
+    vec3 color = vec3(random( ipos ));
+
+    // Uncomment to see the subdivided grid
+    // color = vec3(fpos,0.0);
+
+    gl_FragColor = vec4(color,1.0);
+}
+```
+
 在缩放空间10倍后（在21行），我们将坐标系统的整数和小数部分分离。我们对最后一步操作不陌生，因为我们曾经用这种方法来将空间细分成 ```0.0``` 到 ```1.0``` 的小单元。我们根据得到坐标的整数部分作为一个通用值来隔离一个区域的像素，让它看起来像个单独的单元。然后我们可以用这个通用值来为这个区域得到一个随机值。因为我们的随机函数是伪随机，在那个单元内的所有像素返回的随机值都是一个常量。
 
 取消第29行保留我们坐标的小数部分，这样我们仍旧可以将其用作一个坐标系统，来在单元内部画图形。
@@ -63,6 +125,68 @@
 看下这个著名的 ```10 PRINT CHR$(205.5+RND(1)); : GOTO 10```迷宫生成器的GLSL代码块。
 
 <div class="codeAndCanvas" data="2d-random-truchet.frag"></div>
+
+```glsl
+// Author @patriciogv - 2015
+// Title: Truchet - 10 print
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+#define PI 3.14159265358979323846
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+float random (in vec2 _st) {
+    return fract(sin(dot(_st.xy,
+                         vec2(12.9898,78.233)))*
+        43758.5453123);
+}
+
+vec2 truchetPattern(in vec2 _st, in float _index){
+    _index = fract(((_index-0.5)*2.0));
+    if (_index > 0.75) {
+        _st = vec2(1.0) - _st;
+    } else if (_index > 0.5) {
+        _st = vec2(1.0-_st.x,_st.y);
+    } else if (_index > 0.25) {
+        _st = 1.0-vec2(1.0-_st.x,_st.y);
+    }
+    return _st;
+}
+
+void main() {
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    st *= 10.0;
+    // st = (st-vec2(5.0))*(abs(sin(u_time*0.2))*5.);
+    // st.x += u_time*3.0;
+
+    vec2 ipos = floor(st);  // integer
+    vec2 fpos = fract(st);  // fraction
+
+    vec2 tile = truchetPattern(fpos, random( ipos ));
+
+    float color = 0.0;
+
+    // Maze
+    color = smoothstep(tile.x-0.3,tile.x,tile.y)-
+            smoothstep(tile.x,tile.x+0.3,tile.y);
+
+    // Circles
+    // color = (step(length(tile),0.6) -
+    //          step(length(tile),0.4) ) +
+    //         (step(length(tile-vec2(1.)),0.6) -
+    //          step(length(tile-vec2(1.)),0.4) );
+
+    // Truchet (2 triangles)
+    // color = step(tile.x,tile.y);
+
+    gl_FragColor = vec4(vec3(color),1.0);
+}
+```
 
 这里我用前一章的 ```truchetPattern()``` 函数根据单元产生的随机值来随机画一个方向的对角线。
 

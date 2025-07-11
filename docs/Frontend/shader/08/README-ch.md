@@ -12,7 +12,49 @@
 
 * 取消下面代码中第35行的注释，看下坐标空间是如何平移的。
 
-<div class="codeAndCanvas" data="cross-translate.frag"></div>
+```glsl
+// Author @patriciogv ( patriciogonzalezvivo.com ) - 2015
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform float u_time;
+
+float box(in vec2 _st, in vec2 _size){
+    _size = vec2(0.5) - _size*0.5;
+    vec2 uv = smoothstep(_size,
+                        _size+vec2(0.001),
+                        _st);
+    uv *= smoothstep(_size,
+                    _size+vec2(0.001),
+                    vec2(1.0)-_st);
+    return uv.x*uv.y;
+}
+
+float cross(in vec2 _st, float _size){
+    return  box(_st, vec2(_size,_size/4.)) +
+            box(_st, vec2(_size/4.,_size));
+}
+
+void main(){
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    vec3 color = vec3(0.0);
+
+    // To move the cross we move the space
+    vec2 translate = vec2(cos(u_time),sin(u_time));
+    st += translate*0.35;
+
+    // Show the coordinates of the space on the background
+    // color = vec3(st.x,st.y,0.0);
+
+    // Add the shape on the foreground
+    color += vec3(cross(st,0.25));
+
+    gl_FragColor = vec4(color,1.0);
+}
+```
 
 现在尝试下下面的练习：
 
@@ -52,6 +94,60 @@ mat2 rotate2d(float _angle){
 
 <div class="codeAndCanvas" data="cross-rotate.frag"></div>
 
+```glsl
+// Author @patriciogv ( patriciogonzalezvivo.com ) - 2015
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+#define PI 3.14159265359
+
+uniform vec2 u_resolution;
+uniform float u_time;
+
+mat2 rotate2d(float _angle){
+    return mat2(cos(_angle),-sin(_angle),
+                sin(_angle),cos(_angle));
+}
+
+float box(in vec2 _st, in vec2 _size){
+    _size = vec2(0.5) - _size*0.5;
+    vec2 uv = smoothstep(_size,
+                        _size+vec2(0.001),
+                        _st);
+    uv *= smoothstep(_size,
+                    _size+vec2(0.001),
+                    vec2(1.0)-_st);
+    return uv.x*uv.y;
+}
+
+float cross(in vec2 _st, float _size){
+    return  box(_st, vec2(_size,_size/4.)) +
+            box(_st, vec2(_size/4.,_size));
+}
+
+void main(){
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    vec3 color = vec3(0.0);
+
+    // move space from the center to the vec2(0.0)
+    st -= vec2(0.5);
+    // rotate the space
+    st = rotate2d( sin(u_time)*PI ) * st;
+    // move it back to the original place
+    st += vec2(0.5);
+
+    // Show the coordinates of the space on the background
+    // color = vec3(st.x,st.y,0.0);
+
+    // Add the shape on the foreground
+    color += vec3(cross(st,0.4));
+
+    gl_FragColor = vec4(color,1.0);
+}
+```
+
 试试下面的练习：
 
 * 取消第45行的代码，看看会发生什么。
@@ -77,6 +173,56 @@ mat2 scale(vec2 _scale){
 
 <div class="codeAndCanvas" data="cross-scale.frag"></div>
 
+```glsl
+// Author @patriciogv ( patriciogonzalezvivo.com ) - 2015
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+#define PI 3.14159265359
+
+uniform vec2 u_resolution;
+uniform float u_time;
+
+mat2 scale(vec2 _scale){
+    return mat2(_scale.x,0.0,
+                0.0,_scale.y);
+}
+
+float box(in vec2 _st, in vec2 _size){
+    _size = vec2(0.5) - _size*0.5;
+    vec2 uv = smoothstep(_size,
+                        _size+vec2(0.001),
+                        _st);
+    uv *= smoothstep(_size,
+                    _size+vec2(0.001),
+                    vec2(1.0)-_st);
+    return uv.x*uv.y;
+}
+
+float cross(in vec2 _st, float _size){
+    return  box(_st, vec2(_size,_size/4.)) +
+            box(_st, vec2(_size/4.,_size));
+}
+
+void main(){
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    vec3 color = vec3(0.0);
+
+    st -= vec2(0.5);
+    st = scale( vec2(sin(u_time)+1.0) ) * st;
+    st += vec2(0.5);
+
+    // Show the coordinates of the space on the background
+    // color = vec3(st.x,st.y,0.0);
+
+    // Add the shape on the foreground
+    color += vec3(cross(st,0.2));
+
+    gl_FragColor = vec4(color,1.0);
+}
+```
 
 试试下面的练习，尝试深入理解矩阵的工作机制：
 
@@ -99,6 +245,43 @@ mat2 scale(vec2 _scale){
 
 <div class="codeAndCanvas" data="yuv.frag"></div>
 
+```glsl
+// Author @patriciogv - 2015
+// http://patriciogonzalezvivo.com
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform float u_time;
+
+// YUV to RGB matrix
+mat3 yuv2rgb = mat3(1.0, 0.0, 1.13983,
+                    1.0, -0.39465, -0.58060,
+                    1.0, 2.03211, 0.0);
+
+// RGB to YUV matrix
+mat3 rgb2yuv = mat3(0.2126, 0.7152, 0.0722,
+                    -0.09991, -0.33609, 0.43600,
+                    0.615, -0.5586, -0.05639);
+
+void main(){
+    vec2 st = gl_FragCoord.xy/u_resolution;
+    vec3 color = vec3(0.0);
+
+    // UV values goes from -1 to 1
+    // So we need to remap st (0.0 to 1.0)
+    st -= 0.5;  // becomes -0.5 to 0.5
+    st *= 2.0;  // becomes -1.0 to 1.0
+
+    // we pass st as the y & z values of
+    // a three dimensional vector to be
+    // properly multiply by a 3x3 matrix
+    color = yuv2rgb * vec3(0.5, st.x, st.y);
+
+    gl_FragColor = vec4(color,1.0);
+}
+```
 
 正如你所见，我们用对向量乘以矩阵的方式对待色彩。用这种方式，我们“移动”这些值。
 

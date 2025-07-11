@@ -24,6 +24,39 @@ void main(){
 
 <div class="codeAndCanvas" data="grid-making.frag"></div>
 
+```glsl
+// Author @patriciogv - 2015
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform float u_time;
+
+float circle(in vec2 _st, in float _radius){
+    vec2 l = _st-vec2(0.5);
+    return 1.-smoothstep(_radius-(_radius*0.01),
+                         _radius+(_radius*0.01),
+                         dot(l,l)*4.0);
+}
+
+void main() {
+	vec2 st = gl_FragCoord.xy/u_resolution;
+    vec3 color = vec3(0.0);
+
+    st *= 3.0;      // Scale up the space by 3
+    st = fract(st); // Wrap around 1.0
+
+    // Now we have 9 spaces that go from 0-1
+
+    color = vec3(st,0.0);
+    //color = vec3(circle(st,0.5));
+
+	gl_FragColor = vec4(color,1.0);
+}
+```
+
 现在是时候在子空间（网格单元的空间）里画点什么了。取消27行的注释。（因为我们等比例放大了x和y坐标，所以不会改变坐标的比例，图形会和预期的一样。）
 
 试试下面的练习来深入理解：
@@ -39,6 +72,69 @@ void main(){
 鉴于每个细分或者说单元都是我们正在使用的单位化坐标系的小单元，我们可以对每个内部空间施以矩阵变换来平移，旋转和缩放。
 
 <div class="codeAndCanvas" data="checks.frag"></div>
+
+```glsl
+// Author @patriciogv ( patriciogonzalezvivo.com ) - 2015
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+// Copyright (c) Patricio Gonzalez Vivo, 2015 - http://patriciogonzalezvivo.com/
+// I am the sole copyright owner of this Work.
+//
+// You cannot host, display, distribute or share this Work in any form,
+// including physical and digital. You cannot use this Work in any
+// commercial or non-commercial product, website or project. You cannot
+// sell this Work and you cannot mint an NFTs of it.
+// I share this Work for educational purposes, and you can link to it,
+// through an URL, proper attribution and unmodified screenshot, as part
+// of your educational material. If these conditions are too restrictive
+// please contact me and we'll definitely work it out.
+
+uniform vec2 u_resolution;
+uniform float u_time;
+
+#define PI 3.14159265358979323846
+
+vec2 rotate2D(vec2 _st, float _angle){
+    _st -= 0.5;
+    _st =  mat2(cos(_angle),-sin(_angle),
+                sin(_angle),cos(_angle)) * _st;
+    _st += 0.5;
+    return _st;
+}
+
+vec2 tile(vec2 _st, float _zoom){
+    _st *= _zoom;
+    return fract(_st);
+}
+
+float box(vec2 _st, vec2 _size, float _smoothEdges){
+    _size = vec2(0.5)-_size*0.5;
+    vec2 aa = vec2(_smoothEdges*0.5);
+    vec2 uv = smoothstep(_size,_size+aa,_st);
+    uv *= smoothstep(_size,_size+aa,vec2(1.0)-_st);
+    return uv.x*uv.y;
+}
+
+void main(void){
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    vec3 color = vec3(0.0);
+
+    // Divide the space in 4
+    st = tile(st,4.);
+
+    // Use a matrix to rotate the space 45 degrees
+    st = rotate2D(st,PI*0.25);
+
+    // Draw a square
+    color = vec3(box(st,vec2(0.7),0.01));
+    // color = vec3(st,0.0);
+
+    gl_FragColor = vec4(color,1.0);
+}
+```
 
 * 想想怎么让这些图案有趣的动起来。考虑颜色，形状，运动的变换。做三种动画。
 
@@ -76,6 +172,52 @@ ____我们需要两段来解决这个问题____
 
 <div class="codeAndCanvas" data="bricks.frag"></div>
 
+```glsl
+// Author @patriciogv ( patriciogonzalezvivo.com ) - 2015
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform float u_time;
+
+vec2 brickTile(vec2 _st, float _zoom){
+    _st *= _zoom;
+
+    // Here is where the offset is happening
+    _st.x += step(1., mod(_st.y,2.0)) * 0.5;
+
+    return fract(_st);
+}
+
+float box(vec2 _st, vec2 _size){
+    _size = vec2(0.5)-_size*0.5;
+    vec2 uv = smoothstep(_size,_size+vec2(1e-4),_st);
+    uv *= smoothstep(_size,_size+vec2(1e-4),vec2(1.0)-_st);
+    return uv.x*uv.y;
+}
+
+void main(void){
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    vec3 color = vec3(0.0);
+
+    // Modern metric brick of 215mm x 102.5mm x 65mm
+    // http://www.jaharrison.me.uk/Brickwork/Sizes.html
+    // st /= vec2(2.15,0.65)/1.5;
+
+    // Apply the brick tiling
+    st = brickTile(st,5.0);
+
+    color = vec3(box(st,vec2(0.9)));
+
+    // Uncomment to see the space coordinates
+    // color = vec3(st,0.0);
+
+    gl_FragColor = vec4(color,1.0);
+}
+```
+
 * 试着根据时间变化对偏移量做动画。
 
 * 另做一个动画，让偶数行向左移，奇数行向右移动。
@@ -99,6 +241,86 @@ ____我们需要两段来解决这个问题____
 仔细观察 ```rotateTilePattern()``` 函数, 它把坐标空间细分成四个单元并赋予每一个旋转值。
 
 <div class="codeAndCanvas" data="truchet.frag"></div>
+
+```glsl
+// Author @patriciogv ( patriciogonzalezvivo.com ) - 2015
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+#define PI 3.14159265358979323846
+
+uniform vec2 u_resolution;
+uniform float u_time;
+
+vec2 rotate2D (vec2 _st, float _angle) {
+    _st -= 0.5;
+    _st =  mat2(cos(_angle),-sin(_angle),
+                sin(_angle),cos(_angle)) * _st;
+    _st += 0.5;
+    return _st;
+}
+
+vec2 tile (vec2 _st, float _zoom) {
+    _st *= _zoom;
+    return fract(_st);
+}
+
+vec2 rotateTilePattern(vec2 _st){
+
+    //  Scale the coordinate system by 2x2
+    _st *= 2.0;
+
+    //  Give each cell an index number
+    //  according to its position
+    float index = 0.0;
+    index += step(1., mod(_st.x,2.0));
+    index += step(1., mod(_st.y,2.0))*2.0;
+
+    //      |
+    //  2   |   3
+    //      |
+    //--------------
+    //      |
+    //  0   |   1
+    //      |
+
+    // Make each cell between 0.0 - 1.0
+    _st = fract(_st);
+
+    // Rotate each cell according to the index
+    if(index == 1.0){
+        //  Rotate cell 1 by 90 degrees
+        _st = rotate2D(_st,PI*0.5);
+    } else if(index == 2.0){
+        //  Rotate cell 2 by -90 degrees
+        _st = rotate2D(_st,PI*-0.5);
+    } else if(index == 3.0){
+        //  Rotate cell 3 by 180 degrees
+        _st = rotate2D(_st,PI);
+    }
+
+    return _st;
+}
+
+void main (void) {
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+
+    st = tile(st,3.0);
+    st = rotateTilePattern(st);
+
+    // Make more interesting combinations
+    // st = tile(st,2.0);
+    // st = rotate2D(st,-PI*u_time*0.25);
+    // st = rotateTilePattern(st*2.);
+    // st = rotate2D(st,PI*u_time*0.25);
+
+    // step(st.x,st.y) just makes a b&w triangles
+    // but you can use whatever design you want.
+    gl_FragColor = vec4(vec3(step(st.x,st.y)),1.0);
+}
+```
 
 * 注释，取消注释，以及复制第69到72行来创作新的设计。
 

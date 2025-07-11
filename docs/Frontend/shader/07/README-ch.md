@@ -57,7 +57,35 @@ step（）函数会让每一个小于0.1的像素变成黑色（vec3（0.0））
 
 目前为止，我们只画了长方形的两条边（左边和底面）。看下下面的例子：
 
-<div class="codeAndCanvas" data="rect-making.frag"></div>
+```glsl
+// Author @patriciogv - 2015
+// http://patriciogonzalezvivo.com
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+void main(){
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    vec3 color = vec3(0.0);
+
+    // bottom-left
+    vec2 bl = step(vec2(0.1),st);
+    float pct = bl.x * bl.y;
+
+    // top-right
+    // vec2 tr = step(vec2(0.1),1.0-st);
+    // pct *= tr.x * tr.y;
+
+    color = vec3(pct);
+
+    gl_FragColor = vec4(color,1.0);
+}
+```
 
 取消 21~22 行的注释来看看如何转置坐标的同时重复使用 ```step()``` 函数。这样二维向量 vec2(0.0,0.0) 会被变换到右上角。这就是转置页面和重复过程的数字等价。
 
@@ -111,7 +139,40 @@ There are several ways to calculate that distance. The easiest one uses the [```
 
 * 注释和取消某行的注释来试试看用不同方式得到相同的结果。
 
-<div class="codeAndCanvas" data="circle-making.frag"></div>
+```glsl
+// Author @patriciogv - 2015
+// http://patriciogonzalezvivo.com
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+void main(){
+	vec2 st = gl_FragCoord.xy/u_resolution;
+    float pct = 0.0;
+
+    // a. The DISTANCE from the pixel to the center
+    pct = distance(st,vec2(0.5));
+
+    // b. The LENGTH of the vector
+    //    from the pixel to the center
+    // vec2 toCenter = vec2(0.5)-st;
+    // pct = length(toCenter);
+
+    // c. The SQUARE ROOT of the vector
+    //    from the pixel to the center
+    // vec2 tC = vec2(0.5)-st;
+    // pct = sqrt(tC.x*tC.x+tC.y*tC.y);
+
+    vec3 color = vec3(pct);
+
+	gl_FragColor = vec4( color, 1.0 );
+}
+```
 
 上回我们把到中心的距离映射为颜色亮度。离中心越近的越暗。注意到映射值不宜过高，因为从中心（vec2(0.5, 0.5)）到最远距离才刚刚超过0.5一点。仔细考察这个映射：
 
@@ -163,7 +224,33 @@ pct = pow(distance(st,vec2(0.4)),distance(st,vec2(0.6)));
 
 就计算效率而言，[```sqrt()```](../glossary/?search=sqrt)函数，以及所有依赖它的运算，都耗时耗力。[```dot()```](../glossary/?search=dot)点乘是另外一种用来高效计算圆形距离场的方式。
 
-<div class="codeAndCanvas" data="circle.frag"></div>
+```glsl
+// Author @patriciogv - 2015
+// http://patriciogonzalezvivo.com
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+float circle(in vec2 _st, in float _radius){
+    vec2 dist = _st-vec2(0.5);
+	return 1.-smoothstep(_radius-(_radius*0.01),
+                         _radius+(_radius*0.01),
+                         dot(dist,dist)*4.0);
+}
+
+void main(){
+	vec2 st = gl_FragCoord.xy/u_resolution.xy;
+
+	vec3 color = vec3(circle(st,0.9));
+
+	gl_FragColor = vec4( color, 1.0 );
+}
+```
 
 ### 距离场的特点
 
@@ -173,7 +260,38 @@ pct = pow(distance(st,vec2(0.4)),distance(st,vec2(0.6)));
 
 看看下面的代码：
 
-<div class="codeAndCanvas" data="rect-df.frag"></div>
+```glsl
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+void main(){
+  vec2 st = gl_FragCoord.xy/u_resolution.xy;
+  st.x *= u_resolution.x/u_resolution.y;
+  vec3 color = vec3(0.0);
+  float d = 0.0;
+
+  // Remap the space to -1. to 1.
+  st = st *2.-1.;
+
+  // Make the distance field
+  d = length( abs(st)-.3 );
+  // d = length( min(abs(st)-.3,0.) );
+  // d = length( max(abs(st)-.3,0.) );
+
+  // Visualize the distance field
+  gl_FragColor = vec4(vec3(fract(d*10.0)),1.0);
+
+  // Drawing with the distance field
+  // gl_FragColor = vec4(vec3( step(.3,d) ),1.0);
+  // gl_FragColor = vec4(vec3( step(.3,d) * step(d,.4)),1.0);
+  // gl_FragColor = vec4(vec3( smoothstep(.3,.4,d)* smoothstep(.6,.5,d)) ,1.0);
+}
+```
 
 我们一开始把坐标系移到中心并把它映射到-1到1之间。在 *24行* 这儿，我们用一个[```fract()```](../glossary/?search=fract) 函数来呈现这个距离场产生的图案。这个距离场不断重复，就像在禅花园看到的环一样。
 
@@ -204,13 +322,38 @@ pct = pow(distance(st,vec2(0.4)),distance(st,vec2(0.6)));
 
 下面你会看到在同样在笛卡尔坐标下图形在极坐标下的着色器案例（在 *lines 21 和 25*之间）。对这些函数一个个取消注释，看看两坐标系之间的联系。
 
-<div class="simpleFunction" data="y = cos(x*3.);
-//y = abs(cos(x*3.));
-//y = abs(cos(x*2.5))*0.5+0.3;
-//y = abs(cos(x*12.)*sin(x*3.))*.8+.1;
-//y = smoothstep(-.5,1., cos(x*10.))*0.2+0.5;"></div>
+```glsl
+// Author @patriciogv - 2015
+// http://patriciogonzalezvivo.com
 
-<div class="codeAndCanvas" data="polar.frag"></div>
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+void main(){
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    vec3 color = vec3(0.0);
+
+    vec2 pos = vec2(0.5)-st;
+
+    float r = length(pos)*2.0;
+    float a = atan(pos.y,pos.x);
+
+    float f = cos(a*3.);
+    // f = abs(cos(a*3.));
+    // f = abs(cos(a*2.5))*.5+.3;
+    // f = abs(cos(a*12.)*sin(a*3.))*.8+.1;
+    // f = smoothstep(-.5,1., cos(a*10.))*0.2+0.5;
+
+    color = vec3( 1.-smoothstep(f,f+0.02,r) );
+
+    gl_FragColor = vec4(color, 1.0);
+}
+```
 
 
 试着：
@@ -225,7 +368,48 @@ pct = pow(distance(st,vec2(0.4)),distance(st,vec2(0.6)));
 
 看下下面来自[Andrew Baldwin](https://twitter.com/baldand)的例子。这里的技巧是用极坐标的方式通过定义多边形的边数来构建一个距离场。
 
-<div class="codeAndCanvas" data="shapes.frag"></div>
+```glsl
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+#define PI 3.14159265359
+#define TWO_PI 6.28318530718
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+// Reference to
+// http://thndl.com/square-shaped-shaders.html
+
+void main(){
+  vec2 st = gl_FragCoord.xy/u_resolution.xy;
+  st.x *= u_resolution.x/u_resolution.y;
+  vec3 color = vec3(0.0);
+  float d = 0.0;
+
+  // Remap the space to -1. to 1.
+  st = st *2.-1.;
+
+  // Number of sides of your shape
+  int N = 3;
+
+  // Angle from the current pixel
+  float a = atan(st.x,st.y)+PI;
+
+  // Angular spacing between vertices of shape
+  float r = TWO_PI/float(N);
+
+  // Shaping function that modulate the distance
+  d = cos(floor(.5+a/r)*r-a)*length(st);
+
+  color = vec3(1.0-smoothstep(.4,.41,d));
+  // color = vec3(d);
+
+  gl_FragColor = vec4(color,1.0);
+}
+```
 
 * 用这个例子，改造一个输入位置，指定图形（形状）的顶点数来返回一个距离场（的值）。
 

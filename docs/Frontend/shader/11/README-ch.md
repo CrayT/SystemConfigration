@@ -90,6 +90,60 @@ y = mix(rand(i), rand(i + 1.0), u); // using it in the interpolation
 
 <div class="codeAndCanvas" data="2d-noise.frag"></div>
 
+```glsl
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+// 2D Random
+float random (in vec2 st) {
+    return fract(sin(dot(st.xy,
+                         vec2(12.9898,78.233)))
+                 * 43758.5453123);
+}
+
+// 2D Noise based on Morgan McGuire @morgan3d
+// https://www.shadertoy.com/view/4dS3Wd
+float noise (in vec2 st) {
+    vec2 i = floor(st);
+    vec2 f = fract(st);
+
+    // Four corners in 2D of a tile
+    float a = random(i);
+    float b = random(i + vec2(1.0, 0.0));
+    float c = random(i + vec2(0.0, 1.0));
+    float d = random(i + vec2(1.0, 1.0));
+
+    // Smooth Interpolation
+
+    // Cubic Hermine Curve.  Same as SmoothStep()
+    vec2 u = f*f*(3.0-2.0*f);
+    // u = smoothstep(0.,1.,f);
+
+    // Mix 4 coorners percentages
+    return mix(a, b, u.x) +
+            (c - a)* u.y * (1.0 - u.x) +
+            (d - b) * u.x * u.y;
+}
+
+void main() {
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+
+    // Scale the coordinate system to see
+    // some noise in action
+    vec2 pos = vec2(st*5.0);
+
+    // Use the noise function
+    float n = noise(pos);
+
+    gl_FragColor = vec4(vec3(n), 1.0);
+}
+```
+
 我们先把空间大小变成五倍（第 45 行）以便看清栅格间的插值。然后在 noise 函数中我们把空间分成更小的单元。我们把它的整数部分和非整数部分都储存在这个单元里。我们计算整数位置的顶点的坐标，并给每个顶点生成一个随机值（第 23 - 26 行）。最后，在第 35 行用我们之前储存的小数位置的值，在四个顶点的随机值之间插值。
 
 现在又到你了。试试下面的练习：
@@ -183,6 +237,59 @@ Noise 算法的设计初衷是将难以言说的自然质感转化成数字图�
 在下面的代码中你可以取消第 44 行的注释，看一看网格是如何歪斜的，然后取消第 47 行的注释，看一看如何建造单纯形网格。注意第 22 行中我们仅仅通过判断 if ```x > y``` (下三角) 还是 ```y > x``` (上三角)，就把歪斜过的正方形切成了两个等腰三角形。
 
 <div class="codeAndCanvas" data="simplex-grid.frag"></div>
+
+```glsl
+// Author @patriciogv - 2015 - patriciogonzalezvivo.com
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+vec2 skew (vec2 st) {
+    vec2 r = vec2(0.0);
+    r.x = 1.1547*st.x;
+    r.y = st.y+0.5*r.x;
+    return r;
+}
+
+vec3 simplexGrid (vec2 st) {
+    vec3 xyz = vec3(0.0);
+
+    vec2 p = fract(skew(st));
+    if (p.x > p.y) {
+        xyz.xy = 1.0-vec2(p.x,p.y-p.x);
+        xyz.z = p.y;
+    } else {
+        xyz.yz = 1.0-vec2(p.x-p.y,p.y);
+        xyz.x = p.x;
+    }
+
+    return fract(xyz);
+}
+
+void main() {
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    vec3 color = vec3(0.0);
+
+    // Scale the space to see the grid
+    st *= 10.;
+
+    // Show the 2D grid
+    color.rg = fract(st);
+
+    // Skew the 2D grid
+    // color.rg = fract(skew(st));
+
+    // Subdivide the grid into to equilateral triangles
+    // color = simplexGrid(st);
+
+    gl_FragColor = vec4(color,1.0);
+}
+```
 
 另一个 **Simplex Noise** 的优化是把三次 Hermite 函数（Cubic Hermite Curve：_f(x) = 3x^2-2x^3_，和 [```smoothstep()```](.../glossary/?search=smoothstep) 一样）替换成了四次 Hermite 函数（ _f(x) = 6x^5-15x^4+10x^3_ ）。这就使得函数曲线两端更“平”，所以每个格的边缘更加优雅地与另一个衔接。也就是说格子的过渡更加连续。你可以取消下面例子的第二个公式的注释，亲眼看看其中的变化（或者看[这个例子](https://www.desmos.com/calculator/2xvlk5xp8b)）。
 

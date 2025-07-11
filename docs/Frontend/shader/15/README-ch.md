@@ -18,6 +18,30 @@ vec4 texture2D(sampler2D texture, vec2 coordinates)
 
 <div class="codeAndCanvas" data="texture.frag" data-textures="hokusai.jpg"></div>
 
+```glsl
+// Author @patriciogv - 2015
+// http://patriciogonzalezvivo.com
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform sampler2D u_tex0;
+uniform vec2 u_tex0Resolution;
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+void main () {
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    vec4 color = vec4(st.x,st.y,0.0,1.0);
+
+    color = texture2D(u_tex0,st);
+
+    gl_FragColor = color;
+}
+```
 如果你注意观察，你会发现纹理的坐标是归一化的！这真的是个惊喜，不是吗？纹理坐标和我们已然熟识的东西是一致的。它们的坐标总是在0.0和1.0之间。这意味着它和我们使用的归一化空间坐标完美吻合。
 
 现在既然你已经了解了如何正确的加载纹理，是时候来试验性地探索我们究竟能用这一技巧做些什么了。快试试下面这些：
@@ -36,6 +60,66 @@ vec4 texture2D(sampler2D texture, vec2 coordinates)
 
 <div class="codeAndCanvas" data="texture-noise.frag" data-textures="hokusai.jpg"></div>
 
+```glsl
+// Author @patriciogv - 2015
+// http://patriciogonzalezvivo.com
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+#define PI 3.14159265359
+
+uniform sampler2D u_tex0;
+uniform vec2 u_tex0Resolution;
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+// Based on Morgan
+// https://www.shadertoy.com/view/4dS3Wd
+float random (in vec2 st) {
+    return fract(sin(dot(st.xy,
+                         vec2(12.9898,78.233)))*
+        43758.5453123);
+}
+
+float noise (in vec2 st) {
+    vec2 i = floor(st);
+    vec2 f = fract(st);
+
+    // Four corners in 2D of a tile
+    float a = random(i);
+    float b = random(i + vec2(1.0, 0.0));
+    float c = random(i + vec2(0.0, 1.0));
+    float d = random(i + vec2(1.0, 1.0));
+
+    vec2 u = f * f * (3.0 - 2.0 * f);
+
+    return mix(a, b, u.x) +
+            (c - a)* u.y * (1.0 - u.x) +
+            (d - b) * u.x * u.y;
+}
+
+void main () {
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+
+    float scale = 2.0;
+    float offset = 0.5;
+
+    float angle = noise( st + u_time * 0.1 )*PI;
+    float radius = offset;
+
+    st *= scale;
+    st += radius * vec2(cos(angle),sin(angle));
+
+    vec4 color = texture2D(u_tex0,st);
+
+    gl_FragColor = color;
+}
+```
+
 ## 纹理分辨率
 
 上述的种种示例仅展现了长宽相等的方形图像匹配方形显示平面（billboard）的情形。而至于非正方形图像，事情就没那么简单了。不幸的是，几个世纪以来的绘画艺术和摄影艺术发现非正方形比例的图像更令人赏心悦目。
@@ -47,6 +131,35 @@ vec4 texture2D(sampler2D texture, vec2 coordinates)
 取消 21 行的注释来实操一下吧。
 
 <div class="codeAndCanvas" data="texture-resolution.frag" data-textures="nicephore.jpg"></div>
+
+```glsl
+// Author @patriciogv - 2015
+// http://patriciogonzalezvivo.com
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform sampler2D u_tex0;
+uniform vec2 u_tex0Resolution;
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+void main () {
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    vec4 color = vec4(0.0);
+
+    // Fix the proportions by finding the aspect ratio
+    float aspect = u_tex0Resolution.x/u_tex0Resolution.y;
+    // st.y *= aspect;  // and then applying to it
+
+    color = texture2D(u_tex0,st);
+
+    gl_FragColor = color;
+}
+```
 
 * 如果要这张图片居中显示，我们应该怎么做呢？
 
@@ -63,6 +176,50 @@ vec4 texture2D(sampler2D texture, vec2 coordinates)
 这看起来很简单，但修改纹理坐标可以带来巨大的可能性。例如：
 
 <div class="codeAndCanvas" data="texture-sprite.frag" data-textures="muybridge.jpg"></div>
+
+```glsl
+// Author @patriciogv - 2015
+// http://patriciogonzalezvivo.com
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform sampler2D u_tex0;
+uniform vec2 u_tex0Resolution;
+
+int col = 5;
+int row = 4;
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+void main () {
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    vec4 color = vec4(0.0);
+
+    // Resolution of one frame
+    vec2 fRes = u_tex0Resolution/vec2(float(col),float(row));
+
+    // Normalize value of the frame resolution
+    vec2 nRes = u_tex0Resolution/fRes;
+
+    // Scale the coordinates to a single frame
+    st = st/nRes;
+
+    // Calculate the offset in cols and rows
+    float timeX = u_time*15.;
+    float timeY = floor(timeX/float(col));
+    vec2 offset = vec2( floor(timeX)/nRes.x,
+                        1.0-(floor(timeY)/nRes.y) );
+    st = fract(st+offset);
+
+    color = texture2D(u_tex0,st);
+
+    gl_FragColor = color;
+}
+```
 
 现在轮到你了:
 

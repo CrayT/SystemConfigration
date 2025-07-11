@@ -33,6 +33,52 @@
 
 <div class="codeAndCanvas" data="cellnoise-00.frag"></div>
 
+```glsl
+// Author: @patriciogv
+// Title: 4 cells DF
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+void main() {
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    st.x *= u_resolution.x/u_resolution.y;
+
+    vec3 color = vec3(.0);
+
+    // Cell positions
+    vec2 point[5];
+    point[0] = vec2(0.83,0.75);
+    point[1] = vec2(0.60,0.07);
+    point[2] = vec2(0.28,0.64);
+    point[3] =  vec2(0.31,0.26);
+    point[4] = u_mouse/u_resolution;
+
+    float m_dist = 1.;  // minimum distance
+
+    // Iterate through the points positions
+    for (int i = 0; i < 5; i++) {
+        float dist = distance(st, point[i]);
+
+        // Keep the closer distance
+        m_dist = min(m_dist, dist);
+    }
+
+    // Draw the min distance (distance field)
+    color += m_dist;
+
+    // Show isolines
+    // color -= step(.7,abs(sin(50.0*m_dist)))*.3;
+
+    gl_FragColor = vec4(color,1.0);
+}
+```
+
 上面的代码中，其中一个特征点分配给了鼠标位置。把鼠标放上去玩一玩，你可以更直观地了解上面的代码是如何运行的。然后试试：
 
 - 你可以让其余的几个特征点也动起来吗？
@@ -118,6 +164,74 @@ for (int y= -1; y <= 1; y++) {
 
 <div class="codeAndCanvas" data="cellnoise-02.frag"></div>
 
+```glsl
+// Author: @patriciogv
+// Title: CellularNoise
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+vec2 random2( vec2 p ) {
+    return fract(sin(vec2(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3))))*43758.5453);
+}
+
+void main() {
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    st.x *= u_resolution.x/u_resolution.y;
+    vec3 color = vec3(.0);
+
+    // Scale
+    st *= 3.;
+
+    // Tile the space
+    vec2 i_st = floor(st);
+    vec2 f_st = fract(st);
+
+    float m_dist = 1.;  // minimum distance
+
+    for (int y= -1; y <= 1; y++) {
+        for (int x= -1; x <= 1; x++) {
+            // Neighbor place in the grid
+            vec2 neighbor = vec2(float(x),float(y));
+
+            // Random position from current + neighbor place in the grid
+            vec2 point = random2(i_st + neighbor);
+
+			// Animate the point
+            point = 0.5 + 0.5*sin(u_time + 6.2831*point);
+
+			// Vector between the pixel and the point
+            vec2 diff = neighbor + point - f_st;
+
+            // Distance to the point
+            float dist = length(diff);
+
+            // Keep the closer distance
+            m_dist = min(m_dist, dist);
+        }
+    }
+
+    // Draw the min distance (distance field)
+    color += m_dist;
+
+    // Draw cell center
+    color += 1.-step(.02, m_dist);
+
+    // Draw grid
+    color.r += step(.98, f_st.x) + step(.98, f_st.y);
+
+    // Show isolines
+    // color -= step(.7,abs(sin(27.0*m_dist)))*.5;
+
+    gl_FragColor = vec4(color,1.0);
+}
+```
+
 进一步探索:
 
 - 缩放空间。
@@ -146,6 +260,63 @@ for (int y= -1; y <= 1; y++) {
 注意在下面的代码中，我们不再使用 ```min``` 来计算最近距离，而是用一个普通的 ```if``` 语句。为什么？因为当一个新的更近的特征点出现的时候，我们还需要保存它的位置（32 行至 37行）。
 
 <div class="codeAndCanvas" data="vorono-00.frag"></div>
+
+```glsl
+// Author: @patriciogv
+// Title: 4 cells voronoi
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+void main() {
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    st.x *= u_resolution.x/u_resolution.y;
+
+    vec3 color = vec3(.0);
+
+    // Cell positions
+    vec2 point[5];
+    point[0] = vec2(0.83,0.75);
+    point[1] = vec2(0.60,0.07);
+    point[2] = vec2(0.28,0.64);
+    point[3] =  vec2(0.31,0.26);
+    point[4] = u_mouse/u_resolution;
+
+    float m_dist = 1.;  // minimum distance
+    vec2 m_point;        // minimum position
+
+    // Iterate through the points positions
+    for (int i = 0; i < 5; i++) {
+        float dist = distance(st, point[i]);
+        if ( dist < m_dist ) {
+            // Keep the closer distance
+            m_dist = dist;
+
+            // Kepp the position of the closer point
+            m_point = point[i];
+        }
+    }
+
+    // Add distance field to closest point center
+    color += m_dist*2.;
+
+    // tint acording the closest point position
+    color.rg = m_point;
+
+    // Show isolines
+    color -= abs(sin(80.0*m_dist))*0.07;
+
+    // Draw point center
+    color += 1.-step(.02, m_dist);
+
+    gl_FragColor = vec4(color,1.0);
+}
+```
 
 注意那个移动的（鼠标位置下面那个）细胞的颜色是如何根据它的位置而改变的。那是因为它的颜色由最近特征点决定。
 
