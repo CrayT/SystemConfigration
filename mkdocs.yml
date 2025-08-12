@@ -7,6 +7,7 @@ nav:
   - Home: index.md
   - About: about.md
   - Docker: 
+    - 托管静态网站: Docker/host_web_site.md
     - Jupyter: Docker/jupyter.md
     - Swarm集群: Docker/Swarm_install.md
     - 搭建Minio: Docker/Ubuntu_Minio_install.md
@@ -54,6 +55,7 @@ nav:
     - Python读取各种格式文件: Python/python_read_all_flies.md
     - python输出决策树图形: Python/python_output_DT_Graph.md
   - Nginx:
+    - 使用示例: Nginx/document.md
     - 负载均衡: Nginx/Load_balance.md
     - Windows安装Nginx: Nginx/NginxOnWindows.md
     - Nginx反向代理: Nginx/Nginx_reverse_proxy.md
