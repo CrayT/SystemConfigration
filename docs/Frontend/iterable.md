@@ -60,3 +60,22 @@ async function run() {
 }
 run();
 ```
+
+- yield
+
+```js
+const myIter = {
+    *[Symbol.iterator]() {
+        let count = 0;
+        while (count < 10) {
+            yield count++;
+        }
+    }
+}
+const n = myIter[Symbol.iterator]();
+for(;;) {
+    const a = n.next();
+    if(a.done) break;
+    console.log(a.value) // 输出0,1,2,3,4...9
+}
+```
