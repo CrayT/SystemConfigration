@@ -80,6 +80,11 @@ nav:
       - 16: Frontend/shader/16/README-ch.md
       - 17: Frontend/shader/17/README-ch.md
       - 18: Frontend/shader/18/README-ch.md
+    - 3D知识:
+      - 矩阵: Frontend/3d/matrix.md
+      - 贴图方式: Frontend/pixelRender.md
+      - 物体曲线运动: Frontend/html/move-animate-curve.html
+      - Shader-Line: Frontend/line.md
     - electron: Frontend/Electron.md
     - antd-form: Frontend/react/Form.md
     - fetch: Frontend/fetch.md
@@ -89,9 +94,6 @@ nav:
     - 路由: Frontend/react/route.md
     - 网格布局切分: Frontend/grid-layout.md
     - canvas-马赛克: Frontend/html/mosaic.html
-    - three-物体曲线运动: Frontend/html/move-animate-curve.html
-    - Shader-Line: Frontend/line.md
-    - threejs贴图方式: Frontend/pixelRender.md
     - 事件循环: Frontend/EventLoop.md
     - 创建React: Frontend/react/Init_React_Project.md
     - React状态管理Redux: Frontend/react/redux.md
