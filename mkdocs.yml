@@ -87,6 +87,7 @@ nav:
       - Shader-Line: Frontend/line.md
     - electron: Frontend/Electron.md
     - antd-form: Frontend/react/Form.md
+    - webpack打包产物可视化: Frontend/webpack/bundleAnalyzerPlugin.md
     - fetch: Frontend/fetch.md
     - websocket: Frontend/websocket.md
     - iterable可迭代对象: Frontend/iterable.md
