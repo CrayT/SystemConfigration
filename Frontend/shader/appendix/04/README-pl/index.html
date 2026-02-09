@@ -1,0 +1,4482 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="XT">
+      
+      
+        <link rel="canonical" href="https://github.com/CrayT/SystemConfigration/Frontend/shader/appendix/04/README-pl/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>README pl - Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../css/extra.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#wprowadzenie-dla-osob-przychodzacych-z-js" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../../.." title="Docs" class="md-header__button md-logo" aria-label="Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              README pl
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/CrayT/SystemConfigration" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Docs" class="md-nav__button md-logo" aria-label="Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/CrayT/SystemConfigration" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Docker
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Docker/host_web_site/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    托管静态网站
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Docker/jupyter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jupyter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Docker/Swarm_install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swarm集群
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Docker/Ubuntu_Minio_install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    搭建Minio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Docker/exec_docker_container/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进入容器方式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Docker/docker_rexray_minio_s3fs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基于docker搭建基于Minio的S3FS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Docker/modify_pip_source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    修改Pip源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Docker/kubernetes_issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes搭建问题点
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Docker/dotnet_docker_container/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    创建Dotnet版Docker服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Docker/docker_api_python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DockerAPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Docker/php_Composer_Dockerfile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PHP-Compose
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统配置
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    系统配置
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/MarkdownCenter_site/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    搭建MD文档中心
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/personal-pic-cabin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    搭建个人图床
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/Npm_Publish/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Npm发布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/Ubuntu_SS_deploy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu搭建SS环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/CDN%26domain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CDN&域名备案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/Config_php7.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置php7.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/Install_SSL_To_Site/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网站安装SSL证书开启https访问
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/Auto_backup_wordpress%26resumeData/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自动备份wordpress网站数据&恢复数据
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/Auto_delete_overNum_oldBackup_files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自动删除超出数量的旧备份文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/Git_useful_tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git使用方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/Gitlab_CICD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gitlab之CICD配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/linux_service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    linux服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/Mac%2BVSCode_compileC%2B%2B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mac+VSCode编译C++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/MAC_install_brew/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mac安装brew
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/Mac_alias_command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MAC终端shell命令简化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/deploy_rabbitmq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RabbitMQ部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/SSH_config_noPassword_login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSH配置及免密码登录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/ubuntu_locale_issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ubuntu环境语言问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/webstorm_git-bash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    webstorm配置git-bash
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/Windows_ssh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows配置ssh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/wordpress_site_data_resume_history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    wordpress网站恢复记录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/window-language-set/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    windows切换语言为中文
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SystemConfiguration/nohup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    nohup忽略输出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Python/PCA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PCA原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Python/Init_django_project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    创建Django项目
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Python/Change_python_version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    更改Python版本
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Python/IgraphOnMac/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mac安装Igraph
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Python/MNIST%2Btensorflow_CNN_Tensorboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TensorBoard使用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Python/Python_Pyinstaller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pyinstaller打包app
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Python/python_django_minio_mysql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基于Django搭建Minio+Mysql服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Python/python3_sqlite3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python安装Sqlite3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Python/ServiceOnWindows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python创建Windows服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Python/python_read_all_flies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python读取各种格式文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Python/python_output_DT_Graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    python输出决策树图形
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nginx
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Nginx
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Nginx/document/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Nginx/Load_balance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    负载均衡
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Nginx/NginxOnWindows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows安装Nginx
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Nginx/Nginx_reverse_proxy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nginx反向代理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    前端
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    前端
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shader教程
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Shader教程
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../11/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3D知识
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3D知识
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../3d/matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    矩阵
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pixelRender/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贴图方式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../html/move-animate-curve.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    物体曲线运动
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../line/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shader-Line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../3d/anti-aliasing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    渲染锯齿问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../3d/coordinate-transformation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    坐标转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Electron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    electron
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../react/Form/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    antd-form
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../webpack/bundleAnalyzerPlugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    webpack打包产物可视化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../fetch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    fetch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../websocket/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    websocket
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../iterable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    iterable可迭代对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    性能优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../react/route/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    路由
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../grid-layout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网格布局切分
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../html/mosaic.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    canvas-马赛克
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../EventLoop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    事件循环
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../react/Init_React_Project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    创建React
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../react/redux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    React状态管理Redux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../vue/Upgrade_Vue2_To_Vue3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vue2升级Vue3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Promise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    手写实现Promise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../get_url_para/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    正则匹配url参数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../webpack-loader-plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    loader、plugin区别
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../defineProperty%E4%B8%8EProxy%E5%8C%BA%E5%88%AB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proxy与Object.defineProperty
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../reduce_function_iteration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    reduce示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../diff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diff算法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../CommonJs-ESModule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CommonJs-ESModule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../webBrowser-load-resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    浏览器资源加载流程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../clip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    前端实现复制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../npmLink/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    npm link
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../TS/RunTs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运行TS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../TS/TS-type%26interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS的type和interface区别与联系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../prototype/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    prototype原型链
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../variable%26function-prompt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    js中的变量提升和函数提升
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../shallow%26deep-Copy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    浅拷贝、深拷贝
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Worker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Worker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常用命令
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    常用命令
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../UserfulCommand/windows_checkPort%26killPID/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    查询端口&关闭进程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../UserfulCommand/Watch_disk_IO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    磁盘IO监控
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../UserfulCommand/Git_command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git命令
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../UserfulCommand/Search_PID/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    搜索进程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    其他
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    其他
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Marks/quick_sort_Time/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速排序时间复杂度分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Marks/rotate_arc_svg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    旋转圆环SVG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#wprowadzenie-dla-osob-przychodzacych-z-js" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wprowadzenie dla osób przychodzących z JS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wprowadzenie dla osób przychodzących z JS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wielki-uscisk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WIELKI UŚCISK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#silne-typowanie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Silne typowanie
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Silne typowanie">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#void" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        void
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        boolean
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rzutowanie-typow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rzutowanie typów
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#konstruktor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        konstruktor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wektory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wektory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wektory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#akcesory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        akcesory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swizzle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        swizzle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#przeciazaj-wszystko" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        przeciążaj wszystko!
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inne-typy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        inne typy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instrukcje-i-warunki" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        instrukcje i warunki
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kwalifikatory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        kwalifikatory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#przestrzen-i-wsporzedne" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        przestrzeń i współrzędne
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#i-to-wszystko" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I to wszystko!
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>README pl</h1>
+
+<h2 id="wprowadzenie-dla-osob-przychodzacych-z-js">Wprowadzenie dla osób przychodzących z JS</h2>
+<p>przez <a href="http://www.barradeau.com/">Nicolas Barradeau</a></p>
+<p>Jeśli jesteś programistą JavaScript, prawdopodobnie nieco zaskoczy Cię treść tej książki.
+Rzeczywiście, istnieje wiele różnic pomiędzy manipulowaniem wysokopoziomowym kodem JS a zagłębianiem się w świat shaderów.
+Jednak w przeciwieństwie do niskopoziomowego języka asemblerowego, GLSL jest czytelny dla człowieka i jestem pewien, że po zrozumieniu jego specyfiki szybko zaczniesz go używać.</p>
+<p>Zakładam, że masz podstawową (choć może płytką) wiedzę o JavaScript, ale także o Canvas API.
+Jeśli nie, nie martw się – większość tej sekcji będzie dla Ciebie zrozumiała.</p>
+<p>Nie będę zagłębiać się zbytnio w szczegóły, a niektóre kwestie mogą być <em>półprawdziwe</em>; nie oczekuj "wyczerpującego przewodnika", ale raczej</p>
+<h3 id="wielki-uscisk">WIELKI UŚCISK</h3>
+<p>JavaScript świetnie nadaje się do szybkiego prototypowania; wrzucasz garść losowych, nieotypowanych zmiennych i metod, możesz dynamicznie dodawać i usuwać członków klas, odświeżać stronę i sprawdzać, czy wszystko działa,
+wprowadzać zmiany, odświeżać stronę, powtarzać – życie jest proste.
+Możesz się więc zastanawiać, jaka jest różnica między JavaScriptem a GLSL.
+W końcu oba działają w przeglądarce, oba służą do rysowania różnych efektownych rzeczy na ekranie i pod tym względem JS jest łatwiejszy w użyciu.</p>
+<p>Główna różnica polega jednak na tym, że JavaScript jest językiem <strong>interpretowanym</strong>, podczas gdy GLSL jest językiem <strong>kompilowanym</strong>.
+<strong>Kompilowany</strong> program jest wykonywany natywnie przez system operacyjny, jest niskopoziomowy i zazwyczaj szybki.
+<strong>Interpretowany</strong> program wymaga <a href="https://en.wikipedia.org/wiki/Virtual_machine">wirtualnej maszyny</a> (VM) do wykonania, jest wysokopoziomowy i zazwyczaj wolniejszy.</p>
+<p>Gdy przeglądarka (czyli <em>JavaScriptowa <strong>VM</strong></em>) <strong>wykonuje</strong> lub <strong>interpretuje</strong> fragment kodu JS, nie wie, jaka zmienna czym jest i jaka funkcja co robi (z wyjątkiem oczywistych przypadków, takich jak <strong>TypedArrays</strong>).
+Dlatego nie może nic zoptymalizować <em>z góry</em>, więc potrzebuje trochę czasu, aby przeczytać Twój kod, <strong>wywnioskować</strong> (dedukować na podstawie użycia) typy Twoich zmiennych i metod,
+a kiedy to możliwe, przekształci <em>część</em> Twojego kodu w kod asemblerowy, który wykona się znacznie szybciej.</p>
+<p>To powolny, mozolny i niesamowicie skomplikowany proces – jeśli interesują Cię szczegóły, polecam przyjrzeć się działaniu <a href="https://developers.google.com/v8/">silnika V8 w Chrome</a>.
+Najgorsze jest to, że każda przeglądarka optymalizuje JS na swój sposób, a cały proces jest <em>ukryty</em> przed użytkownikiem; jesteś bezsilny.</p>
+<p><strong>Kompilowany</strong> program nie jest interpretowany; system operacyjny go uruchamia, a jeśli program jest poprawny, zostaje wykonany.
+To duża zmiana; jeśli zapomnisz o średniku na końcu linii, Twój kod jest niepoprawny i nie skompiluje się: Twój kod w ogóle nie przekształci się w program.</p>
+<p>To surowe, ale tak właśnie działa <strong>shader</strong>: <em>skompilowany program wykonywany na GPU</em>.
+Nie bój się! <strong>Kompilator</strong>, czyli część programu, która dba o to, aby Twój kod był poprawny, stanie się Twoim najlepszym przyjacielem.
+Przykłady z tej książki oraz <a href="http://editor.thebookofshaders.com/">edytor towarzyszący</a> są bardzo przyjazne użytkownikowi.
+Powiedzą Ci, gdzie i dlaczego Twój program nie skompilował się, a następnie będziesz musiał wprowadzić poprawki – i za każdym razem, gdy shader będzie gotowy do kompilacji, zostanie on natychmiast wyświetlony.
+To świetny sposób na naukę, ponieważ jest bardzo wizualny i tak naprawdę niczego nie możesz zepsuć.</p>
+<p>Ostatnia uwaga: <strong>shader</strong> składa się z dwóch programów, <strong>vertex shader</strong> i <strong>fragment shader</strong>.
+W skrócie, <strong>vertex shader</strong>, pierwszy program, otrzymuje geometrię jako dane wejściowe i przekształca ją w serię <strong>pikseli</strong> (lub <em>fragmentów</em>), które następnie przekazuje do
+<strong>fragment shader</strong>, drugiego programu, który decyduje, jaki kolor nadać pikselom.
+Ta książka koncentruje się głównie na tym drugim – we wszystkich przykładach geometria to prosty czworobok pokrywający cały ekran.</p>
+<p>Więc! Gotowy?</p>
+<p>No to ruszamy!</p>
+<h3 id="silne-typowanie">Silne typowanie</h3>
+<p><img alt="pierwszy wynik wyszukiwania dla 'strong type' w Google Images, 20.05.2016" src="../vector.jpg" /></p>
+<p>Dla osób przychodzących z JS lub innego języka bez typów, <strong>typowanie</strong> zmiennych jest obcym konceptem, co sprawia, że <strong>typowanie</strong> stanowi najtrudniejszy krok w kierunku nauki GLSL.
+<strong>Typowanie</strong>, jak sama nazwa wskazuje, oznacza, że musisz przypisać <strong>typ</strong> każdej zmiennej (oraz funkcjom, oczywiście).
+To zasadniczo oznacza, że słowo <strong><code>var</code></strong> przestaje istnieć.
+Polityka myślenia GLSL wymazała je z powszechnego języka i nie jesteś w stanie go używać, ponieważ... po prostu nie istnieje.</p>
+<p>Zamiast używać magicznego słowa <strong><code>var</code></strong>, będziesz musiał <em>jawnie określić typ każdej używanej zmiennej</em>, dzięki czemu kompilator będzie widział tylko obiekty i prymitywy, które wie, jak efektywnie obsługiwać.
+Minusem braku możliwości użycia słowa <strong><code>var</code></strong> i konieczności <em>jawnego określania wszystkiego</em> jest to, że musisz znać typ wszystkich zmiennych i dobrze je rozumieć.
+Spokojnie – jest ich niewiele, a do tego są dość proste (GLSL nie jest frameworkiem Java).</p>
+<p>Może to brzmieć strasznie, ale ogólnie nie różni się to bardzo od tego, co robisz w JavaScript; jeśli zmienna jest typu <code>boolean</code>, oczekujesz, że będzie przechowywać <code>true</code> lub <code>false</code> i nic więcej.
+Jeśli zmienna jest zadeklarowana jako <code>var uid = XXX;</code>, prawdopodobnie przechowasz w niej wartość całkowitą, a <code>var y = YYY;</code> <em>może</em> odnosić się do wartości zmiennoprzecinkowej.
+Co więcej, dzięki <strong>silnemu typowaniu</strong> nie będziesz tracił czasu na zastanawianie się, czy <code>X == Y</code> (albo czy <code>typeof X == typeof Y</code>? ... albo <code>typeof X !== null &amp;&amp; Y...</code>... w każdym razie) – po prostu będziesz tego wiedział, a jeśli nie, kompilator Cię o tym poinformuje.</p>
+<p>Oto <strong>typy skalarne</strong> (<strong>skalar</strong> określa ilość), których możesz używać w GLSL: <code>bool</code> (Boolean), <code>int</code> (liczba całkowita), <code>float</code> (liczba zmiennoprzecinkowa).
+Istnieją też inne typy, ale nie ma co się przejmować – poniższy fragment pokazuje, jak deklarować <strong>zmienne (<code>vars</code>)</strong> (tak, użyłem zakazanego słowa) w GLSL:</p>
+<pre><code class="language-glsl">// wartość typu Boolean:
+JS: var b = true;               GLSL: bool b = true;
+
+// wartość typu Integer
+JS: var i = 1;                  GLSL: int i = 1;
+
+// wartość typu Float (liczba)
+JS: var f = 3.14159;            GLSL: float f = 3.14159;
+</code></pre>
+<p>Nie jest to trudne, prawda? Jak wspomniałem, ułatwia to kodowanie, ponieważ nie tracisz czasu na sprawdzanie typu danej zmiennej.
+W razie wątpliwości pamiętaj, że robisz to po to, aby Twój program działał o wiele szybciej niż w JS.</p>
+<h4 id="void">void</h4>
+<p>Istnieje typ <code>void</code>, który w przybliżeniu odpowiada <code>null</code>; jest on używany jako typ zwracany przez funkcję, która nic nie zwraca.
+Nie możesz przypisać go do zmiennej.</p>
+<h4 id="boolean">boolean</h4>
+<p>Jak wiesz, wartości logiczne (Boolean) są najczęściej używane w testach warunkowych, np. <code>if( myBoolean == true ){}else{}</code>.
+Choć rozgałęzianie warunkowe jest możliwe na CPU, <a href="http://thebookofshaders/01/">równoległa natura</a> GLSL czyni to mniej sensownym.
+Używanie instrukcji warunkowych jest często wręcz zniechęcane – książka przedstawia kilka alternatywnych technik rozwiązania tego problemu.</p>
+<h4 id="rzutowanie-typow">rzutowanie typów</h4>
+<p>Jak powiedział <a href="https://pl.wikipedia.org/wiki/Boromir">Boromir</a>: "Nie łączy się po prostu otypowanych prymitywów". W przeciwieństwie do JavaScript, GLSL nie pozwala na wykonywanie operacji pomiędzy zmiennymi o różnych typach.</p>
+<p>This for instance:</p>
+<pre><code class="language-glsl">int     i = 2;
+float   f = 3.14159;
+
+// próba pomnożenia liczby całkowitej przez wartość zmiennoprzecinkową:
+float   r = i * f;
+</code></pre>
+<p>nie zadziała, ponieważ próbujesz połączyć <strong><em>kota</em></strong> z <strong><em>żyrafą</em></strong>.
+Rozwiązaniem jest użycie rzutowania typów; to <em>sprawi, że kompilator uwierzy</em>, że <em><code>i</code></em> jest typu <code>float</code>, nie zmieniając faktycznie typu <em><code>i</code></em>.</p>
+<pre><code class="language-glsl">// rzutowanie typu zmiennej całkowitej 'i' na float:
+float   r = float( i ) * f;
+</code></pre>
+<p>Co jest ściśle równoważne przebraniu <strong><em>kota</em></strong> w <strong><em>żyrafi</em> strój</strong> i zadziała zgodnie z oczekiwaniami (<code>r</code> będzie wynikiem <code>i</code> x <code>f</code>).</p>
+<p>Można <strong>rzutować</strong> dowolny z wymienionych typów na inny; zauważ, że rzutowanie <code>float</code> na <code>int</code> działa jak <code>Math.floor()</code>, ponieważ usuwa część dziesiętną.
+Rzutowanie <code>float</code> lub <code>int</code> na <code>bool</code> zwróci <code>true</code>, jeśli wartość zmiennej nie wynosi zero.</p>
+<h4 id="konstruktor">konstruktor</h4>
+<p><strong>Typy</strong> zmiennych są również swoimi własnymi <strong>konstruktorami klas</strong>; w rzeczywistości zmienna typu <code>float</code> może być traktowana jako <em><code>instancja</code></em> klasy <em><code>Float</code></em>.</p>
+<p>Następujące deklaracje są równie poprawne:</p>
+<pre><code class="language-glsl">int     i = 1;
+int     i = int( 1 );
+int     i = int( 1.9995 );
+int     i = int( true );
+</code></pre>
+<p>Może się to nie wydawać znaczące dla typów <code>skalarnych</code>, ale nie różni się to zbytnio od <strong>rzutowania</strong> – nabierze sensu, gdy przejdziemy do sekcji dotyczącej <em>przeciążania</em>.</p>
+<p>Ok, więc te trzy to <code>typy prymitywne</code>, rzeczy, bez których nie możesz żyć – ale oczywiście GLSL ma do zaoferowania więcej.</p>
+<h3 id="wektory">Wektory</h3>
+<p><img alt="pierwszy wynik wyszukiwania dla 'vector villain' w Google Images, 05.20.2016" src="../vector.jpg" /></p>
+<p>W JavaScript, podobnie jak w GLSL, potrzebujesz bardziej zaawansowanych sposobów obsługi danych, dlatego przydają się <strong>wektory</strong>.
+Przypuszczam, że już napisałeś klasę <code>Point</code> w JavaScript, która przechowuje razem wartość <code>x</code> i <code>y</code>, kod wyglądałby mniej więcej tak:</p>
+<pre><code class="language-glsl">// definicja 'klasy':
+var Point = function( x, y ){
+    this.x = x || 0;
+    this.y = y || 0;
+}
+
+// i instancjonowałoby się ją tak:
+var p = new Point( 100,100 );
+</code></pre>
+<p>Jak właśnie widzieliśmy, to jest TAK niepoprawne na TYLU poziomach! Po pierwsze, użycie słowa kluczowego <strong><code>var</code></strong>, potem okropne <strong><code>this</code></strong>, a następnie znowu <strong>nieotypowane</strong> wartości <code>x</code> i <code>y</code>...
+Nie, to nie zadziała w świecie shaderów.</p>
+<p>Zamiast tego GLSL udostępnia wbudowane struktury danych, które służą do przechowywania danych razem, mianowicie:</p>
+<ul>
+<li><code>bvec2</code>: 2-wymiarowy wektor Boolean, <code>bvec3</code>: 3-wymiarowy wektor Boolean, <code>bvec4</code>: 4-wymiarowy wektor Boolean</li>
+<li><code>ivec2</code>: 2-wymiarowy wektor Integer, <code>ivec3</code>: 3-wymiarowy wektor Integer, <code>ivec4</code>: 4-wymiarowy wektor Integer</li>
+<li><code>vec2</code>: 2-wymiarowy wektor Float, <code>vec3</code>: 3-wymiarowy wektor Float, <code>vec4</code>: 4-wymiarowy wektor Float</li>
+</ul>
+<p>Natychmiast zauważyłeś, że dla każdego typu prymitywnego istnieje odpowiedni <strong>wektor</strong>, spryciarzu.
+Z tego, co właśnie widzieliśmy, można wywnioskować, że <code>bvec2</code> przechowa dwie wartości typu <code>bool</code>, a <code>vec4</code> cztery wartości typu <code>float</code>.</p>
+<p>Inną rzeczą wprowadzoną przez wektory jest liczba <strong>wymiarów</strong>; nie oznacza to, że do renderowania grafiki 2D używasz 2-wymiarowego wektora, a do 3D – 3-wymiarowego.
+Co by wtedy reprezentował 4-wymiarowy wektor? (właściwie nazywa się tesseraktem lub hiperkostką)</p>
+<p>Nie, <strong>wymiary</strong> oznaczają liczbę oraz typ <strong>składowych</strong> lub <strong>zmiennych</strong> przechowywanych w <strong>wektorze</strong>:</p>
+<pre><code class="language-glsl">// stwórzmy 2-wymiarowy wektor Boolean
+bvec2 b2 = bvec2 ( true, false );
+
+// stwórzmy 3-wymiarowy wektor Integer
+ivec3 i3 = ivec3( 0,0,1 );
+
+// stwórzmy 4-wymiarowy wektor Float
+vec4 v4 = vec4( 0.0, 1.0, 2.0, 1. );
+</code></pre>
+<p><code>b2</code> przechowuje dwie różne wartości logiczne, <code>i3</code> przechowuje trzy różne wartości całkowite, a <code>v4</code> cztery różne wartości zmiennoprzecinkowe.</p>
+<p>Ale jak odczytać te wartości?
+w przypadku <code>skalarów</code> odpowiedź jest oczywista – przy <code>float f = 1.2</code>; zmienna <code>f</code> przechowuje wartość <code>1.2</code>.
+W przypadku <strong>wektorów</strong> jest to nieco inne i całkiem piękne.</p>
+<h4 id="akcesory">akcesory</h4>
+<p>Istnieją różne sposoby dostępu do wartości</p>
+<pre><code class="language-glsl">// stwórzmy 4-wymiarowy wektor Float
+vec4 v4 = vec4( 0.0, 1.0, 2.0, 3.0 );
+</code></pre>
+<p>Aby odczytać te 4 wartości, możesz zrobić następująco:</p>
+<pre><code class="language-glsl">float x = v4.x;     // x = 0.0
+float y = v4.y;     // y = 1.0
+float z = v4.z;     // z = 2.0
+float w = v4.w;     // w = 3.0
+</code></pre>
+<p>bułka z masłem; ale poniższe sposoby są równie poprawne w dostępie do Twoich danych:</p>
+<pre><code class="language-glsl">float x =   v4.x    =   v4.r    =   v4.s    =   v4[0];     // x = 0.0
+float y =   v4.y    =   v4.g    =   v4.t    =   v4[1];     // y = 1.0
+float z =   v4.z    =   v4.b    =   v4.p    =   v4[2];     // z = 2.0
+float w =   v4.w    =   v4.a    =   v4.q    =   v4[3];     // w = 3.0
+</code></pre>
+<p>I spryciarzu, już zauważyłeś trzy rzeczy:
+   * <code>X</code>, <code>Y</code>, <code>Z</code> i <code>W</code> są używane w programach 3D do reprezentacji wektorów 3D
+   * <code>R</code>, <code>G</code>, <code>B</code> i <code>A</code> służą do kodowania kolorów oraz kanału alfa
+   * <code>[0]</code>, <code>[1]</code>, <code>[2]</code> i <code>[3]</code> oznaczają, że mamy dostęp do wartości w sposób losowy (tablica indeksowana)</p>
+<p>W zależności od tego, czy manipulujesz współrzędnymi 2D czy 3D, kolorem z lub bez kanału alfa, czy też po prostu różnymi zmiennymi, możesz wybrać najbardziej odpowiedni typ i rozmiar <strong>wektora</strong>.
+Zazwyczaj współrzędne 2D i wektory (w sensie geometrycznym) przechowywane są jako <code>vec2</code>, <code>vec3</code> lub <code>vec4</code>, kolory jako <code>vec3</code> lub <code>vec4</code> (jeśli potrzebujesz kanału alfa), ale nie ma ograniczeń co do sposobu użycia wektorów.
+Na przykład, jeśli chcesz przechować tylko jedną wartość logiczną w <code>bvec4</code>, jest to możliwe, ale to marnotrawstwo pamięci.</p>
+<p><strong>uwaga</strong>: w shaderze wartości kolorów (<code>R</code>, <code>G</code>, <code>B</code> i <code>A</code>) są normalizowane, mieszczą się w przedziale od 0 do 1, a nie od 0 do 0xFF, dlatego lepiej użyć Float <code>vec4</code> niż Integer <code>ivec4</code> do ich przechowywania.</p>
+<p>Już nieźle, ale to nie wszystko!</p>
+<h4 id="swizzle">swizzle</h4>
+<p>Można zwrócić więcej niż jedną wartość jednocześnie; powiedzmy, że potrzebujesz tylko składowych <code>X</code> i <code>Y</code> z <code>vec4</code>, w JavaScript musiałbyś napisać coś takiego:</p>
+<pre><code class="language-glsl">var needles = [0, 1]; // pozycja 'x' i 'y' w naszej strukturze danych
+var a = [ 0,1,2,3 ]; // nasza struktura danych 'vec4'
+var b = a.filter( function( val, i, array ) {
+return needles.indexOf( array.indexOf( val ) ) != -1;
+});
+// b = [ 0, 1 ]
+
+// albo bardziej bezpośrednio:
+var needles = [0, 1];
+var a = [ 0,1,2,3 ]; // our 'vec4' data structure
+var b = [ a[ needles[ 0 ] ], a[ needles[ 1 ] ] ]; // b = [ 0, 1 ]
+</code></pre>
+<p>Brzydko. W GLSL możesz je uzyskać w ten sposób:</p>
+<pre><code class="language-glsl">// stwrórz 4-wymiarowy wektor Float
+vec4 v4 = vec4( 0.0, 1.0, 2.0, 3.0 );
+
+// i odczytaj tylko 'x' i 'y'
+vec2 xy =   v4.xy; //   xy = vec2( 0.0, 1.0 );
+</code></pre>
+<p>Co tu się stało?! Gdy <strong>skonkatenujesz akcesory</strong>, GLSL elegancko zwraca podzbiór wartości, o które prosiłeś, w najbardziej odpowiednim formacie <strong>wektora</strong>.
+Rzeczywiście, wektor to struktura danych o <strong>losowym dostępie</strong>, podobna do tablicy w JavaScript.
+Tak więc, nie tylko możesz pobrać podzbiór swoich danych, ale także określić <strong>kolejność</strong>, w jakiej mają być zwrócone – może to odwrócić kolejność składowych wektora:</p>
+<pre><code class="language-glsl">// stwórz 4-wymiarowy wektor: R,G,B,A
+vec4 color = vec4( 0.2, 0.8, 0.0, 1.0 );
+
+// i odczytaj go w kolejności: A,B,G,R
+vec4 backwards = color.abgr; // backwards = vec4( 1.0, 0.0, 0.8, 0.2 );
+</code></pre>
+<p>I oczywiście, możesz zapytać o tę samą składową wielokrotnie:</p>
+<pre><code class="language-glsl">// stwórz 4-wymiarowy wektor: R,G,B,A
+vec4 color = vec4( 0.2, 0.8, 0.0, 1.0 );
+
+// i odczytaj GAG (Green, Alpha, Green) vec3 z kanałów G i A
+vec3 GAG = color.gag; // GAG = vec4( 0.8, 1.0, 0.8 );
+</code></pre>
+<p>Jest to niezwykle przydatne, aby łączyć części wektorów, wyodrębniać tylko kanały rgb z koloru RGBA itp.</p>
+<h4 id="przeciazaj-wszystko">przeciążaj wszystko!</h4>
+<p>W sekcji o typach wspomniałem o <strong>konstruktorze</strong> i tu mamy kolejną świetną cechę GLSL – <strong>przeciążanie</strong>.
+Dla tych, którzy nie wiedzą, <strong>przeciążanie</strong> operatora lub funkcji oznacza mniej więcej: <em>"zmianę zachowania danego operatora lub funkcji w zależności od operandów/argumentów"</em>.
+Przeciążanie nie jest dozwolone w JavaScript, więc na początku może to wydawać się dziwne, ale jestem pewien, że gdy się do tego przyzwyczaisz, zastanowisz się, dlaczego nie zostało to zaimplementowane w JS (krótka odpowiedź, <em>typowanie</em>).</p>
+<p>Najprostszy przykład przeciążania operatorów wygląda następująco:</p>
+<pre><code class="language-glsl">vec2 a = vec2( 1.0, 1.0 );
+vec2 b = vec2( 1.0, 1.0 );
+// przeciążone dodawanie
+vec2 c = a + b;     // c = vec2( 2.0, 2.0 );
+</code></pre>
+<p>CO? Czyli można dodawać rzeczy, które nie są liczbami?!</p>
+<p>Tak, dokładnie. Oczywiście dotyczy to wszystkich operatorów (<code>+</code>, <code>-</code>, <code>*</code> oraz <code>/</code>), ale to dopiero początek.
+Rozważ poniższy fragment:</p>
+<pre><code class="language-glsl">vec2 a = vec2( 0.0, 0.0 );
+vec2 b = vec2( 1.0, 1.0 );
+// przeciążony konstruktor
+vec4 c = vec4( a , b );         // c = vec4( 0.0, 0.0, 1.0, 1.0 );
+</code></pre>
+<p>Zbudowaliśmy <code>vec4</code> z dwóch <code>vec2</code>, przy czym nowy <code>vec4</code> użył <code>a.x</code> i <code>a.y</code> jako składowych <code>X</code> i <code>Y</code> wektora <code>c</code>.
+Następnie wziął <code>b.x</code> i <code>b.y</code> i użył ich jako składowych <code>Z</code> i <code>W</code>.</p>
+<p>Tak właśnie działa przeciążony konstruktor vec4, który akceptuje różne argumenty.
+Oznacza to, że wiele wersji tej samej funkcji o różnych sygnaturach może współistnieć w jednym programie, na przykład następujące deklaracje są wszystkie poprawne:</p>
+<pre><code class="language-glsl">vec4 a = vec4(1.0, 1.0, 1.0, 1.0);
+vec4 a = vec4(1.0);// x, y, z, w wszystkie są równe 1.0
+vec4 a = vec4( v2, float, v4 );// vec4( v2.x, v2.y, float, v4.x );
+vec4 a = vec4( v3, float );// vec4( v3.x, v3.y, v3.z, float );
+etc.
+</code></pre>
+<p>Jedyne, na co musisz zwrócić uwagę, to dostarczenie wystarczającej liczby argumentów, aby wypełnić Twój <strong>wektor</strong>.</p>
+<p>Ostatnia rzecz, możesz przeciążać wbudowane funkcje w swoim programie, aby przyjmowały argumenty, dla których nie zostały zaprojektowane (choć nie powinno się to zdarzać zbyt często).</p>
+<h4 id="inne-typy">inne typy</h4>
+<p>Wektory są fajne, to sedno Twojego shadera.
+Istnieją inne prymitywy, takie jak macierze (Matrices) i próbki tekstur (Texture samplers), które zostaną omówione później w książce.</p>
+<p>Możemy także używać tablic (Arrays). Oczywiście muszą być typowane, a przy tym występują pewne pułapki:
+ * mają ustalony rozmiar
+ * nie możesz używać metod push(), pop(), splice() itp., a właściwość <code>length</code> nie istnieje
+ * nie możesz od razu zainicjalizować ich wartościami
+ * musisz przypisywać wartości pojedynczo</p>
+<p>to nie zadziała:</p>
+<pre><code class="language-glsl">int values[3] = [0,0,0];
+</code></pre>
+<p>ale to zadziała:</p>
+<pre><code class="language-glsl">int values[3];
+values[0] = 0;
+values[1] = 0;
+values[2] = 0;
+</code></pre>
+<p>To jest w porządku, gdy znasz swoje dane lub masz małe tablice wartości.
+Jeśli chcesz bardziej ekspresyjnego sposobu deklaracji zmiennej,
+możesz użyć również typu <code>struct</code>. Są one jak <em>obiekty</em> bez metod;
+pozwalają przechowywać i uzyskiwać dostęp do wielu zmiennych w jednym obiekcie.</p>
+<pre><code class="language-glsl">struct ColorStruct {
+    vec3 color0;
+    vec3 color1;
+    vec3 color2;
+}
+</code></pre>
+<p>następnie możesz ustawiać i odczytywać wartości <em>kolorów</em> w następujący sposób:</p>
+<pre><code class="language-glsl">// zainicjuj struct z jakimiś wartościami
+ColorStruct sandy = ColorStruct(    vec3(0.92,0.83,0.60),
+                                    vec3(1.,0.94,0.69),
+                                    vec3(0.95,0.86,0.69) );
+
+// odczytaj wartość ze struct
+sandy.color0 // vec3(0.92,0.83,0.60)
+</code></pre>
+<p>To lukier składniowy, ale może pomóc w pisaniu bardziej przejrzystego kodu, przynajmniej takiego, do którego jesteś przyzwyczajony.</p>
+<h4 id="instrukcje-i-warunki">instrukcje i warunki</h4>
+<p>Struktury danych są przydatne, ale może będziesz musiał iterować lub wykonywać testy warunkowe w pewnym momencie.
+Na szczęście składnia jest bardzo zbliżona do tej w JavaScript.
+Warunek wygląda tak:</p>
+<pre><code class="language-glsl">if( warunek ){
+    // prawda
+}else{
+    // fałsz
+}
+</code></pre>
+<p>Pętla for zazwyczaj wygląda tak:</p>
+<pre><code class="language-glsl">const int count = 10;
+for( int i = 0; i &lt;= count; i++){
+    // zrób coś
+}
+</code></pre>
+<p>lub z iteratorem typu float:</p>
+<pre><code class="language-glsl">const float count = 10.;
+for( float i = 0.0; i &lt;= count; i+= 1.0 ){
+    // zrób coś
+}
+</code></pre>
+<p>Zauważ, że <code>count</code> musi być zdefiniowane jako stała.
+Oznacza to, że poprzedzasz typ kwalifikatorem <code>const</code>, o czym opowiem za chwilę.</p>
+<p>Mamy również instrukcje <code>break</code> i <code>continue</code>:</p>
+<pre><code class="language-glsl">const float count = 10.;
+for( float i = 0.0; i &lt;= count; i+= 1.0 ){
+    if( i &lt; 5. )continue;
+    if( i &gt;= 8. )break;
+}
+</code></pre>
+<p>Miej na uwadze, że na niektórych urządzeniach instrukcja <code>break</code> może nie działać zgodnie z oczekiwaniami i pętla nie przerwie iteracji wcześniej.</p>
+<p>Ogólnie rzecz biorąc, powinieneś utrzymywać liczbę iteracji na możliwie najniższym poziomie i unikać pętli oraz instrukcji warunkowych tak często, jak to możliwe.</p>
+<h4 id="kwalifikatory">kwalifikatory</h4>
+<p>Oprócz typów zmiennych, GLSL używa <strong>kwalifikatorów</strong>.
+Krótko mówiąc, kwalifikatory pomagają kompilatorowi zrozumieć, jaka jest rola danej zmiennej.
+Na przykład, niektóre dane mogą być dostarczane tylko przez CPU do GPU, nazywamy je <strong>atrybutami</strong> i <strong>uniformami</strong>.
+<strong>Atrybuty</strong> są zarezerwowane dla vertex shaderów, a <strong>uniformy</strong> mogą być używane zarówno w vertex, jak i fragment shaderach.
+Jest też kwalifikator <code>varying</code>, służący do przekazywania zmiennych między vertex a fragment shaderem.</p>
+<p>Nie będę zagłębiać się tutaj w szczegóły, ponieważ skupiamy się głównie na <strong>fragment shaderze</strong>, ale później w książce zobaczysz coś takiego:</p>
+<pre><code class="language-glsl">uniform vec2 u_resolution;
+</code></pre>
+<p>Widzisz, co zrobiliśmy? Dodaliśmy kwalifikator <code>uniform</code> przed typem zmiennej.
+Oznacza to, że rozdzielczość kanwy, nad którą pracujemy, jest przekazywana do shadera z CPU.
+Szerokość kanwy zapisana jest w komponencie x, a wysokość w komponencie y 2-wymiarowego wektora.</p>
+<p>Gdy kompilator napotka zmienną poprzedzoną tym kwalifikatorem, upewni się, że nie możesz zmieniać tych wartości w czasie wykonywania programu.</p>
+<p>To samo dotyczy naszej zmiennej <code>count</code>, która była limitem w pętli <code>for</code>:</p>
+<pre><code class="language-glsl">const float count = 10.;
+for( ... )
+</code></pre>
+<p>Kiedy używamy kwalifikatora <code>const</code>, kompilator upewni się, że wartość zmiennej zostanie ustawiona tylko raz, w przeciwnym razie nie jest to stała.</p>
+<p>Istnieją trzy dodatkowe kwalifikatory używane w sygnaturach funkcji: in, out oraz inout.
+W JavaScript, gdy przekazujesz prymitywne argumenty do funkcji, ich wartość jest tylko do odczytu, a jeśli zmienisz ich wartość wewnątrz funkcji,
+zmiany nie mają wpływu na zmienną poza funkcją.</p>
+<pre><code class="language-glsl">function banana( a ){
+    a += 1;
+}
+var value = 0;
+banana( value );
+console.log( value );// &gt; 0 ; zmiany nie są brane pod uwagę poza funkcją
+</code></pre>
+<p>With arguments qualifiers, you can specify the behaviour of the arguments:
+  * <code>in</code> will be read-only ( default )
+  * <code>out</code>  write-only: you can't read the value of this argument but you can set it
+  * <code>inout</code>  read-write: you can both get and set the value of this variable</p>
+<p>Przepisanie funkcji banana do GLSL wyglądałoby tak:</p>
+<pre><code class="language-glsl">void banana( inout float a ){
+    a += 1.;
+}
+float A = 0.;
+banana( A ); // teraz A = 1.;
+</code></pre>
+<p>To bardzo różni się od JS i jest również potężne, ale nie musisz jawnie określać kwalifikatorów w sygnaturze (domyślnie są one tylko do odczytu).</p>
+<h4 id="przestrzen-i-wsporzedne">przestrzeń i współrzędne</h4>
+<p>Ostatnia uwaga: w DOM oraz w 2D Canvas jesteśmy przyzwyczajeni, że oś Y wskazuje w dół.
+Ma to sens w kontekście DOM, ponieważ odpowiada sposobowi, w jaki rozwija się strona internetowa – pasek nawigacyjny na górze, zawartość rozciągająca się ku dołowi.
+W kanwie WebGL oś Y jest odwrócona: Y wskazuje w górę.</p>
+<p>Oznacza to, że punkt początkowy, czyli (0,0), znajduje się w lewym dolnym rogu kontekstu WebGL, a nie w lewym górnym, jak ma to miejsce w 2D Canvas.
+Współrzędne tekstur podlegają tej zasadzie, co na początku może być nieintuicyjne.</p>
+<h2 id="i-to-wszystko">I to wszystko!</h2>
+<p>Oczywiście moglibyśmy zagłębić się w różne koncepcje, ale jak wspomniano wcześniej, chodziło o to, aby dać WIELKI UŚCISK nowoprzybyłym.
+To sporo materiału do przyswojenia, ale z cierpliwością i praktyką stanie się to coraz bardziej naturalne.</p>
+<p>Mam nadzieję, że część z tego okaże się przydatna. A teraz, co powiesz na rozpoczęcie swojej podróży przez tę książkę?</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": [], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
