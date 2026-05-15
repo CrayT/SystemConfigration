@@ -127,6 +127,7 @@ nav:
     - 搜索进程: UserfulCommand/Search_PID.md
     - ffmpeg: UserfulCommand/ffmpeg.md
     - 显卡命令: UserfulCommand/gpu.md
+    - 创建alias命令: UserfulCommand/alias_command.md
   - 其他:
     - 快速排序时间复杂度分析: Marks/quick_sort_Time.md
     - 旋转圆环SVG: Marks/rotate_arc_svg.md
