@@ -11,6 +11,7 @@
 ```
 
 - 配置文件
+创建web-dev-server.config.mjs，写入以下配置
 ```javascript
     // 根目录下web-dev-server.config.mjs
     export default {
