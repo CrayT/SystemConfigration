@@ -65,6 +65,20 @@ git cherry-pick -m 1 ${commitId}
 git checkout origin/branch filePath
 ```
 
+- merge其他仓库的commit
+
+```shell
+git remote add repoName repoUrl
+
+git fetch repoName
+
+// 如果那个commit还未合入，还需要拉取下那个commit到本地 否则cherry-pick时会获取不到
+git fetch .......
+
+git cherry-pick commitId
+
+```
+
 - 检出某个commit的某个文件
 
 ```shell
