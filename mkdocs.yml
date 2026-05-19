@@ -87,6 +87,9 @@ nav:
       - Shader-Line: Frontend/line.md
       - 渲染锯齿问题: Frontend/3d/anti-aliasing.md
       - 坐标转换: Frontend/3d/coordinate-transformation.md
+      - orbitcontrol状态暂存: Frontend/3d/three-orbitcontrol.md
+      - 创建矩形扫描区域: Frontend/3d/create-rectangle-scan-area.md
+      - 自动pilot控制器: Frontend/3d/orbitcontrol-autoPilot.md
     - electron: Frontend/Electron.md
     - node端服务: Frontend/serve.md
     - web-dev-server: Frontend/web-dev-server.md

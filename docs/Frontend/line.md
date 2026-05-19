@@ -486,3 +486,77 @@ function newCustomizedShader(option: any = {}) {
 
 ```
 
+```javascript
+import util from '../polyline-miter-util';
+
+var lineA = [0, 0]
+
+export default function getNormals(points, closed) {
+    var curNormal = [0, 0]
+    var out = []
+
+    var total = points.length
+    for (var i = 1; i < total; i++) {
+        var last = points[i - 1]
+        var cur = points[i]
+        var next = i < points.length - 1 ? points[i + 1] : null
+
+        util.direction(lineA, cur, last)
+        util.normal(curNormal, lineA)
+
+        // if (i === 1) //add initial normals
+        addNext(out, curNormal, 1)
+
+        if (!next) { //no miter, simple segment
+            last = points[total - 1]
+            var start = points[0]
+            util.direction(lineA, start, last)
+            util.normal(curNormal, lineA)
+            addNext(out, curNormal, 1)
+        }
+    }
+    return out
+}
+
+function addNext(out, normal, length) {
+    out.push([[normal[0], normal[1]], length])
+}
+```
+
+> '../polyline-miter-util'代码:
+
+```javascript
+var add = require('gl-vec2/add')
+var set = require('gl-vec2/set')
+var normalize = require('gl-vec2/normalize')
+var subtract = require('gl-vec2/subtract')
+var dot = require('gl-vec2/dot')
+
+var tmp = [0, 0]
+
+module.exports.computeMiter = function computeMiter(tangent, miter, lineA, lineB, halfThick) {
+    //get tangent line
+    add(tangent, lineA, lineB)
+    normalize(tangent, tangent)
+
+    //get miter as a unit vector
+    set(miter, -tangent[1], tangent[0])
+    set(tmp, -lineA[1], lineA[0])
+
+    //get the necessary length of our miter
+    return halfThick / dot(miter, tmp)
+}
+
+module.exports.normal = function normal(out, dir) {
+    //get perpendicular
+    set(out, -dir[1], dir[0])
+    return out
+}
+
+module.exports.direction = function direction(out, a, b) {
+    //get unit dir of two lines
+    subtract(out, a, b)
+    normalize(out, out)
+    return out
+}
+```
