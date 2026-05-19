@@ -1,0 +1,193 @@
+<html>
+<head>
+    <title>My first Three.js app</title>
+    <style>
+        body { margin: 0; }
+        canvas { width: 100%; height: 100% }
+    </style>
+</head>
+<div id="myp">     </div>
+<canvas id='canvas' width="547" height="646" ></canvas>
+<canvas id='canvas2' width="200" height="200"></canvas>
+<body>
+<script src="threejs/three.js"></script>
+<script src="http://threejs.org/build/three.min.js"></script>
+<script src="http://threejs.org/examples/js/controls/OrbitControls.js"></script>
+<script>
+    var renderer;
+    function initThree(){
+        height=window.innerHeight;
+        width=window.innerWidth;
+        renderer=new THREE.WebGLRenderer();
+        renderer.setSize(width, height);
+        document.body.appendChild( renderer.domElement );
+    }
+    var camera;
+    function initCamera() {
+        camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
+        camera.position.x = 0 ;
+        camera.position.y = 0;
+        camera.position.z = 2000;
+        camera.lookAt(new THREE.Vector3(0,0,0));
+        camera.layers.set(1);
+    }
+    function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+    }
+    var scene;
+    function initScene() {
+        scene = new THREE.Scene();
+    }
+
+    var light;
+    function initLight() {
+        // 方向光
+        /* light = new THREE.DirectionalLight(0xFF0000);
+         light.position.set(0, 0,1);
+         scene.add(light);
+         light = new THREE.PointLight(0x00FF00);
+         light.position.set(0, 0,25);
+         scene.add(light);*/
+    }
+
+    var cube;
+    function initObject() {
+
+        var geometry = new THREE.PlaneGeometry( window.innerWidth,window.innerHeight, 1, 1 );
+        //加载纹理
+        var texture = new THREE.Texture();
+        //加载图片
+        var imgLoader = new THREE.ImageLoader();
+        imgLoader.load('123.jpg',function(img)
+        {
+            //将图片值赋于纹理
+            texture.image = img;
+            texture.needsUpdate = true;
+        });
+        // 将纹理应用于材质
+        var material = new THREE.MeshBasicMaterial({map:texture});
+        var mesh = new THREE.Mesh( geometry,material );
+        mesh.material.depthTest=false;
+        mesh.layers.set(1);
+        scene.add(mesh);
+        mesh.position.setZ(100);
+
+        var geometry2 = new THREE.PlaneGeometry( window.innerWidth,window.innerHeight, 1, 1 );
+        //加载纹理
+        var texture2 = new THREE.Texture();
+        //加载图片
+        var imgLoader2 = new THREE.ImageLoader();
+        imgLoader2.load('2005.jpg',function(img)
+        {
+            //将图片值赋于纹理
+            texture2.image = img;
+            texture2.needsUpdate = true;
+        });
+        // 将纹理应用于材质
+        var material2 = new THREE.MeshBasicMaterial({map:texture2});
+        var mesh2 = new THREE.Mesh( geometry2,material2 );
+        mesh2.position.setY(-500);
+        mesh2.position.setZ(300);
+        mesh2.material.renderOrder=99;
+        mesh2.layers.set(1);
+        scene.add(mesh2);
+        window.addEventListener( 'resize', onWindowResize, false );
+
+
+        /*
+        PanoImagePath='http://vrhouse.oss-cn-shanghai.aliyuncs.com/XJXLD_44382dde-6930-400c-b9c5-4fe83d3eac8b/PanoramaThumbImages/20200117120332.jpg'
+        let div = document.createElement("div");
+        div.setAttribute('style', 'height: 1000px;width: 2000px;background-color: #555;margin: 0');
+        var img = document.createElement('img');
+        img.src=PanoImagePath;
+        div.appendChild(img);
+        let div1 = document.getElementById("myp");
+        div1.appendChild(div);
+        */
+        /*
+        let canvas = document.getElementById("canvas");
+        let imgObj = new Image();
+
+        let ctx = canvas.getContext('2d');
+        imgObj.onload = function(){ //onload必须使用
+            ctx.save();
+            ctx.drawImage(imgObj, 0, 0);
+            test(ctx);
+        };
+
+        imgObj.src='http://vrhouse.oss-cn-shanghai.aliyuncs.com/XJXLD_44382dde-6930-400c-b9c5-4fe83d3eac8b/PanoramaThumbImages/20200117120332.jpg';
+
+        let canvas2 = document.getElementById("canvas2");
+        let imgObj2 = new Image();
+        let ctx2 = canvas2.getContext('2d');
+        function test(ctx)
+        {
+                imgObj2.onload = function () { //onload必须使用
+                ctx.save();
+                ctx2.save();
+                ctx2.drawImage(imgObj2, 0, 0);
+                ctx.globalCompositeOperation = "source-atop";
+                ctx.drawImage(canvas2, 100, 100);
+
+            };
+            imgObj2.src = 'http://vrhouse.oss-cn-shanghai.aliyuncs.com/XJXLD_44382dde-6930-400c-b9c5-4fe83d3eac8b/PanoramaThumbImages/20200117120332.jpg';
+        };
+         */
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        context.fillStyle = 'rgba(0,0,0,0)';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        var image = new Image();
+        image.src = 'pic/flag.gif';
+        image.onload = function() {
+            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+            drawCustomLogo(context);
+        }
+
+        function drawCustomLogo(context) {
+            var image = new Image();
+            image.src = 'pic/cat.jpeg';
+            image.onload = function() {
+                context.save();
+                context.globalCompositeOperation = "source-atop";
+                context.drawImage(this, 0, 0);
+            }
+        }
+        //div.innerHTML = '<img src="' + PanoImagePath + '">';
+        //DomElements.roomList.append(line);
+        //DomElements.roomList.append(div);
+        //document.getElementById('myp').style.display='block';
+    }
+    function orbitControls(){
+        let controls = new THREE.OrbitControls( camera, renderer.domElement );
+        controls.minDistance = 0;
+        controls.maxDistance = 2000;
+
+        scene.add( new THREE.AmbientLight( 0xFFFFFF ) );
+    }
+    function threeStart() {
+        initThree();
+        initCamera();
+        initScene();
+        initLight();
+        orbitControls();
+        initObject();
+        animation();
+    }
+
+    function animation()
+    {
+        //camera.position.x =camera.position.x +1;
+        renderer.render(scene, camera);
+        requestAnimationFrame(animation);
+
+    }
+
+    threeStart();
+
+</script>
+</body>
+</html>
