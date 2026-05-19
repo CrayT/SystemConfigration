@@ -253,3 +253,110 @@ electron-minidump -f ./dmp.dmp -v 21.4.4
 由于electron是file协议加载页面，可能会出现静态资源如某些json、gltf资源请求不到的情况，解决：
 将app的BrowerRoute用HashRouter即可。
 差异对比见`react/route.md`
+
+---
+
+#### 下面为实际开发时遇到的问题及解决办法
+
+```javascript
+electron:
+yarn config set electron_mirror https://npmmirror.com/mirrors/electron/
+yarn config set ELECTRON_MIRROR https://npmmirror.com/mirrors/electron/
+
+环境变量PUBLIC_URL 优先级比 package.json的homepage高
+减小打包体积：
+1，删除node_modules
+2, 安装electron：
+yarn add electron-packager --dev-save
+
+electron相关：
+set   index.html  electron
+PUBLICPATH=./build/  : 本地build绝对路径 白屏
+    index.html 改为./build 也白屏
+        改为 ./static/js/... 能加载js，但是静态资源无法加载
+
+不设置：
+    index.html内js 为./static/.. 不白屏
+    但svg无法加载，路径为file:///static
+
+设置PUBLIC_URL=./
+    与不设置相同
+
+设置PUBLIC_URL=/
+    index.html内js 为/static/.  白屏
+
+打包出的gltf和png路径设置一致，但是png等图片无法加载到，gltf可以(assr的路径)，图片是static的绝对路径
+用http-server本地起server，却是正常的。
+
+
+用electron-builder打包：
+    1，yarn add electron-builder --save-dev
+    2，electron.js移动到build目录下，内容和main.js一样
+
+
+node切换成15.16.1，electron21.4.14 能在容器中启动打开
+高版本无法打开，报错
+
+
+0508
+1，在main中引入node_modules中的hmisdk，打包后提示找不到
+2，手动放到同级目录下，打包后提示没有libad_visualizer.so。。。。
+3，直接将代码copy进容器，可以跑起来：
+    1，目前只能在主进程中加载sdk，渲染进程，浏览器环境无法加载，即使开启了nodeIntegration
+    2，在preload中加载sdk，将接口暴露给渲染进程，不能整个sdk暴露，只能暴露一层对象属性，所以sdk内的function都需要逐个暴露；
+    3，sdk需要后端改造的visualizer配合，
+    4，晚上：用朱亮给的node包和sdk包重新跑，重新下载他提供的数据包，和播包流程，播包成功了，但是貌似visualizer没有启动，setVisCallback也没数据
+
+0509
+1，将hmisdk的.index.js的require改为hmisdk.node能打包，否则会报Module not found的错，但是打包后libad的so文件丢失
+    make之后找不到hmisdk
+    渲染进程中要使用require，需要webPreferences: nodeIntegration: true, contextIsolation: false;
+    上面contextIsolation为false之后，就无法使用preload的exposeApi了
+    不设置false，将require通过api暴露给渲染进程使用；
+
+Final：
+已经跑通打包、数据接收：
+    1，src同级创建hmisdk目录，将sdk相关文件放进去；
+    2，hmisdk/index.js的require要表明hmisdk.node, 否则可能会报错Module not found；
+    3，preload脚本中通过index.js加载sdk，路径通过process.resourcePath + app.asar.unpackDir拼接，不直接引用当前目录的hmisdk；引用打包后的路径；以内不在容器内，开发模式会报capnp的包的错误，所以无法调试，直接指定最终打包路径
+    4，配置文件json，由于是addon，在asar内有问题，不能打包在asar内，通过forge.config.json配置的app.asar.unpackDir指定hmisdk不打包进asar内：`unpackDir: "**/hmisdk" `, (注意：前面要加**，否则最终打包的app.asar.unpack/hmisdk内只包含那个node文件)
+        - ignore中不能将hmisdk目录加上去，否则会导致unpackDir为空；
+        这种方式会导致hmisdk的文件在asar和app.asar.unpackDir中各存一份；
+    5，在4基础上拼接配置文件路径，调用sdk的setConfig传入配置文件的当前绝对路径，
+    6，通过暴露api方式，将sdk的start、setVisCallBack等方法逐一暴露，渲染进程中再调用，不能将整个sdk暴露，因为exportInMainWorld好像只能暴露一层对象；
+    7，打开app后，先执行hmi.app.setVisCallBack(), 再执行hmi.app.start()，才能收到数据
+
+
+0514
+1, 渲染进程中通过require('electron')，然后ipcRender.on等进行进程间通信，会报错，大概是contextBridge 循环递归深度超了导致404页面异常了。
+
+
+0515
+1，去掉昨天加的新窗口，将数据解析放到hmi页面的worker线程中，topic数据直接post给topic和chart页面；数据流已跑通；
+2，开始处理切分，单纯的切分没啥难度，主要是每个切分出的组件都有上下依赖关系，需要记录处理这种依赖，比如删除中间一个面板后，其余相关的面板都要更新；已实现单纯的切分，依赖关系待处理，参考了foxGlove的切分配置(通过打断点，看到它有一个layout记录每个panel的切分记录，first为当前panel，second为切分出的panel，另有一个config记录每个panel的信息)。todo
+
+0519
+搞定了切分整体逻辑，主要是删除：
+    layout记录切分过程，一个树状结构，
+    删除一个面板时，根据layout重新计算config，由于是二分，所以难度降低；
+
+0520
+1，渲染进程要完整使用require，需要将contextIsolation设为false，如果通过preload暴露require给渲染进程，那require出来的对象也会被重新序列化一次导致不是原始对象；
+2，直接写require无法成功定位到node，webpack将其编译为了process.dlopen，后来改为window.require就正常了，包括页面js中require('electron')也是一样；
+    同时在config中加一个rule，用node-loader处理.node文件，将其处理到static文件夹中，再用copywebpackplugin将hmisdk中的文件copy到static中，解决配置文件加载问题
+    make后的deb加载sdk会有问题，因为打包后，node_modules被忽略，直接require会not found，需要在加载sdk的地方判断当下环境，生产环境需要将路径定位到sdk目录，即asar.unpack的目录：
+        - unpack目录通过make时forge.config.json配置：packagerConfig.asar.unpackDir: '**/hmisdk', 配置。
+        webpack配置文件中可用node-loader处理node文件，输出到build/app/modules/dist目录，用copyWebpackPlugin将node_modules/hmisdk拷贝到/build/app/modules/hmisdk目录下，
+            好像因为直接copy了，不再需要node-loader处理了。
+经多次测试，开发模式、生产模式均可跑通；
+
+
+容器内编译hmisdk
+1，需要拉取node_visualizer源码到容器内，或将代码copy到容器内
+2，安装cnop_dlp的ci包；
+3，按照addon里的readme安装，如果提示permission denied，将build及addon目录赋权限: sudo chmod -R 777 ./build
+
+
+                  
+asar用 asar extract 解压
+```
