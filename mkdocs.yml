@@ -90,6 +90,7 @@ nav:
     - electron: Frontend/Electron.md
     - node端服务: Frontend/serve.md
     - web-dev-server: Frontend/web-dev-server.md
+    - 构建前端镜像: Frontend/build_docker_image_frontend.md
     - antd-form: Frontend/react/Form.md
     - mobx: Frontend/react/mobx.md
     - webpack打包产物可视化: Frontend/webpack/bundleAnalyzerPlugin.md
