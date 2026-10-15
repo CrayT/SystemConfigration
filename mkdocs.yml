@@ -82,6 +82,7 @@ nav:
       - 18: Frontend/shader/18/README-ch.md
     - 3D知识:
       - 矩阵: Frontend/3d/matrix.md
+      - 透视矩阵: Frontend/3d/perspective-matrix.md
       - 贴图方式: Frontend/pixelRender.md
       - 物体曲线运动: Frontend/html/move-animate-curve.html
       - Shader-Line: Frontend/line.md
