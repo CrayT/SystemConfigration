@@ -156,3 +156,7 @@ markdown_extentions:
   - pymdownx.mark  # 文本高亮
   - pymdownx.smartsymbols  # 符号转换
   - pymdownx.superfences  # 代码嵌套在列表里
+  - pymdownx.arithmatex
+      generic: true
+extra_javascript:
+  - static/math.js
