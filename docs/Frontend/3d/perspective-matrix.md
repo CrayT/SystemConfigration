@@ -100,3 +100,28 @@ $$
     0 & 0 & -1 & 0
     \end{pmatrix}
 $$
+
+5，threejs中的透视相机，定义width、height、fov等参数，如果继续简化上述矩阵
+
+$$
+aspect=\frac{width}{height}
+$$
+
+$$
+tan\frac{fov}{2}=\frac{h/2}{n}
+$$
+
+矩阵的第一行中，r+l=0, 
+$$
+\frac{2n}{r-l}=\frac{2n}{width}=2\frac{h}{width·2·tan\frac{fov}{2}}=\frac{1}{aspect*tan\frac{fov}{2}}
+$$
+
+故，最终矩阵可简化为:
+$$
+    \begin{pmatrix}
+    \frac{1}{aspect*tan\frac{fov}{2}} & 0 & 0 & 0 \\
+    0 & \frac{1}{tan\frac{fov}{2}} & 0 & 0 \\
+    0 & 0 & \frac{n+f}{n-f} & \frac{2nf}{n-f} \\
+    0 & 0 & -1 & 0
+    \end{pmatrix}
+$$
