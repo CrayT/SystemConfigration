@@ -1,0 +1,136 @@
+<!--创建Sprite，并使用图片进行贴图，鼠标进行拖动。-->
+<html>
+<head>
+    <title>Drag Object</title>
+</head>
+<body>
+<script src="threejs/three.js"></script>
+<script src="threejs/three.min.js"></script>
+<script src="https://threejsfundamentals.org/threejs/resources/threejs/r105/js/controls/OrbitControls.js"></script>
+<script src="threejs/DragControls.js"></script>
+<script src="threejs/TransformControls.js"></script>
+<script src="threejs/TrackballControls.js"></script>
+<script>
+    var renderer;
+    function initThree(){
+        height = window.innerHeight;
+        width = window.innerWidth;
+        renderer=new THREE.WebGLRenderer();
+        renderer.setSize(width, height);
+        document.body.appendChild( renderer.domElement );
+    }
+    var camera;
+    function initCamera() {
+        camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 50 );
+        camera.position.x = 0 ;
+        camera.position.y = 1;
+        camera.position.z = 1;
+        camera.up.x = 0; //相机以哪个方向为上方,默认y为上。
+        camera.up.y = 1;
+        camera.up.z = 0;
+        camera.lookAt(new THREE.Vector3(0,0,0));
+    }
+    function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+    }
+    var scene;
+    function initScene() {
+        scene = new THREE.Scene();
+    }
+
+    var light;
+    function initLight() {
+        const color = 0xFFFFFF;
+        const intensity = 1;
+        light = new THREE.DirectionalLight(color, intensity);
+        scene.add(light);
+    }
+    var cube;
+    function initObject() {
+        var spriteMap = new THREE.TextureLoader().load( "pic/20191205183140.jpg" );
+        var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
+        var sprite = new THREE.Sprite( spriteMaterial );
+        sprite.scale.set(2, 1, 1); //图片比例本身是2：1，这里设置x y为2 1.
+        scene.add( sprite );
+
+    }
+    function orbitControls(){
+        controls = new THREE.OrbitControls(camera, renderer.domElement );
+        controls.target.set(0, 0, 0);
+        controls.enableZoom = true;
+        controls.enablePan = true;
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.5;  // 缓冲效果下的加速度
+        controls.rotateSpeed = -1;
+        controls.update();
+    }
+    function threeStart() {
+        initThree();
+        initCamera();
+        initScene();
+        // initLight();
+        orbitControls();
+        initObject();
+        animation();
+        // initDragControls();
+    }
+
+    let mouse = new THREE.Vector2();
+    let raycaster = new THREE.Raycaster();
+    function onMouseMove( event ) {
+
+        // 将鼠标位置归一化为设备坐标。x 和 y 方向的取值范围是 (-1 to +1)
+
+        mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+        mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+    }
+
+    function initDragControls(){
+        let transformControls = new THREE.TransformControls(camera, renderer.domElement);
+        scene.add(transformControls);
+        let obj = [];
+        for (let i = 0;i < scene.children.length; i++){
+            console.log(i, scene.children[i])
+            if (scene.children[i].isSprite){
+                obj.push(scene.children[i]);
+            }
+        }
+        let dragControls = new THREE.DragControls(obj, camera, renderer.domElement);
+
+        dragControls.addEventListener('hoveron', function(event){
+            transformControls.attach(event.object);
+        });
+        dragControls.addEventListener('dragstart', function(){
+            console.log('start')
+            controls.enabled = false;
+        });
+        dragControls.addEventListener('dragend', function(){
+            console.log('end')
+            controls.enable = true;
+        })
+    }
+    function animation()
+    {
+
+        raycaster.setFromCamera( mouse, camera );
+        var intersects = raycaster.intersectObjects( scene.children );
+
+        for ( var i = 0; i < intersects.length; i++ ) {
+
+            intersects[ i ].object.material.color.set( 0xff0000 );
+
+        }
+        console.log()
+
+        renderer.render(scene, camera);
+        requestAnimationFrame(animation);
+    }
+
+    threeStart();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,4690 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="XT">
+      
+      
+        <link rel="canonical" href="https://github.com/CrayT/SystemConfigration/Frontend/Electron/">
+      
+      
+        <link rel="prev" href="../3d/orbitcontrol-autoPilot/">
+      
+      
+        <link rel="next" href="../serve/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>electron - Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#electron" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Docs" class="md-header__button md-logo" aria-label="Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              electron
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/CrayT/SystemConfigration" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Docs" class="md-nav__button md-logo" aria-label="Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/CrayT/SystemConfigration" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Docker
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/host_web_site/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    托管静态网站
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/jupyter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jupyter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/Swarm_install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swarm集群
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/Ubuntu_Minio_install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    搭建Minio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/exec_docker_container/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进入容器方式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/docker_rexray_minio_s3fs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基于docker搭建基于Minio的S3FS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/modify_pip_source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    修改Pip源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/kubernetes_issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes搭建问题点
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/dotnet_docker_container/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    创建Dotnet版Docker服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/docker_api_python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DockerAPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/php_Composer_Dockerfile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PHP-Compose
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统配置
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    系统配置
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/MarkdownCenter_site/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    搭建MD文档中心
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/personal-pic-cabin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    搭建个人图床
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/Npm_Publish/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Npm发布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/Ubuntu_SS_deploy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu搭建SS环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/CDN%26domain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CDN&域名备案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/Config_php7.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置php7.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/Install_SSL_To_Site/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网站安装SSL证书开启https访问
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/Auto_backup_wordpress%26resumeData/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自动备份wordpress网站数据&恢复数据
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/Auto_delete_overNum_oldBackup_files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自动删除超出数量的旧备份文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/Git_useful_tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git使用方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/Gitlab_CICD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gitlab之CICD配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/linux_service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    linux服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/Mac%2BVSCode_compileC%2B%2B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mac+VSCode编译C++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/MAC_install_brew/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mac安装brew
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/Mac_alias_command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MAC终端shell命令简化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/deploy_rabbitmq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RabbitMQ部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/SSH_config_noPassword_login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSH配置及免密码登录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/ubuntu_locale_issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ubuntu环境语言问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/webstorm_git-bash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    webstorm配置git-bash
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/Windows_ssh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows配置ssh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/wordpress_site_data_resume_history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    wordpress网站恢复记录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/window-language-set/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    windows切换语言为中文
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemConfiguration/nohup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    nohup忽略输出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/PCA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PCA原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/Init_django_project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    创建Django项目
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/Change_python_version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    更改Python版本
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/IgraphOnMac/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mac安装Igraph
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/MNIST%2Btensorflow_CNN_Tensorboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TensorBoard使用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/Python_Pyinstaller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pyinstaller打包app
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/python_django_minio_mysql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基于Django搭建Minio+Mysql服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/python3_sqlite3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python安装Sqlite3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/ServiceOnWindows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python创建Windows服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/python_read_all_flies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python读取各种格式文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/python_output_DT_Graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    python输出决策树图形
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nginx
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Nginx
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nginx/document/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nginx/Load_balance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    负载均衡
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nginx/NginxOnWindows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows安装Nginx
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nginx/Nginx_reverse_proxy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nginx反向代理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    前端
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    前端
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shader教程
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Shader教程
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader/00/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader/01/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader/02/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader/03/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader/04/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader/05/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader/06/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader/07/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader/08/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader/09/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader/10/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader/11/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader/12/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader/13/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader/14/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader/15/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader/16/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader/17/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader/18/README-ch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3D知识
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3D知识
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3d/matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    矩阵
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3d/perspective-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    透视矩阵
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pixelRender/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贴图方式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../html/move-animate-curve.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    物体曲线运动
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../line/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shader-Line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3d/anti-aliasing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    渲染锯齿问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3d/coordinate-transformation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    坐标转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3d/three-orbitcontrol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    orbitcontrol状态暂存
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3d/create-rectangle-scan-area/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    创建矩形扫描区域
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3d/orbitcontrol-autoPilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自动pilot控制器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    electron
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    electron
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#electron" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        electron开发中一些记录
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="electron开发中一些记录">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        下面为实际开发时遇到的问题及解决办法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../serve/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    node端服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web-dev-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    web-dev-server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build_docker_image_frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建前端镜像
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../react/Form/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    antd-form
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../react/mobx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mobx
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webpack/bundleAnalyzerPlugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    webpack打包产物可视化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fetch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    fetch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../websocket/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    websocket
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iterable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    iterable可迭代对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    性能优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../react/route/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    路由
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grid-layout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网格布局切分
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../html/mosaic.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    canvas-马赛克
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EventLoop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    事件循环
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../react/Init_React_Project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    创建React
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../react/redux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    React状态管理Redux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vue/Upgrade_Vue2_To_Vue3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vue2升级Vue3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Promise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    手写实现Promise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get_url_para/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    正则匹配url参数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webpack-loader-plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    loader、plugin区别
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../defineProperty%E4%B8%8EProxy%E5%8C%BA%E5%88%AB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proxy与Object.defineProperty
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reduce_function_iteration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    reduce示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../diff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diff算法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CommonJs-ESModule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CommonJs-ESModule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webBrowser-load-resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    浏览器资源加载流程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    前端实现复制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../npmLink/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    npm link
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TS/RunTs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运行TS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TS/TS-type%26interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS的type和interface区别与联系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prototype/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    prototype原型链
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../variable%26function-prompt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    js中的变量提升和函数提升
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shallow%26deep-Copy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    浅拷贝、深拷贝
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Worker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Worker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常用命令
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    常用命令
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UserfulCommand/windows_checkPort%26killPID/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    查询端口&关闭进程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UserfulCommand/Watch_disk_IO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    磁盘IO监控
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UserfulCommand/Git_command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git命令
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UserfulCommand/Search_PID/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    搜索进程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UserfulCommand/ffmpeg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ffmpeg
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UserfulCommand/gpu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    显卡命令
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UserfulCommand/alias_command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    创建alias命令
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    其他
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    其他
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Marks/quick_sort_Time/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速排序时间复杂度分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Marks/rotate_arc_svg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    旋转圆环SVG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#electron" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        electron开发中一些记录
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="electron开发中一些记录">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        下面为实际开发时遇到的问题及解决办法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>electron</h1>
+
+<h3 id="electron">electron开发中一些记录</h3>
+<ul>
+<li>
+<p>Node: 16.16.0 + Electrron: 21.4.4 + React</p>
+</li>
+<li>
+<p>1, package.json增加main入口文件，指向electron的主进程文件：</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nx">main</span><span class="o">:</span><span class="w"> </span><span class="s1">'electron/main.js'</span><span class="p">,</span>
+<span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+<span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">""</span>
+</code></pre></div>
+<ul>
+<li>
+<p>2, 主进程</p>
+<p>创建window或view的时候，可指定预加载脚本，在预加载脚本内可通过<code>exposeInMainWorld</code> 暴露api给渲染进程,
+使用次api的前提是需要开启进程隔离，即在webPreferences的contextIsolation为true；</p>
+</li>
+<li>
+<p>通过该方式暴露的api在渲染进程调用时，不要传入某些多层嵌套的对象，实际只有一层可用，如：</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">demo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">fun1</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'fun1'</span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">contextBridge</span><span class="p">.</span><span class="nx">exposeInMainWorld</span><span class="p">(</span><span class="s2">"api"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="nx">sdk</span><span class="o">:</span><span class="w"> </span><span class="nx">demo</span><span class="p">,</span>
+
+<span class="p">});</span>
+
+<span class="c1">// 渲染进程</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">sdk</span><span class="p">.</span><span class="nx">fun1</span><span class="p">()</span><span class="w"> </span><span class="c1">// 会报错，提示找不到fun1</span>
+
+
+<span class="c1">// 需要将每个调用的func都暴露出去，而不是整个对象暴露:</span>
+<span class="nx">contextBridge</span><span class="p">.</span><span class="nx">exposeInMainWorld</span><span class="p">(</span><span class="s2">"api"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="nx">sdk</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">fun1</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">demo</span><span class="p">.</span><span class="nx">fun1</span><span class="p">,</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="p">});</span>
+</code></pre></div>
+<p>如果需要在渲染进程中使用node的api如require，需要设置如下，并在渲染进程中通过window.require调用。否则会报错。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">webPreferences</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">nodeIntegration</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">contextIsolation</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>3，进程间通信</li>
+</ul>
+<p>多页面可使用MessageChannelMain来通信，使用方式为在主进程创建页面时，将成对的port分别传给需要通信的页面，并在每个页面内接受port后通信。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 主进程</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">port1</span><span class="p">,</span><span class="w"> </span><span class="nx">port2</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">MessageChannelMain</span><span class="p">();</span>
+
+<span class="nx">mainWindow</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="s1">'ready-to-show'</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 需要延时一下　有时候页面不能及时收到</span>
+<span class="w">  </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">mainWindow</span><span class="p">.</span><span class="nx">webContents</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span><span class="s1">'port'</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">channel</span><span class="o">:</span><span class="w"> </span><span class="s1">'pageA'</span><span class="p">},</span><span class="w"> </span><span class="p">[</span><span class="nx">port1</span><span class="p">]);</span>
+<span class="w">  </span><span class="p">})</span>
+<span class="p">});</span>
+
+<span class="nx">viewPage2</span><span class="p">.</span><span class="nx">webContents</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="s1">'ready-to-show'</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="nx">viewPage2</span><span class="p">.</span><span class="nx">webContents</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span><span class="s1">'port'</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">port2</span><span class="p">]);</span>
+<span class="p">});</span>
+
+
+
+<span class="c1">// 渲染进程</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ipcRenderer</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s2">"electron"</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * 配对port: hmi进程</span>
+<span class="cm"> */</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">messagePort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">port</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">setPort</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">p</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">p</span><span class="p">;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">getPort</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">port</span><span class="p">;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">})();</span>
+
+<span class="nx">ipcRenderer</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"port"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">electronMessagePort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">ports</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">  </span><span class="nx">messagePort</span><span class="p">.</span><span class="nx">setPort</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">ports</span><span class="p">[</span><span class="mf">0</span><span class="p">]);</span>
+
+<span class="w">  </span><span class="nx">electronMessagePort</span><span class="p">.</span><span class="nx">onmessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">messageEvent</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// todo</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">});</span>
+
+<span class="c1">// 通信</span>
+<span class="nx">messagePort</span><span class="p">.</span><span class="nx">getPort</span><span class="p">().</span><span class="nx">postMessage</span><span class="p">({});</span>
+</code></pre></div>
+<p>主进程监听渲染进程消息</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 双向通信用invoke - handle</span>
+<span class="nx">ipcMain</span><span class="p">.</span><span class="nx">handle</span><span class="p">(</span><span class="s1">'check-access'</span><span class="p">,</span><span class="w"> </span><span class="nx">checkAccess</span><span class="p">);</span>
+
+
+<span class="c1">// 单向通信用send - on</span>
+<span class="w">  </span><span class="nx">ipcMain</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'messageName'</span><span class="p">,</span><span class="w"> </span><span class="nx">handleMessage</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li>4, 多页面
+在webpack配置中配置多页面, 示例为customize-cra已简化配置</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">multipleEntry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">'react-app-rewire-multiple-entry'</span><span class="p">)([</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">entry</span><span class="o">:</span><span class="w"> </span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span><span class="w"> </span><span class="s1">'./src/electron/tab1/index.tsx'</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span><span class="w"> </span><span class="s2">"./public/index.html"</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">outPath</span><span class="o">:</span><span class="w"> </span><span class="s1">'./tab1.html'</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">omitHash</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">entry</span><span class="o">:</span><span class="w"> </span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span><span class="w"> </span><span class="s1">'./src/electron/tab2/index.tsx'</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span><span class="w"> </span><span class="s2">"./public/index.html"</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">outPath</span><span class="o">:</span><span class="w"> </span><span class="s1">'./tab2.html'</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">omitHash</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">]);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">webpack</span><span class="o">:</span><span class="w"> </span><span class="nx">override</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">setOutputForQiankun</span><span class="p">(),</span>
+<span class="w">    </span><span class="nx">multipleEntry</span><span class="p">.</span><span class="nx">addMultiEntry</span><span class="p">,</span>
+<span class="p">)}</span>
+</code></pre></div>
+<ul>
+<li>5, 处理node sdk的打包问题
+    addon的编译产为为node文件，前端需要通过require引入，不做其他处理时前端webpack打包会报错。
+    思路为将node文件copy到build目录：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nx">addWebpackPlugin</span><span class="p">((</span><span class="nx">config</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">config</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">plugins</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span>
+<span class="w">    </span><span class="ow">new</span><span class="w"> </span><span class="nx">copyPlugin</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">patterns</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span>
+<span class="w">        </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="s1">'src/nodesdk'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="nx">to</span><span class="o">:</span><span class="w"> </span><span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span><span class="w"> </span><span class="s1">'./build/app/modules/nodesdk'</span><span class="p">),</span>
+<span class="w">        </span><span class="nx">toType</span><span class="o">:</span><span class="w"> </span><span class="s1">'dir'</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="p">}),</span>
+</code></pre></div>
+<p>copy之后，需要对require的地方做处理，开发模式path为实际路径，打包后的生产模式，指向build里的路径</p>
+<p>electron在make时有两种方式，electron-builder和electron-forge
+此处用electron-forge make打包，配置文件为根目录的forge.config.js
+打包时需要忽略node_modules,否则app会将其全部打包进去，但是实际加载的是build的产物，如果需要，可指定某个目录不要打包进asar压缩文件内，配置为</p>
+<div class="highlight"><pre><span></span><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">packagerConfig</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">ignore</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="sr">/^\/node_modules/</span><span class="p">,</span>
+<span class="w">      </span><span class="sr">/\.zip$/</span><span class="p">,</span>
+<span class="w">      </span><span class="sr">/^\/src/</span><span class="p">,</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nx">asar</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">unpackDir</span><span class="o">:</span><span class="w"> </span><span class="s1">'**/hmisdk'</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// 上面会将hmisdk目录放在app.asar.unpacked目录下，而不是app.asar文件内，默认安装的应用资源路径为/usr/lib/{appName}/resources/</span>
+</code></pre></div>
+<p>打包产物的配置为:</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nx">makers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">'@electron-forge/maker-deb'</span><span class="p">,</span><span class="w"> </span><span class="c1">// 输出linux的deb,下面两个正常可删除</span>
+<span class="w">      </span><span class="nx">config</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">    </span><span class="p">},</span><span class="w">    </span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">'@electron-forge/maker-zip'</span><span class="p">,</span><span class="w"> </span><span class="c1">// 输出linux的deb</span>
+<span class="w">      </span><span class="nx">platforms</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">'darwin'</span><span class="p">],</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">'@electron-forge/maker-rpm'</span><span class="p">,</span><span class="w"> </span><span class="c1">// 输出linux的rpm,</span>
+<span class="w">      </span><span class="nx">config</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">outDir</span><span class="o">:</span><span class="w"> </span><span class="s1">'build/'</span><span class="w">　</span><span class="c1">// 输出目录</span>
+</code></pre></div>
+<ul>
+<li>6，electron开发模式启动方式为</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">// 这个方式可能会报错</span>
+<span class="nx">dotenv</span><span class="w"> </span><span class="o">-</span><span class="nx">e</span><span class="w"> </span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">electron</span><span class="p">.</span><span class="nx">dev</span><span class="w"> </span><span class="nx">electron</span><span class="o">-</span><span class="nx">forge</span><span class="w"> </span><span class="nx">start</span>
+
+<span class="nx">dotenv</span><span class="w"> </span><span class="o">-</span><span class="nx">e</span><span class="w"> </span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">electron</span><span class="p">.</span><span class="nx">dev</span><span class="w"> </span><span class="nx">electron</span><span class="w"> </span><span class="p">.</span>
+</code></pre></div>
+<ul>
+<li>7, 崩溃监控</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">// 主进程</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="nx">crashReporter</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">'electron'</span><span class="p">);</span>
+
+<span class="nx">crashReporter</span><span class="p">.</span><span class="nx">start</span><span class="p">({</span><span class="nx">submitURL</span><span class="o">:</span><span class="w"> </span><span class="s1">''</span><span class="p">,</span><span class="w"> </span><span class="nx">uploadToServer</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'last crash:'</span><span class="p">,</span><span class="nx">crashReporter</span><span class="p">.</span><span class="nx">getLastCrashReport</span><span class="p">())</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'getAppPath'</span><span class="p">,</span><span class="w"> </span><span class="nx">app</span><span class="p">.</span><span class="nx">getAppPath</span><span class="p">())</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'render-process-gone'</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="w"> </span><span class="nx">w</span><span class="p">,</span><span class="w"> </span><span class="nx">d</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">reason</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"crashed"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'crashed'</span><span class="p">,</span><span class="w"> </span><span class="nx">d</span><span class="p">)</span>
+<span class="w">  </span><span class="nx">w</span><span class="p">.</span><span class="nx">reload</span><span class="p">()</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'render-process-gone'</span><span class="p">)</span>
+<span class="w">  </span><span class="nx">fs</span><span class="p">.</span><span class="nx">appendFileSync</span><span class="p">(</span><span class="s1">'./log.txt'</span><span class="p">,</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">()</span><span class="si">}</span><span class="sb">渲染进程被杀死</span><span class="si">${</span><span class="nx">d</span><span class="p">.</span><span class="nx">reason</span><span class="si">}</span><span class="sb">\n`</span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>electron crashReport地址默认在:~/.config/appName/Crashpad/pending/下，会有多个崩溃日志</p>
+<p>electron-minidump为npm安装的解析命令，可通过npm安装</p>
+<p>用其解析dmp崩溃日志文件:
+electron-minidump -f ./dmp.dmp -v 21.4.4
+21.4.4为electron的版本，因为要下载对应版本的解析文件</p>
+<p>8, 静态资源的加载
+由于electron是file协议加载页面，可能会出现静态资源如某些json、gltf资源请求不到的情况，解决：
+将app的BrowerRoute用HashRouter即可。
+差异对比见<code>react/route.md</code></p>
+<hr />
+<h4 id="_1">下面为实际开发时遇到的问题及解决办法</h4>
+<div class="highlight"><pre><span></span><code><span class="nx">electron</span><span class="o">:</span>
+<span class="nx">yarn</span><span class="w"> </span><span class="nx">config</span><span class="w"> </span><span class="nx">set</span><span class="w"> </span><span class="nx">electron_mirror</span><span class="w"> </span><span class="nx">https</span><span class="o">:</span><span class="c1">//npmmirror.com/mirrors/electron/</span>
+<span class="nx">yarn</span><span class="w"> </span><span class="nx">config</span><span class="w"> </span><span class="nx">set</span><span class="w"> </span><span class="nx">ELECTRON_MIRROR</span><span class="w"> </span><span class="nx">https</span><span class="o">:</span><span class="c1">//npmmirror.com/mirrors/electron/</span>
+
+<span class="nx">环境变量PUBLIC_URL</span><span class="w"> </span><span class="nx">优先级比</span><span class="w"> </span><span class="kr">package</span><span class="p">.</span><span class="nx">json的homepage高</span>
+<span class="nx">减小打包体积</span><span class="err">：</span>
+<span class="mf">1</span><span class="err">，</span><span class="nx">删除node_modules</span>
+<span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="nx">安装electron</span><span class="err">：</span>
+<span class="nx">yarn</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="nx">electron</span><span class="o">-</span><span class="nx">packager</span><span class="w"> </span><span class="o">--</span><span class="nx">dev</span><span class="o">-</span><span class="nx">save</span>
+
+<span class="nx">electron相关</span><span class="err">：</span>
+<span class="nx">set</span><span class="w">   </span><span class="nx">index</span><span class="p">.</span><span class="nx">html</span><span class="w">  </span><span class="nx">electron</span>
+<span class="nx">PUBLICPATH</span><span class="o">=</span><span class="p">.</span><span class="o">/</span><span class="nx">build</span><span class="o">/</span><span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="nx">本地build绝对路径</span><span class="w"> </span><span class="nx">白屏</span>
+<span class="w">    </span><span class="nx">index</span><span class="p">.</span><span class="nx">html</span><span class="w"> </span><span class="nx">改为</span><span class="p">.</span><span class="o">/</span><span class="nx">build</span><span class="w"> </span><span class="nx">也白屏</span>
+<span class="w">        </span><span class="nx">改为</span><span class="w"> </span><span class="p">.</span><span class="o">/</span><span class="k">static</span><span class="sr">/js/</span><span class="p">...</span><span class="w"> </span><span class="nx">能加载js</span><span class="err">，</span><span class="nx">但是静态资源无法加载</span>
+
+<span class="nx">不设置</span><span class="err">：</span>
+<span class="w">    </span><span class="nx">index</span><span class="p">.</span><span class="nx">html内js</span><span class="w"> </span><span class="nx">为</span><span class="p">.</span><span class="o">/</span><span class="k">static</span><span class="err">/.. 不白屏</span>
+<span class="w">    </span><span class="nx">但svg无法加载</span><span class="err">，</span><span class="nx">路径为file</span><span class="o">:</span><span class="c1">///static</span>
+
+<span class="nx">设置PUBLIC_URL</span><span class="o">=</span><span class="p">.</span><span class="o">/</span>
+<span class="w">    </span><span class="nx">与不设置相同</span>
+
+<span class="nx">设置PUBLIC_URL</span><span class="o">=</span><span class="err">/</span>
+<span class="w">    </span><span class="nx">index</span><span class="p">.</span><span class="nx">html内js</span><span class="w"> </span><span class="nx">为</span><span class="o">/</span><span class="k">static</span><span class="err">/.  白屏</span>
+
+<span class="nx">打包出的gltf和png路径设置一致</span><span class="err">，</span><span class="nx">但是png等图片无法加载到</span><span class="err">，</span><span class="nx">gltf可以</span><span class="p">(</span><span class="nx">assr的路径</span><span class="p">)</span><span class="err">，</span><span class="nx">图片是static的绝对路径</span>
+<span class="nx">用http</span><span class="o">-</span><span class="nx">server本地起server</span><span class="err">，</span><span class="nx">却是正常的</span><span class="err">。</span>
+
+
+<span class="nx">用electron</span><span class="o">-</span><span class="nx">builder打包</span><span class="err">：</span>
+<span class="w">    </span><span class="mf">1</span><span class="err">，</span><span class="nx">yarn</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="nx">electron</span><span class="o">-</span><span class="nx">builder</span><span class="w"> </span><span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">dev</span>
+<span class="w">    </span><span class="mf">2</span><span class="err">，</span><span class="nx">electron</span><span class="p">.</span><span class="nx">js移动到build目录下</span><span class="err">，</span><span class="nx">内容和main</span><span class="p">.</span><span class="nx">js一样</span>
+
+
+<span class="nx">node切换成15</span><span class="mf">.16.1</span><span class="err">，</span><span class="nx">electron21</span><span class="mf">.4.14</span><span class="w"> </span><span class="nx">能在容器中启动打开</span>
+<span class="nx">高版本无法打开</span><span class="err">，</span><span class="nx">报错</span>
+
+
+<span class="mo">050</span><span class="mf">8</span>
+<span class="mf">1</span><span class="err">，</span><span class="nx">在main中引入node_modules中的hmisdk</span><span class="err">，</span><span class="nx">打包后提示找不到</span>
+<span class="mf">2</span><span class="err">，</span><span class="nx">手动放到同级目录下</span><span class="err">，</span><span class="nx">打包后提示没有libad_visualizer</span><span class="p">.</span><span class="nx">so</span><span class="err">。。。。</span>
+<span class="mf">3</span><span class="err">，</span><span class="nx">直接将代码copy进容器</span><span class="err">，</span><span class="nx">可以跑起来</span><span class="err">：</span>
+<span class="w">    </span><span class="mf">1</span><span class="err">，</span><span class="nx">目前只能在主进程中加载sdk</span><span class="err">，</span><span class="nx">渲染进程</span><span class="err">，</span><span class="nx">浏览器环境无法加载</span><span class="err">，</span><span class="nx">即使开启了nodeIntegration</span>
+<span class="w">    </span><span class="mf">2</span><span class="err">，</span><span class="nx">在preload中加载sdk</span><span class="err">，</span><span class="nx">将接口暴露给渲染进程</span><span class="err">，</span><span class="nx">不能整个sdk暴露</span><span class="err">，</span><span class="nx">只能暴露一层对象属性</span><span class="err">，</span><span class="nx">所以sdk内的function都需要逐个暴露</span><span class="err">；</span>
+<span class="w">    </span><span class="mf">3</span><span class="err">，</span><span class="nx">sdk需要后端改造的visualizer配合</span><span class="err">，</span>
+<span class="w">    </span><span class="mf">4</span><span class="err">，</span><span class="nx">晚上</span><span class="err">：</span><span class="nx">用朱亮给的node包和sdk包重新跑</span><span class="err">，</span><span class="nx">重新下载他提供的数据包</span><span class="err">，</span><span class="nx">和播包流程</span><span class="err">，</span><span class="nx">播包成功了</span><span class="err">，</span><span class="nx">但是貌似visualizer没有启动</span><span class="err">，</span><span class="nx">setVisCallback也没数据</span>
+
+<span class="mo">050</span><span class="mf">9</span>
+<span class="mf">1</span><span class="err">，</span><span class="nx">将hmisdk的</span><span class="p">.</span><span class="nx">index</span><span class="p">.</span><span class="nx">js的require改为hmisdk</span><span class="p">.</span><span class="nx">node能打包</span><span class="err">，</span><span class="nx">否则会报Module</span><span class="w"> </span><span class="nx">not</span><span class="w"> </span><span class="nx">found的错</span><span class="err">，</span><span class="nx">但是打包后libad的so文件丢失</span>
+<span class="w">    </span><span class="nx">make之后找不到hmisdk</span>
+<span class="w">    </span><span class="nx">渲染进程中要使用require</span><span class="err">，</span><span class="nx">需要webPreferences</span><span class="o">:</span><span class="w"> </span><span class="nx">nodeIntegration</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nx">contextIsolation</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">上面contextIsolation为false之后</span><span class="err">，</span><span class="nx">就无法使用preload的exposeApi了</span>
+<span class="w">    </span><span class="nx">不设置false</span><span class="err">，</span><span class="nx">将require通过api暴露给渲染进程使用</span><span class="err">；</span>
+
+<span class="nx">Final</span><span class="err">：</span>
+<span class="nx">已经跑通打包</span><span class="err">、</span><span class="nx">数据接收</span><span class="err">：</span>
+<span class="w">    </span><span class="mf">1</span><span class="err">，</span><span class="nx">src同级创建hmisdk目录</span><span class="err">，</span><span class="nx">将sdk相关文件放进去</span><span class="err">；</span>
+<span class="w">    </span><span class="mf">2</span><span class="err">，</span><span class="nx">hmisdk</span><span class="o">/</span><span class="nx">index</span><span class="p">.</span><span class="nx">js的require要表明hmisdk</span><span class="p">.</span><span class="nx">node</span><span class="p">,</span><span class="w"> </span><span class="nx">否则可能会报错Module</span><span class="w"> </span><span class="nx">not</span><span class="w"> </span><span class="nx">found</span><span class="err">；</span>
+<span class="w">    </span><span class="mf">3</span><span class="err">，</span><span class="nx">preload脚本中通过index</span><span class="p">.</span><span class="nx">js加载sdk</span><span class="err">，</span><span class="nx">路径通过process</span><span class="p">.</span><span class="nx">resourcePath</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">app</span><span class="p">.</span><span class="nx">asar</span><span class="p">.</span><span class="nx">unpackDir拼接</span><span class="err">，</span><span class="nx">不直接引用当前目录的hmisdk</span><span class="err">；</span><span class="nx">引用打包后的路径</span><span class="err">；</span><span class="nx">以内不在容器内</span><span class="err">，</span><span class="nx">开发模式会报capnp的包的错误</span><span class="err">，</span><span class="nx">所以无法调试</span><span class="err">，</span><span class="nx">直接指定最终打包路径</span>
+<span class="w">    </span><span class="mf">4</span><span class="err">，</span><span class="nx">配置文件json</span><span class="err">，</span><span class="nx">由于是addon</span><span class="err">，</span><span class="nx">在asar内有问题</span><span class="err">，</span><span class="nx">不能打包在asar内</span><span class="err">，</span><span class="nx">通过forge</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">json配置的app</span><span class="p">.</span><span class="nx">asar</span><span class="p">.</span><span class="nx">unpackDir指定hmisdk不打包进asar内</span><span class="err">：</span><span class="sb">`unpackDir: "**/hmisdk" `</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">注意</span><span class="err">：</span><span class="nx">前面要加</span><span class="o">**</span><span class="err">，</span><span class="nx">否则最终打包的app</span><span class="p">.</span><span class="nx">asar</span><span class="p">.</span><span class="nx">unpack</span><span class="o">/</span><span class="nx">hmisdk内只包含那个node文件</span><span class="p">)</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">ignore中不能将hmisdk目录加上去</span><span class="err">，</span><span class="nx">否则会导致unpackDir为空</span><span class="err">；</span>
+<span class="w">        </span><span class="nx">这种方式会导致hmisdk的文件在asar和app</span><span class="p">.</span><span class="nx">asar</span><span class="p">.</span><span class="nx">unpackDir中各存一份</span><span class="err">；</span>
+<span class="w">    </span><span class="mf">5</span><span class="err">，</span><span class="nx">在4基础上拼接配置文件路径</span><span class="err">，</span><span class="nx">调用sdk的setConfig传入配置文件的当前绝对路径</span><span class="err">，</span>
+<span class="w">    </span><span class="mf">6</span><span class="err">，</span><span class="nx">通过暴露api方式</span><span class="err">，</span><span class="nx">将sdk的start</span><span class="err">、</span><span class="nx">setVisCallBack等方法逐一暴露</span><span class="err">，</span><span class="nx">渲染进程中再调用</span><span class="err">，</span><span class="nx">不能将整个sdk暴露</span><span class="err">，</span><span class="nx">因为exportInMainWorld好像只能暴露一层对象</span><span class="err">；</span>
+<span class="w">    </span><span class="mf">7</span><span class="err">，</span><span class="nx">打开app后</span><span class="err">，</span><span class="nx">先执行hmi</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">setVisCallBack</span><span class="p">(),</span><span class="w"> </span><span class="nx">再执行hmi</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">start</span><span class="p">()</span><span class="err">，</span><span class="nx">才能收到数据</span>
+
+
+<span class="mo">0514</span>
+<span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">渲染进程中通过require</span><span class="p">(</span><span class="s1">'electron'</span><span class="p">)</span><span class="err">，</span><span class="nx">然后ipcRender</span><span class="p">.</span><span class="nx">on等进行进程间通信</span><span class="err">，</span><span class="nx">会报错</span><span class="err">，</span><span class="nx">大概是contextBridge</span><span class="w"> </span><span class="nx">循环递归深度超了导致404页面异常了</span><span class="err">。</span>
+
+
+<span class="mo">0515</span>
+<span class="mf">1</span><span class="err">，</span><span class="nx">去掉昨天加的新窗口</span><span class="err">，</span><span class="nx">将数据解析放到hmi页面的worker线程中</span><span class="err">，</span><span class="nx">topic数据直接post给topic和chart页面</span><span class="err">；</span><span class="nx">数据流已跑通</span><span class="err">；</span>
+<span class="mf">2</span><span class="err">，</span><span class="nx">开始处理切分</span><span class="err">，</span><span class="nx">单纯的切分没啥难度</span><span class="err">，</span><span class="nx">主要是每个切分出的组件都有上下依赖关系</span><span class="err">，</span><span class="nx">需要记录处理这种依赖</span><span class="err">，</span><span class="nx">比如删除中间一个面板后</span><span class="err">，</span><span class="nx">其余相关的面板都要更新</span><span class="err">；</span><span class="nx">已实现单纯的切分</span><span class="err">，</span><span class="nx">依赖关系待处理</span><span class="err">，</span><span class="nx">参考了foxGlove的切分配置</span><span class="p">(</span><span class="nx">通过打断点</span><span class="err">，</span><span class="nx">看到它有一个layout记录每个panel的切分记录</span><span class="err">，</span><span class="nx">first为当前panel</span><span class="err">，</span><span class="nx">second为切分出的panel</span><span class="err">，</span><span class="nx">另有一个config记录每个panel的信息</span><span class="p">)</span><span class="err">。</span><span class="nx">todo</span>
+
+<span class="mo">051</span><span class="mf">9</span>
+<span class="nx">搞定了切分整体逻辑</span><span class="err">，</span><span class="nx">主要是删除</span><span class="err">：</span>
+<span class="w">    </span><span class="nx">layout记录切分过程</span><span class="err">，</span><span class="nx">一个树状结构</span><span class="err">，</span>
+<span class="w">    </span><span class="nx">删除一个面板时</span><span class="err">，</span><span class="nx">根据layout重新计算config</span><span class="err">，</span><span class="nx">由于是二分</span><span class="err">，</span><span class="nx">所以难度降低</span><span class="err">；</span>
+
+<span class="mo">0520</span>
+<span class="mf">1</span><span class="err">，</span><span class="nx">渲染进程要完整使用require</span><span class="err">，</span><span class="nx">需要将contextIsolation设为false</span><span class="err">，</span><span class="nx">如果通过preload暴露require给渲染进程</span><span class="err">，</span><span class="nx">那require出来的对象也会被重新序列化一次导致不是原始对象</span><span class="err">；</span>
+<span class="mf">2</span><span class="err">，</span><span class="nx">直接写require无法成功定位到node</span><span class="err">，</span><span class="nx">webpack将其编译为了process</span><span class="p">.</span><span class="nx">dlopen</span><span class="err">，</span><span class="nx">后来改为window</span><span class="p">.</span><span class="nx">require就正常了</span><span class="err">，</span><span class="nx">包括页面js中require</span><span class="p">(</span><span class="s1">'electron'</span><span class="p">)</span><span class="nx">也是一样</span><span class="err">；</span>
+<span class="w">    </span><span class="nx">同时在config中加一个rule</span><span class="err">，</span><span class="nx">用node</span><span class="o">-</span><span class="nx">loader处理</span><span class="p">.</span><span class="nx">node文件</span><span class="err">，</span><span class="nx">将其处理到static文件夹中</span><span class="err">，</span><span class="nx">再用copywebpackplugin将hmisdk中的文件copy到static中</span><span class="err">，</span><span class="nx">解决配置文件加载问题</span>
+<span class="w">    </span><span class="nx">make后的deb加载sdk会有问题</span><span class="err">，</span><span class="nx">因为打包后</span><span class="err">，</span><span class="nx">node_modules被忽略</span><span class="err">，</span><span class="nx">直接require会not</span><span class="w"> </span><span class="nx">found</span><span class="err">，</span><span class="nx">需要在加载sdk的地方判断当下环境</span><span class="err">，</span><span class="nx">生产环境需要将路径定位到sdk目录</span><span class="err">，</span><span class="nx">即asar</span><span class="p">.</span><span class="nx">unpack的目录</span><span class="err">：</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">unpack目录通过make时forge</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">json配置</span><span class="err">：</span><span class="nx">packagerConfig</span><span class="p">.</span><span class="nx">asar</span><span class="p">.</span><span class="nx">unpackDir</span><span class="o">:</span><span class="w"> </span><span class="s1">'**/hmisdk'</span><span class="p">,</span><span class="w"> </span><span class="nx">配置</span><span class="err">。</span>
+<span class="w">        </span><span class="nx">webpack配置文件中可用node</span><span class="o">-</span><span class="nx">loader处理node文件</span><span class="err">，</span><span class="nx">输出到build</span><span class="o">/</span><span class="nx">app</span><span class="o">/</span><span class="nx">modules</span><span class="o">/</span><span class="nx">dist目录</span><span class="err">，</span><span class="nx">用copyWebpackPlugin将node_modules</span><span class="o">/</span><span class="nx">hmisdk拷贝到</span><span class="o">/</span><span class="nx">build</span><span class="o">/</span><span class="nx">app</span><span class="o">/</span><span class="nx">modules</span><span class="o">/</span><span class="nx">hmisdk目录下</span><span class="err">，</span>
+<span class="w">            </span><span class="nx">好像因为直接copy了</span><span class="err">，</span><span class="nx">不再需要node</span><span class="o">-</span><span class="nx">loader处理了</span><span class="err">。</span>
+<span class="nx">经多次测试</span><span class="err">，</span><span class="nx">开发模式</span><span class="err">、</span><span class="nx">生产模式均可跑通</span><span class="err">；</span>
+
+
+<span class="nx">容器内编译hmisdk</span>
+<span class="mf">1</span><span class="err">，</span><span class="nx">需要拉取node_visualizer源码到容器内</span><span class="err">，</span><span class="nx">或将代码copy到容器内</span>
+<span class="mf">2</span><span class="err">，</span><span class="nx">安装cnop_dlp的ci包</span><span class="err">；</span>
+<span class="mf">3</span><span class="err">，</span><span class="nx">按照addon里的readme安装</span><span class="err">，</span><span class="nx">如果提示permission</span><span class="w"> </span><span class="nx">denied</span><span class="err">，</span><span class="nx">将build及addon目录赋权限</span><span class="o">:</span><span class="w"> </span><span class="nx">sudo</span><span class="w"> </span><span class="nx">chmod</span><span class="w"> </span><span class="o">-</span><span class="nx">R</span><span class="w"> </span><span class="mf">777</span><span class="w"> </span><span class="p">.</span><span class="o">/</span><span class="nx">build</span>
+
+
+
+<span class="nx">asar用</span><span class="w"> </span><span class="nx">asar</span><span class="w"> </span><span class="nx">extract</span><span class="w"> </span><span class="nx">解压</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../static/math.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
