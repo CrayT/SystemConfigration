@@ -144,7 +144,7 @@ theme:
   highlightjs: true
 extra_css:
   - css/extra.css
-markdown_extentions:
+markdown_extensions:
   - admonition
   - footnotes  # 脚注
   - meta  # 定义元数据，通过文章上下文控制，如disqus
@@ -156,6 +156,10 @@ markdown_extentions:
   - pymdownx.mark  # 文本高亮
   - pymdownx.smartsymbols  # 符号转换
   - pymdownx.superfences  # 代码嵌套在列表里
-  - pymdownx.arithmatex
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
 extra_javascript:
   - static/math.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
