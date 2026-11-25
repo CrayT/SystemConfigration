@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/huakuai.css">
+</head>
+<body>
+<div>
+    <div class="background"></div>
+</div>s
+<input id="mosaicSize" type="range" min="128" max="2048" value="512">
+<div id="videoBackground" class="videoBackground">
+    <div id="button1" class="button1">测试</div>
+</div>
+<!--<div class="barBox" id="barBox">-->
+<!--    <div class="barColor" id="barColor"></div>-->
+<!--    <div class="barBlock" id="barBlock"></div>-->
+<!--    <div class="barLine" id="barLine"></div>-->
+<!--</div>-->
+<!--<div class="barBox2" id="barBox2">-->
+<!--    <div class="barColor2" id="barColor2"></div>-->
+<!--    <div class="barBlock2" id="barBlock2"></div>-->
+<!--</div>-->
+<!--<script src="src/huakuai.js"></script>-->
+<!--<script src="js/js.bundle.js"></script>-->
+<script type="module" src="src/cls.js"></script>
+<script type="module" src="src/cls2.js"></script>
+<script type="module" src="src/cls3.js"></script>
+<script src="index.js"></script>
+<script>
+    // document.getElementById('mosaicSize').css('background','linear-gradient(to right, #63A35C 0%, #ccc 50%, antiquewhite)');
+    // document.getElementById('mosaicSize').mousemove(function(){
+    //     $(this).css('background','linear-gradient(to right, #63A35C 0%, #ccc ' + this.value + '%, antiquewhite)');
+    // })
+    document.getElementById('mosaicSize').onmousemove = function(){
+        let v = document.getElementById('mosaicSize').value
+        // console.log(v)
+        let ratio = (v-128)/2048*100 + 3
+
+        console.log(ratio)
+        document.getElementById('mosaicSize').style.backgroundSize =  ratio + '% 100%'
+    }
+
+</script>
+</body>

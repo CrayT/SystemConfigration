@@ -1,0 +1,77 @@
+<html>
+<head>
+    <title>BufferGeomtry</title>
+    <style>
+        body { margin: 0; }
+        canvas { width: 100%; height: 100% }
+    </style>
+</head>
+<body>
+<script src="//wow.techbrood.com/libs/three.r73.js"></script>
+<script src="threejs/three.js"></script>
+<script src="threejs/OrbitControls.js"></script>
+<script>
+
+    var scene = new THREE.Scene();
+    scene.background = new THREE.Color( 0xf0f0f0 );
+    var camera = new THREE.PerspectiveCamera( 55, window.innerWidth/window.innerHeight, 0.1, 1000 );
+
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement ); //appendChild表示将这个domElement挂接在body下面，这样渲染的结果就能够在页面中显示了。
+    var axis = new THREE.AxesHelper( 50 );
+    scene.add(axis)
+
+    var orbitControls = new THREE.OrbitControls(camera, renderer.domElement)
+
+    var vertices = new Float32Array( [
+        -10, -10,  10,
+        10, -10,  10,
+        10,  10,  10,
+
+        10,  10,  10,
+        -10,  10,  10,
+        -10, -10,  10
+    ] );
+
+    var geometry2 = new THREE.BufferGeometry()
+    // geometry2.vertices.push( //geometry的方法
+    //     new THREE.Vector3(0, 0,  0),
+    //     new THREE.Vector3(50, 0,  0),
+    //     new THREE.Vector3(50,  50,  0),
+    //     new THREE.Vector3(0,  50,  0),
+    // )
+    // geometry2.faces.push(new THREE.Face3( 0, 1, 2 )) //两个三角面
+    // geometry2.faces.push(new THREE.Face3( 2, 3, 0 ))
+    // geometry2.computeBoundingBox()
+    geometry2.addAttribute('position', new THREE.BufferAttribute(vertices,3))
+    //设置纹理：
+    var textureCube = new THREE.TextureLoader().load( "pic/dog.jpeg" ); //加载贴图图片
+    // textureCube.wrapS = THREE.RepeatWrapping;
+    // textureCube.wrapT = THREE.RepeatWrapping;
+    // textureCube.repeat.set( 2, 2 ); //原函数是将长宽分之一，所以数字越大 纹理越细。
+
+    var material = new THREE.MeshBasicMaterial( { color: 0xff0000,side:THREE.DoubleSide } );
+
+    var cube = new THREE.Mesh( geometry2, material );
+    console.log(cube)
+    scene.add( cube );
+
+    camera.position.z = 75;
+    camera.position.y = 25;
+    camera.position.x = 25;
+    camera.lookAt(new THREE.Vector3(25,25,0))
+
+    function render() {
+        renderer.render(scene, camera);
+    };
+    function animation(){
+        requestAnimationFrame( animation );
+
+        render();
+    }
+
+    animation();
+</script>
+</body>
+</html>
